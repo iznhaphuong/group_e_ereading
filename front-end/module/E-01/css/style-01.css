@@ -1,0 +1,51 @@
+.container .inner-wap {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+  flex: 1 1 auto;
+}
+.container .inner-wap .item {
+  --item-mr: 15px;
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+}
+.container .inner-wap .item .left-logo {
+  padding: 10px;
+}
+.container .inner-wap .right {
+  justify-content: space-around;
+}
+.container .inner-wap .right .nav-wap {
+  height: 100%;
+}
+.container .inner-wap .right .nav-wap .menu-top-nav {
+  display: flex;
+  list-style: none;
+  transform: translateY(13px);
+}
+.container .inner-wap .right .nav-wap .menu-top-nav .menu-item {
+  padding: 10px;
+}
+.container .inner-wap .right .icon-connect {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  width: 65px;
+}
+.container .inner-wap .right .icon-connect .icon {
+  padding: 5px 10px;
+}
+.container .inner-wap .right .icon-connect .icon .icon-connect {
+  width: 15px;
+  height: 15px;
+}
+.container .inner-wap .right .btn-sub {
+  color: black;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid bisque;
+  box-shadow: 0 1px 1px black;
+}
