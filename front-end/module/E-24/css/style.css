@@ -1,0 +1,22 @@
+@keyframes flash {
+    0% {
+        filter: contrast(.3);
+    }
+
+    25% {
+        filter: contrast(.6);
+    }
+
+    50% {
+        filter: contrast(.9);
+    }
+
+    75% {
+        filter: contrast(1.2);
+    }
+
+    100% {
+        filter: contrast(1.5);
+        box-shadow: 0 0 10px #111;
+    }
+}
