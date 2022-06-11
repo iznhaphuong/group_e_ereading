@@ -1,20 +1,19 @@
 
+<div class="type-18">
 <div class="row flex-lg-nowrap">
-
   <div class="col">
     <div class="e-tabs mb-3 px-3">
       <ul class="nav nav-tabs">
         <li class="nav-item"><a class="nav-link active" href="#">Quản lý Truyện</a></li>
       </ul>
     </div>
-
     <div class="row flex-lg-nowrap">
       <div class="col mb-3">
         <div class="e-panel card">
           <div class="card-body">
             <div class="card-title">
               <!-- <h6 class="mr-2"><span>Users</span><small class="px-1">Be a wise leader</small> -->
-              <button class="btn btn-success btn-block" style="float: right;width:150px;margin-bottom:15px;" type="button" data-toggle="modal" data-target="#user-form-modal">Thêm Truyện</button>
+              <button class="btn btn-primary border-light rounded-0" style="float: right;width:150px;margin-bottom:15px;" type="button" data-toggle="modal" data-target="#user-form-modal">Thêm Truyện</button>
             </h6>
             </div>
             <div class="e-table">
@@ -22,12 +21,11 @@
                 <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th class="align-top">id</th>
+                      <th>id</th>
                       <th>Hình ảnh bìa</th>
                       <th class="max-width">Tên tác phẩm</th>
                       <th class="sortable">Tác giả</th>
-                      <th>Thể loại </th>
-                      <th>Nguồn </th>
+                      <th>Thể loại </th>                  
                       <th>Trạng thái </th>
                       <th>Mô tả tác phẩm </th>
                       <th>Lượt đọc </th>
@@ -39,15 +37,15 @@
                       <td class="align-middle">
                         1
                       </td>
-                      <td class="align-middle text-center">
+                      <td class="text-center align-middle">
                         <div class="bg-light d-inline-flex justify-content-center align-items-center align-top" style="width: 35px; height: 35px; border-radius: 3px;"><i class="fa fa-fw fa-photo" style="opacity: 0.8;"></i></div>
                       </td>
-                      <td class="text-nowrap align-middle">Letizia Puncher</td>
-                      <td class="text-nowrap align-middle"><span>Author</span></td>
+                      <!-- text-nowrap -->
+                      <td class="text-center align-middle">Letizia Puncher</td>
+                      <td class="text-center align-middle"><span>Author</span></td>
                       <td class="text-center align-middle">Viễn cổ</td>
-                      <td class="text-center align-middle">Google</td>
                       <td class="text-center align-middle">Đang cập nhật</td>
-                      <td><div style="overflow: scroll;height:200px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur quod reiciendis rerum id? Nam fugit officia illum officiis omnis nesciunt harum, sed molestias, totam laudantium at eum ratione nulla quo?</div></td>
+                      <td> <p class="collum-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur quod reiciendis rerum id? Nam fugit officia illum officiis omnis nesciunt harum, sed molestias, totam laudantium at eum ratione nulla quo?</p></td>
                       <td class="text-center align-middle">1200</td>
                       <td class="text-center align-middle">
                         <div class="btn-group align-top">
@@ -186,5 +184,6 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 

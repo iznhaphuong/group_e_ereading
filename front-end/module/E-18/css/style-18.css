@@ -3,6 +3,17 @@ body {
   background: black;
   color: black;
 }
-body .btn {
+body .type-18 .collum-description {
+  margin-right: -30px;
+  margin-bottom: -5px;
+  overflow: scroll;
+  height: 200px;
+  width: 200px;
+}
+body .type-18 .btn {
   color: black;
+}
+body .type-18 .btn:hover {
+  color: blue;
+  background: white;
 }
