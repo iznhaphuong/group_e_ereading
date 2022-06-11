@@ -1,38 +1,72 @@
-.sidebar{
-    width: 220px;
-    background: rgba(50, 251, 165, 0.5);
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    color: black;
+// body {
+//   overflow-x: hidden;
+//   font-family: 'Roboto', sans-serif;
+//   font-size: 16px;
+// }
 
-    // Logo
-    #logo{
-        display: flex;
-        align-items: center;
-        padding: 20px;
-        overflow: hidden;
-        border-bottom: 1px solid black;
+.type-15 {
+  #viewport {
+    padding-left: 250px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 
-        .logo-product{
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
+    #sidebar {
+      z-index: 1000;
+      position: fixed;
+      left: 250px;
+      width: 250px;
+      height: 100%;
+      margin-left: -250px;
+      overflow-y: auto;
+      background: #37474f;
+      -webkit-transition: all 0.5s ease;
+      -moz-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+
+      header {
+        background-color: #263238;
+        font-size: 20px;
+        line-height: 52px;
+        text-align: center;
+
+        a {
+          color: #fff;
+          display: block;
+          text-decoration: none;
         }
+
+        a:hover {
+          color: #fff;
+        }
+      }
+
+      .nav {
+        a {
+          background: none;
+          border-bottom: 1px solid #455a64;
+          color: #cfd8dc;
+          font-size: 14px;
+          padding: 16px 24px;
+          i {
+            margin-right: 16px;
+          }
+        }
+        a:hover {
+          background: none;
+          color: #eceff1;
+        }
+      }
     }
 
-    // Menu
-    #menu{
-        .group-item{
-            list-style: none;
-            padding-left: 0;
-            .item{
-                padding: 10px 0px 10px 20px;
-                border-top: 1px solid #DFDFDF;
-            }
-        }
+    #content {
+      width: 100%;
+      position: relative;
+      margin-right: 0;
     }
-
+  }
 }
+
+/* Toggle Styles */
