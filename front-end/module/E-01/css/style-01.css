@@ -1,0 +1,11 @@
+.type-01 .nav-item .member {
+  padding: 6.5px;
+}
+.type-01 .btn {
+  color: black;
+  background: #077C98;
+}
+.type-01 .btn:hover {
+  color: blue;
+  background: white;
+}
