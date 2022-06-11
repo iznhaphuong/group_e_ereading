@@ -1,11 +1,11 @@
 {{-- My CSS File --}}
 @push('head-css')
-    <link name="style-23" rel="stylesheet" href="{{ asset('css/style-24.css') }}">
+    <link name="style-23" rel="stylesheet" href="{{ asset('css/style-23.css') }}">
 @endpush
 
-<div class="type-24">
+<div class="type-23">
     <div class="container">
-        <div class="my-5 browsing">Đang theo dõi</div>
+        <div class="my-5 browsing">Lịch sử</div>
         <div class="row wrap-23">
             <div class="col-md-3 col-sm-12">
                 <div class="container">
@@ -17,7 +17,7 @@
                         <option value="3">A-Z</option>
                     </select>
                     <!-- Search box -->
-                    <div id="search-box" class="d-flex justify-content-end mb-3x">
+                    <div id="search-box" class="d-flex justify-content-end mb-3">
                         <form action="">
                             <div class="search-box">
                                 <button class="btn-search"><i class="fas fa-search"></i></button>
@@ -25,6 +25,8 @@
                             </div>
                         </form>
                     </div>
+                    <!-- Clear button -->
+                    <button class="btn-clear">Clear All <i class="fa-solid fa-trash-can"></i></a></button>
                 </div>
             </div>
             <div class="col-md-9 col-sm-12">
@@ -37,15 +39,9 @@
                                 <div class="m-group-button">
                                     <ul>
                                         <li class="button-item"><a href="#" title="Đọc tiếp"><i class="fa-solid fa-book-open"></i></a></li>
-                                        <li class="button-item"><a href="#" title="Bỏ theo dõi"><i class="fa-solid fa-heart-crack"></i></a></li>
+                                        <li class="button-item"><a href="#" title="Xóa"><i class="fa-solid fa-trash-can"></i></a></li>
                                     </ul>
                                 </div>
-                                <div class="m-wrap-genre">
-                                    <div class="genre-item full"></div>
-                                    <div class="genre-item new"></div>
-                                    <div class="genre-item hot"></div>
-                                </div>
-
                                 <div class="m-wrap-infor">
                                     <h5 class="card-title text-capitalize pb-2">Thiên đạo thần tôn</h5>
                                     <div class="card-text d-flex justify-content-between pb-4"><span class="text-capitalize">Cô
@@ -65,16 +61,9 @@
                                 <div class="m-group-button">
                                     <ul>
                                         <li class="button-item"><a href="#" title="Đọc tiếp"><i class="fa-solid fa-book-open"></i></a></li>
-                                        <li class="button-item"><a href="#" title="Bỏ theo dõi"><i
-                                                        class="fa-solid fa-heart-crack"></i></a></li>
+                                        <li class="button-item"><a href="#" title="Xóa"><i class="fa-solid fa-trash-can"></i></a></li>
                                     </ul>
                                 </div>
-                                <div class="m-wrap-genre">
-                                    <div class="genre-item full"></div>
-                                    <div class="genre-item new"></div>
-                                    <div class="genre-item hot"></div>
-                                </div>
-
                                 <div class="m-wrap-infor">
                                     <h5 class="card-title text-capitalize pb-2">Thiên đạo thần tôn</h5>
                                     <div class="card-text d-flex justify-content-between pb-4"><span class="text-capitalize">Cô
@@ -95,15 +84,8 @@
                                     <ul>
                                         <li class="button-item"><a href="#" title="Đọc tiếp"><i class="fa-solid fa-book-open"></i></a></li>
                                         <li class="button-item"><a href="#" title="Xóa"><i class="fa-solid fa-trash-can"></i></a></li>
-                                        <li class="button-item"><a href="#" title="Bỏ theo dõi"><i class="fa-solid fa-heart-crack"></i></a></li>
                                     </ul>
                                 </div>
-                                <div class="m-wrap-genre">
-                                    <div class="genre-item full"></div>
-                                    <div class="genre-item new"></div>
-                                    <div class="genre-item hot"></div>
-                                </div>
-
                                 <div class="m-wrap-infor">
                                     <h5 class="card-title text-capitalize pb-2">Thiên đạo thần tôn</h5>
                                     <div class="card-text d-flex justify-content-between pb-4"><span class="text-capitalize">Cô
@@ -123,13 +105,8 @@
                                 <div class="m-group-button">
                                     <ul>
                                         <li class="button-item"><a href="#" title="Đọc tiếp"><i class="fa-solid fa-book-open"></i></a></li>
-                                        <li class="button-item"><a href="#" title="Bỏ theo dõi"><i class="fa-solid fa-heart-crack"></i></a></li>
+                                        <li class="button-item"><a href="#" title="Xóa"><i class="fa-solid fa-trash-can"></i></a></li>
                                     </ul>
-                                </div>
-                                <div class="m-wrap-genre">
-                                    <div class="genre-item full"></div>
-                                    <div class="genre-item new"></div>
-                                    <div class="genre-item hot"></div>
                                 </div>
 
                                 <div class="m-wrap-infor">
