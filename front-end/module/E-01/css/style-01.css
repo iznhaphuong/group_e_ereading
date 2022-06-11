@@ -11,8 +11,8 @@
   align-items: center;
   flex: 1 1 auto;
 }
-.container .inner-wap .item .left-logo {
-  padding: 10px;
+.container .inner-wap .left .left-logo {
+  width: 250px;
 }
 .container .inner-wap .right {
   justify-content: space-around;
@@ -23,7 +23,7 @@
 .container .inner-wap .right .nav-wap .menu-top-nav {
   display: flex;
   list-style: none;
-  transform: translateY(13px);
+  margin-top: none;
 }
 .container .inner-wap .right .nav-wap .menu-top-nav .menu-item {
   padding: 10px;

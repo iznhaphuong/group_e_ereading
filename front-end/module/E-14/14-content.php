@@ -71,7 +71,7 @@
       <li class="nav-item me-3 me-lg-1">
         <a class="nav-link" href="#">
           <span><i class="fas fa-home fa-lg"></i></span>
-          <span class="badge rounded-pill badge-notification bg-danger">Product</span>
+          <span class="badge rounded-pill badge-notification bg-danger">Home</span>
         </a>
       </li>
       <li class="nav-item dropdown me-3 me-lg-1">
