@@ -1,4 +1,4 @@
-<div class="container">
+
 <div class="row flex-lg-nowrap">
 
   <div class="col">
@@ -187,4 +187,4 @@
     </div>
   </div>
 </div>
-</div>
+

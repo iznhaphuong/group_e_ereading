@@ -1,7 +1,7 @@
 <div class="container">
       <div class="inner-wap">
         <div class="item left">
-          <img class="left-logo" src="https://smartmag.theme-sphere.com/health/wp-content/uploads/sites/22/2021/11/logo-HealthCare-001-dark.png" alt="HealthCare">
+          <img class="left-logo" src="./images/header.png" alt="E-Reading">
         </div>
         <div class="item center"></div>
         <div class="item right">
