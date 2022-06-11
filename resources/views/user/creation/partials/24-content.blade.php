@@ -1,12 +1,7 @@
-<?php
-$url_host = 'http://' . $_SERVER['HTTP_HOST'];
-$pattern_document_root = addcslashes(realpath($_SERVER['DOCUMENT_ROOT']), '\\');
-$pattern_uri = '/' . $pattern_document_root . '(.*)$/';
-
-preg_match_all($pattern_uri, __DIR__, $matches);
-$url_path = $url_host . $matches[1][0];
-$url_path = str_replace('\\', '/', $url_path);
-?>
+{{-- My CSS File --}}
+@push('head-css')
+    <link rel="stylesheet" href="css/style-24.css">
+@endpush
 
 <div class="type-24">
     <div class="container">
@@ -37,7 +32,7 @@ $url_path = str_replace('\\', '/', $url_path);
                 <div class="row row-cols-2 row-cols-md-4 g-3">
                     <div class="col">
                         <div class="card text-white">
-                            <img src="./images/thandaodanton.jpg" class="card-img" alt="...">
+                            <img src="images/thandaodanton.jpg" class="card-img" alt="...">
                             <div class="card-img-overlay">
                                 <div class="m-group-button">
                                     <ul>
@@ -158,9 +153,9 @@ $url_path = str_replace('\\', '/', $url_path);
     <div class="mt-5 d-flex justify-content-center ">
         <nav aria-label="Pagination">
             <ul class="pagination">
-                <li class="page-item active"><a class="page-link" href="#"><i class="fa-solid fa-angle-left"></i></a>
+                <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angle-left"></i></a>
                 </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angle-right"></i></a></li>
