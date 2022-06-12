@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('test');
+    // return view('user.creation.following');
+    // return view('user.creation.history');
+    // return view('user.creation.reading');
+    // return view('user.creation.home');
+    // return view('admin.management.user');
+    return view('admin.management.category');
+
 });

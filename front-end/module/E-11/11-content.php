@@ -1,5 +1,5 @@
 <div class="type-11">
-    <div class="container">
+    <div class="container my-5">
         <div class="header-top ">
             <div class="post_meta_item">
                 <div class="title_name">

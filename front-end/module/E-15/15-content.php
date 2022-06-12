@@ -4,7 +4,7 @@
   <!-- Sidebar -->
   <div id="sidebar">
     <header>
-      <a href="#">Truyện Hay</a>
+      <a href="#">Ereading</a>
     </header>
     <ul class="nav">
       <li>
