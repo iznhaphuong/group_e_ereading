@@ -1,4 +1,4 @@
-<?php 
+<?php
 use Illuminate\Html\HtmlFacade;
 ?>
 <!DOCTYPE html>
@@ -13,23 +13,26 @@ use Illuminate\Html\HtmlFacade;
     <meta name="author" content="">
     <link name="bootstrap" rel="stylesheet" href="css/bootstrap.min.css">
     <link name="font-awesome" rel="stylesheet" type="text/css" href="font-awesome/css/all.min.css">
-    <link rel="stylesheet" href="css/style-common.css">
+    <link name="style-14" rel="stylesheet" href="{{ asset('css/style-14.css') }}">
+    <link name="style-15" rel="stylesheet" href="{{ asset('css/style-15.css') }}">
     @stack('head-css')
 </head>
 
 <body>
-    <header>
-        {{-- navbar --}}
-        {{-- @include('admin.layout.partials.-content') --}}
-    </header>
+    <main>
+        <div class="row">
+            <div class="col-2 p-0">
+                @include('admin.layout.partials.15-content')
+            </div>
+            <div class="col-10 p-0">
+                @include('admin.layout.partials.14-content')
+                @yield('main')
+            </div>
+        </div>
+   </main>
 
-    <main> 
-        @yield('main')
-    </main>
-
-    
     <footer>
-    {{-- @include() --}}
+        {{-- @include() --}}
     </footer>
     {{-- script --}}
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -37,8 +40,3 @@ use Illuminate\Html\HtmlFacade;
 </body>
 
 </html>
-
-
-
-
-
