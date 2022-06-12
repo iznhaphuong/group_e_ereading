@@ -8,7 +8,7 @@
                         <p class="title-col text-white pb-2">
                             ABOUT US
                         </p>
-                        <img class="img-fluid footer-logo pb-3" src="./images/footer.png" alt="footer">
+                        <img class="img-fluid footer-logo pb-3" src="{{ asset('images/footer.png') }}" alt="footer">
                         <p class="text-secondary">
                             Your source for the lifestyle news. This demo is crafted specifically to exhibit the use of
                             the
@@ -34,7 +34,7 @@
                                 <div class="row mb-4">
                                     <div class="col-4 p-0">
                                         <a href="#">
-                                            <img class="img-fluid img-fix picks" src="./images/our_picks_1.webp" alt="">
+                                            <img class="img-fluid img-fix picks" src="{{ asset('images/our_picks_1.webp') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="col-8 pe-0">
@@ -53,7 +53,7 @@
                                 <div class="row my-4">
                                     <div class="col-4 p-0">
                                         <a href="#">
-                                            <img class="img-fluid img-fix picks" src="./images/our_picks_1.webp" alt="">
+                                            <img class="img-fluid img-fix picks" src="{{ asset('images/our_picks_1.webp') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="col-8 pe-0">
@@ -72,7 +72,7 @@
                                 <div class="row my-4">
                                     <div class="col-4 p-0">
                                         <a href="#">
-                                            <img class="img-fluid img-fix picks" src="./images/our_picks_1.webp" alt="">
+                                            <img class="img-fluid img-fix picks" src="{{ asset('images/our_picks_1.webp') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="col-8 pe-0">

@@ -15,6 +15,7 @@ use Illuminate\Html\HtmlFacade;
     <link name="style-common" rel="stylesheet" href="{{ asset('css/style-common.css') }}" >
     <link name="style-01" rel="stylesheet" href="{{ asset('css/style-01.css') }}">
     <link name="style-02" rel="stylesheet" href="{{ asset('css/style-02.css') }}">
+    <link name="style-08" rel="stylesheet" href="{{ asset('css/style-08.css') }}">
     @stack('head-css')
 </head>
 
@@ -32,7 +33,7 @@ use Illuminate\Html\HtmlFacade;
 
     
     <footer>
-    {{-- @include() --}}
+    @include('user.layout.partials.08-content')
     </footer>
     {{-- script --}}
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>

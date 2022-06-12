@@ -1,5 +1,5 @@
 <div class="type-01">
-  <div class="mx-4 py-3">
+  <div class="container py-3">
     <nav class="navbar navbar-expand-lg bg-white">
       <img style="width:240px;" src="./images/header.png" alt="">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">

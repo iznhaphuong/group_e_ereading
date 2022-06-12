@@ -1,6 +1,6 @@
 <div class="type-02">
     <nav class="navbar navbar-expand-lg bg-white nav-light nav-bd-y">
-        <div class="container-fluid mx-3">
+        <div class="container">
             <button class="navbar-toggler cl-black" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <img style="width: 30px" src="{{ asset('images/hamburger-icon-menu.png') }}" alt="menu">
             </button>
