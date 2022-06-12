@@ -3,6 +3,7 @@ body {
   background: black;
   color: black;
 }
-body .btn {
-  color: black;
+body .type-19 .colum-description {
+  overflow: scroll;
+  height: 200px;
 }
