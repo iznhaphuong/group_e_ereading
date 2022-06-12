@@ -25,8 +25,10 @@
 .type-09 .card .card-box {
   background: #fff;
   margin-bottom: 12px;
-  border-top: 1px solid #e5e6e9;
-  border-bottom: 1px solid #e5e6e9;
+}
+.type-09 .card .card-box h3 {
+  border-bottom: 2px solid #077c98;
+  color: #077c98;
 }
 .type-09 .card .card-box .chapters li a {
   padding: 6px 2px 6px 16px;
@@ -37,6 +39,9 @@
 }
 .type-09 .col-md-9 {
   padding-left: 8px;
+}
+.type-09 .col-md-9 .row h6 {
+  border-bottom: 1px dashed black;
 }
 .type-09 .col-md-9 .card-body {
   justify-content: center;
@@ -60,6 +65,26 @@
 .type-09 .col-md-9 .card-body .content {
   margin-top: 20px;
   margin-bottom: 0;
+}
+.type-09 .pagination {
+  width: 400px;
+  margin: auto;
+  text-align: center;
+}
+.type-09 .pagination a {
+  display: block;
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+.type-09 .pagination a.active {
+  background-color: #00a5f0;
+  color: white;
+}
+.type-09 .pagination a:hover:not(.active) {
+  background-color: #ddd;
 }
 @media screen and (max-width: 480px) {
   .img-card {

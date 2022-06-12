@@ -16,7 +16,7 @@
                     <h2 class="card-title"> Hôn trộm 55 lần</h2>
                     <ul class="pl-0 detail-content container-fluid">
                         <li class="row">
-                            <p class="col-3"><i style="font-weight: bold;" class="fas fa-user-edit"></i> Tác giả</p>
+                            <p class="col-3"><i style="font-weight: bold;" class="fa fa-user"></i> Tác giả</p>
                             <p class="col-9">Diệp Phi Dạ</p>
                         </li>
                         <li class="row">
@@ -37,7 +37,7 @@
                         </li>
                         <li class="row">
                             <p class="col-3"><i style="font-weight: bold;" class="fa fa-eye"></i> Lượt xem</p>
-                            <p class="col-9">12 000</p>
+                            <p class="col-9">12030</p>
                         </li>
                         <li class="row">
                             <p class="col-12">
@@ -47,14 +47,15 @@
                             </p>
                         </li>
                         <li class="row">
-                            <h6 class="content">Bạn đang đọc truyện Hôn Trộm 55 Lần của tác giả Diệp Phi Dạ. Lục Cẩn Niên và An Hảo kết hôn dưới sự thúc ép của cha mẹ hai bên. An Hảo cho rằng mặc dù bọn họ thờ ơ nhau ở trước mặt mọi người nhưng sau lưng rồi cũng sẽ quấn quít. Vì vậy vào đêm tân hôn, cô vừa mở miệng liền tuôn một tràng "3 KHÔNG".</h6>
+                            <h6><i class='fa fa-book'></i> Mô tả</h6>
+                            <h7 class="content">Bạn đang đọc truyện Hôn Trộm 55 Lần của tác giả Diệp Phi Dạ. Lục Cẩn Niên và An Hảo kết hôn dưới sự thúc ép của cha mẹ hai bên. An Hảo cho rằng mặc dù bọn họ thờ ơ nhau ở trước mặt mọi người nhưng sau lưng rồi cũng sẽ quấn quít. Vì vậy vào đêm tân hôn, cô vừa mở miệng liền tuôn một tràng "3 KHÔNG".</h7>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="card-box" id="chapters">
                 <header>
-                    <h3> Danh sách chương truyện Hôn trộm 55 lần!</h3>
+                    <h3><i class='fa fa-list'></i> Danh sách chương!</h3>
                 </header>
                 <ul class="chapters v0">
                     <li class="vip-0"><a href="#" title="Chương 1 - Tây Sơn biệt viện">Chương 1 - Tây Sơn biệt viện</a></li>
@@ -87,7 +88,20 @@
                     <li class="vip-0"><a href="#" title="Chương 28 - Chỉ có nàng">Chương 28 - Chỉ có nàng</a></li>
                 </ul>
             </div>
+           
+        
         </div>
+        <div class="pagination">
+                    <a href="#">&laquo;</a>
+                    <a class="active"  href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">6</a>
+                    <a href="#">7</a>
+                    <a href="#">&raquo;</a>
+                </div>
 
     </div>
 </div>

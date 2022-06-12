@@ -33,8 +33,11 @@
         .card-box {
             background: #fff;
             margin-bottom: 12px;
-            border-top: 1px solid #e5e6e9;
-            border-bottom: 1px solid #e5e6e9;
+            h3{
+                border-bottom: 2px solid #077c98;
+                color: #077c98;
+            }
+
             .chapters li a {
                 padding: 6px 2px 6px 16px;
                 color: #333;
@@ -48,6 +51,11 @@
 
     .col-md-9 {
         padding-left: 8px;
+        .row{
+            h6{
+                border-bottom: 1px dashed black;
+            }
+        }
 
         .card-body {
             justify-content: center;
@@ -82,6 +90,30 @@
 
         }
 
+    }
+
+    .pagination {
+        width: 400px;
+        margin:auto;
+        text-align: center;
+      
+      a {
+        display: block;
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+      }
+       
+       a.active {
+          background-color: #00a5f0;
+          color: white;
+      }
+       
+      a:hover:not(.active) {
+        background-color: #ddd;
+      }
     }
 }
 
