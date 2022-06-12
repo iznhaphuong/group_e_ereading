@@ -32,7 +32,7 @@
                 <div class="row row-cols-2 row-cols-md-4 g-3">
                     <div class="col">
                         <div class="card text-white">
-                            <img src="{{ asset('images/thandaodanton.jpg') }}" class="card-img" alt="...">
+                            <img src="{{ asset('images/covers/thandaodanton.jpg') }}" class="card-img" alt="...">
                             <div class="card-img-overlay">
                                 <div class="m-group-button">
                                     <ul>
@@ -47,7 +47,7 @@
                                 </div>
 
                                 <div class="m-wrap-infor">
-                                    <h5 class="card-title text-capitalize pb-2">Thiên đạo thần tôn</h5>
+                                    <h5 class="card-title text-capitalize pb-2">Thần đạo đan tôn</h5>
                                     <div class="card-text d-flex justify-content-between pb-4"><span class="text-capitalize">Cô
                                             đơn
                                             địa phi
@@ -60,7 +60,7 @@
                     </div>
                     <div class="col">
                         <div class="card text-white">
-                            <img src="{{ asset('images/thandaodanton.jpg') }}" class="card-img" alt="...">
+                            <img src="{{ asset('images/covers/thandaodanton.jpg') }}" class="card-img" alt="...">
                             <div class="card-img-overlay">
                                 <div class="m-group-button">
                                     <ul>
@@ -76,7 +76,7 @@
                                 </div>
 
                                 <div class="m-wrap-infor">
-                                    <h5 class="card-title text-capitalize pb-2">Thiên đạo thần tôn</h5>
+                                    <h5 class="card-title text-capitalize pb-2">Thần đạo đan tôn</h5>
                                     <div class="card-text d-flex justify-content-between pb-4"><span class="text-capitalize">Cô
                                             đơn
                                             địa phi
@@ -89,7 +89,7 @@
                     </div>
                     <div class="col">
                         <div class="card text-white">
-                            <img src="{{ asset('images/thandaodanton.jpg') }}" class="card-img" alt="...">
+                            <img src="{{ asset('images/covers/thandaodanton.jpg') }}" class="card-img" alt="...">
                             <div class="card-img-overlay">
                                 <div class="m-group-button">
                                     <ul>
@@ -105,7 +105,7 @@
                                 </div>
 
                                 <div class="m-wrap-infor">
-                                    <h5 class="card-title text-capitalize pb-2">Thiên đạo thần tôn</h5>
+                                    <h5 class="card-title text-capitalize pb-2">Thần đạo đan tôn</h5>
                                     <div class="card-text d-flex justify-content-between pb-4"><span class="text-capitalize">Cô
                                             đơn
                                             địa phi
@@ -118,7 +118,7 @@
                     </div>
                     <div class="col">
                         <div class="card text-white">
-                            <img src="{{ asset('images/thandaodanton.jpg') }}" class="card-img" alt="...">
+                            <img src="{{ asset('images/covers/thandaodanton.jpg') }}" class="card-img" alt="...">
                             <div class="card-img-overlay">
                                 <div class="m-group-button">
                                     <ul>
@@ -133,7 +133,7 @@
                                 </div>
 
                                 <div class="m-wrap-infor">
-                                    <h5 class="card-title text-capitalize pb-2">Thiên đạo thần tôn</h5>
+                                    <h5 class="card-title text-capitalize pb-2">Thần đạo đan tôn</h5>
                                     <div class="card-text d-flex justify-content-between pb-4"><span class="text-capitalize">Cô
                                             đơn
                                             địa phi

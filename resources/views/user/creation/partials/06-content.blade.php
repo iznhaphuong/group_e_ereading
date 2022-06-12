@@ -1,3 +1,8 @@
+{{-- My CSS File --}}
+@push('head-css')
+    <link name="style-06" rel="stylesheet" href="{{ asset('css/style-06.css') }}">
+@endpush
+
 <div class="type-06">
 <p class="title-list text-uppercase">Truyện mới cập nhật</p>
 <hr class="pb-3">
@@ -13,7 +18,7 @@
                                     <div class="genre-item new"></div>
                                     <div class="genre-item hot"></div>
                                 </div>
-                                <img src="./images/chugioitantheonlinengaytancuathegioi.jpg" class="img-card rounded" alt="...">
+                                <img src="{{ asset('images/covers/chugioitantheonlinengaytancuathegioi.jpg') }}" class="img-card rounded" alt="...">
                                 <div class="card-img-overlay rounded">
                                 </div>
                             </a>
@@ -36,7 +41,7 @@
                                     <div class="genre-item new"></div>
                                     <div class="genre-item hot"></div>
                                 </div>
-                                <img src="./images/chugioitantheonlinengaytancuathegioi.jpg" class="img-card rounded" alt="...">
+                                <img src="{{ asset('images/covers/chugioitantheonlinengaytancuathegioi.jpg') }}" class="img-card rounded" alt="...">
                                 <div class="card-img-overlay rounded">
                                 </div>
                             </a>
@@ -61,7 +66,7 @@
                                     <div class="genre-item new"></div>
                                     <div class="genre-item hot"></div>
                                 </div>
-                                <img src="./images/chugioitantheonlinengaytancuathegioi.jpg" class="img-card rounded" alt="...">
+                                <img src="{{ asset('images/covers/chugioitantheonlinengaytancuathegioi.jpg') }}" class="img-card rounded" alt="...">
                                 <div class="card-img-overlay rounded">
 
                                 </div>
@@ -70,7 +75,7 @@
                         </div>
                         <div class="col-md-8 ">
                             <div class="card-content">
-                                <h4 class="card-title"><a href="#">Card title</a></h4>
+                                <h4 class="card-title"><a href="#">Card title</a></h2>
                                 <p class="card-text"><small class="text-muted">By:</small><a href="#">Admin</a> <small class="text-muted">- 20/05/2022</small></p>
                             </div>
                         </div>
@@ -86,7 +91,7 @@
                                     <div class="genre-item new"></div>
                                     <div class="genre-item hot"></div>
                                 </div>
-                                <img src="./images/chugioitantheonlinengaytancuathegioi.jpg" class="img-card rounded" alt="...">
+                                <img src="{{ asset('images/covers/chugioitantheonlinengaytancuathegioi.jpg') }}" class="img-card rounded" alt="...">
                                 <div class="card-img-overlay rounded">
 
                                 </div>

@@ -1,8 +1,7 @@
 <div class="type-07">
   <!-- Slider main container -->
-  <div class="title">
-    <h4 class="new__stories__title"> Truyện đã hoàn thành</h4>
-  </div>
+  <p class="title-list text-uppercase">Truyện mới cập nhật</p>
+<hr class="pb-3">
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">

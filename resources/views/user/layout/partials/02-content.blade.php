@@ -1,3 +1,7 @@
+@push('footer-js')
+<script src="js/script-02.js"></script>
+@endpush
+
 <div class="type-02">
     <nav class="navbar navbar-expand-lg bg-white nav-light nav-bd-y">
         <div class="container">
@@ -68,7 +72,3 @@
         </div>
     </nav>
 </div>
-
-@push('footer-js')
-<script src="js/script-02.js"></script>
-@endpush

@@ -1,3 +1,8 @@
+{{-- My CSS File --}}
+@push('head-css')
+    <link name="style-11" rel="stylesheet" href="{{ asset('css/style-11.css') }}">
+@endpush
+
 <div class="type-11">
     <div class="container my-5">
         <div class="header-top ">
