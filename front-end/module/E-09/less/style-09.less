@@ -22,86 +22,26 @@
             .card-image {
 
                 position: relative;
-
                 .card-img-overlay {
                     // width: 90% !important;
                     transition: all .4s ease-out;
-
                 }
-
-                .m-wrap-genre {
-                    position: absolute;
-                    display: flex;
-                    flex-wrap: wrap;
-                    top: 0;
-                    left: 0;
-                    color: #fff;
-                    transition: all 1s;
-
-                    .genre-item.full::after {
-                        display: block;
-                        content: "FULL";
-                        padding: 0 10px;
-                        border-radius: 3px;
-                        background: #00b47b;
-                        animation: flash 1s alternate infinite;
-                    }
-
-                    .genre-item.new::after {
-                        display: block;
-                        content: "NEW";
-                        padding: 0 10px;
-                        border-radius: 3px;
-                        background: #006ef5;
-                        animation: flash 1s alternate infinite;
-                    }
-
-                    .genre-item.hot::after {
-                        display: block;
-                        content: "HOT";
-                        padding: 0 10px;
-                        border-radius: 3px;
-                        background: #EE2E31;
-                        animation: flash 1s alternate infinite;
-                    }
-
-                    .genre-item {
-                        display: block;
-                        width: 50px;
-                        font-size: .7rem;
-                        font-weight: 500;
-                        margin: 3px;
-                        text-align: center;
-                    }
-
-                }
-            }
-
-            .card-img-overlay:hover {
-                background: rgba(0, 0, 0, .7);
-
-                .m-wrap-genre {
-                    opacity: .2;
-                }
-
-                .card-title {
-                    opacity: .2;
-                }
-
-                .m-wrap-infor {
-                    opacity: .2;
-                }
-
-                .m-group-button {
-                    opacity: 1;
-                }
-            }
-
-            .img-card {
-                height: auto;
                 
             }
 
+        }
+        .card-box {
+            background: #fff;
+            margin-bottom: 12px;
+            border-top: 1px solid #e5e6e9;
+            border-bottom: 1px solid #e5e6e9;
+            .chapters li a {
+                padding: 6px 2px 6px 16px;
+                color: #333;
+                display: block;
+                border-bottom: 1px dashed #ddd;
+                text-transform: capitalize;
+            }
         }
 
     }
@@ -129,7 +69,6 @@
                 .card-title {
                     title{
                         font-weight: 700;
-
                     }
                 }
 
