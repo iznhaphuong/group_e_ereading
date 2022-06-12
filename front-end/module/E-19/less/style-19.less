@@ -1,3 +1,25 @@
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #eee;
+  // border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ccc; 
+  border-radius: 10px;
+  border: 4px solid #eee;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #999; 
+}
+
 body{
   margin-top:20px;
   background:black;
@@ -5,9 +27,27 @@ body{
 
 
   .type-19{
-    .colum-description{
-        overflow: scroll;
-        height:200px;
+
+    .card-body{
+      display: grid;
+      .colum-description{
+          margin-bottom: 0;
+          overflow-x: hidden;
+          overflow-y: auto;
+          height: 200px;
+      }
+
+      .btn {
+        color: black;
+      }
+      .btn:hover {
+        color: blue;
+        background: white;
+      }
+  
+      .btn-group > .badge{
+        padding: 15px;
+      }
     }
   }
 }

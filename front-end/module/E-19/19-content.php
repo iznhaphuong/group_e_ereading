@@ -14,7 +14,7 @@
             <div class="card-body">
               <div class="card-title">
                 <!-- <h6 class="mr-2"><span>Users</span><small class="px-1">Be a wise leader</small> -->
-                <button class="btn btn-success btn-block" style="float: right;max-width:200px;margin-bottom:15px;" type="button" data-toggle="modal" data-target="#user-form-modal">Thêm Chương Truyện</button>
+                <button class="btn btn-primary border-light rounded-0" style="float: right;margin-bottom:15px;" type="button" data-bs-toggle="modal" data-bs-target="#createModal">Thêm chương truyện</button>
                 </h6>
               </div>
               <div class="e-table">
@@ -22,12 +22,12 @@
                   <table class="table table-bordered">
                     <thead>
                       <tr>
-                        <th>id</th>
-                        <th>Tên chương</th>
-                        <th>Số chương </th>
-                        <th>Mô tả tác phẩm </th>
-                        <th>Mã tác phẩm </th>
-                        <th>Actions</th>
+                        <th width="5%">id</th>
+                        <th width="15%">Tên chương</th>
+                        <th width="10%">Số chương </th>
+                        <th width="50%">Mô tả tác phẩm </th>
+                        <th width="10%">Mã tác phẩm </th>
+                        <th width="10%">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -42,10 +42,10 @@
                         <td>
                           <div class="colum-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur quod reic iendis rerum id? Nam fugit officia illum officiis omnis nesciunt harum, sed molestias, totam laudantium at eum ratione nulla quo?</div>
                         </td>
-                        <td class="text-nowrap align-middle"><span>Author</span></td>
+                        <td class="text-nowrap align-middle"><span>1</span></td>
                         <td class="text-center align-middle">
                           <div class="btn-group align-top">
-                            <button class="btn btn-sm btn-outline-secondary badge" type="button" data-toggle="modal" data-target="#user-form-modal">Edit</button>
+                            <button class="btn btn-sm btn-outline-secondary badge" type="button" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
                             <button class="btn btn-sm btn-outline-secondary badge" type="button"><i class="fa fa-trash"></i></button>
                           </div>
                         </td>
@@ -69,18 +69,16 @@
             </div>
           </div>
         </div>
-
       </div>
 
-      <!-- User Form Modal -->
-      <div class="modal fade" role="dialog" tabindex="-1" id="user-form-modal">
-        <div class="modal-dialog modal-lg" role="document">
+
+      <!-- Creation Form Modal -->
+      <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Create User</h5>
-              <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true">×</span>
-              </button>
+              <h5 class="modal-title" id="exampleModalLabel">Thêm chương truyện</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div class="py-1">
@@ -90,79 +88,35 @@
                       <div class="row">
                         <div class="col">
                           <div class="form-group">
-                            <label>Full Name</label>
-                            <input class="form-control" type="text" name="name" placeholder="John Smith" value="John Smith">
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="form-group">
-                            <label>Username</label>
-                            <input class="form-control" type="text" name="username" placeholder="johnny.s" value="johnny.s">
+                            <label>Tên Chương</label>
+                            <input class="form-control" type="text" name="name" placeholder="">
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col">
                           <div class="form-group">
-                            <label>Email</label>
-                            <input class="form-control" type="text" placeholder="user@example.com">
+                            <label style="display: block;" for="id">Thuộc mã tác phẩm</label>
+                            <select class="form-control" id="id" name="creation_id">
+                              <!-- <option value="0">Chưa Hoàn thành</option>
+                            <option value="1">Hoàn thành</option> -->
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Số chương</label>
+                            <input class="form-control" type="text" name="total" placeholder="">
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col mb-3">
                           <div class="form-group">
-                            <label>About</label>
-                            <textarea class="form-control" rows="5" placeholder="My Bio"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12 col-sm-6 mb-3">
-                      <div class="mb-2"><b>Change Password</b></div>
-                      <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label>Current Password</label>
-                            <input class="form-control" type="password" placeholder="••••••">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label>New Password</label>
-                            <input class="form-control" type="password" placeholder="••••••">
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="form-group">
-                            <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
-                            <input class="form-control" type="password" placeholder="••••••">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-12 col-sm-5 offset-sm-1 mb-3">
-                      <div class="mb-2"><b>Keeping in Touch</b></div>
-                      <div class="row">
-                        <div class="col">
-                          <label>Email Notifications</label>
-                          <div class="custom-controls-stacked px-2">
-                            <div class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" id="notifications-blog" checked="">
-                              <label class="custom-control-label" for="notifications-blog">Blog posts</label>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" id="notifications-news" checked="">
-                              <label class="custom-control-label" for="notifications-news">Newsletter</label>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" id="notifications-offers" checked="">
-                              <label class="custom-control-label" for="notifications-offers">Personal Offers</label>
-                            </div>
+                            <label>Mô tả chương</label>
+                            <textarea class="form-control" rows="5" name="content" placeholder=""></textarea>
                           </div>
                         </div>
                       </div>
@@ -170,7 +124,8 @@
                   </div>
                   <div class="row">
                     <div class="col d-flex justify-content-end">
-                      <button class="btn btn-primary" type="submit">Save Changes</button>
+                      <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Close</button>
+                      <button class="btn btn-primary" type="submit">Thêm</button>
                     </div>
                   </div>
                 </form>
@@ -180,6 +135,71 @@
           </div>
         </div>
       </div>
+
+      <!-- Edit Form Modal -->
+      <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Sửa chương truyện</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="py-1">
+                <form class="form" novalidate="">
+                  <div class="row">
+                    <div class="col">
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Tên Chương</label>
+                            <input class="form-control" type="text" name="name" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label style="display: block;" for="id">Thuộc mã tác phẩm</label>
+                            <select class="form-control" id="id" name="creation_id">
+                              <!-- <option value="0">Chưa Hoàn thành</option>
+                            <option value="1">Hoàn thành</option> -->
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Số chương</label>
+                            <input class="form-control" type="text" name="total" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col mb-3">
+                          <div class="form-group">
+                            <label>Mô tả chương</label>
+                            <textarea class="form-control" rows="5" name="content" placeholder=""></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col d-flex justify-content-end">
+                      <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Close</button>
+                      <button class="btn btn-primary" type="submit">Sửa</button>
+                    </div>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
