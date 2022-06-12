@@ -11,7 +11,7 @@
         }
 
         .row {
-            
+
             .card-update {
                 position: relative;
                 display: flex;
@@ -34,12 +34,13 @@
 
                 height: auto;
             }
+
             .card-img-overlay {
 
                 transition: all .4s ease-out;
             }
-    
-            
+
+
             .m-wrap-genre {
                 color: #fff;
                 position: absolute;
@@ -108,56 +109,77 @@
 
         }
 
-        
+
     }
 }
-@media screen and (max-width: 480px) {
-    .col-md-4{
-        width:50%;
-    }
-    .img-card{
 
-
-        width:40%;
+@media screen and (min-device-width: 414px) and (max-device-width: 736px) {
+    .col-md-4 {
+        width: 40% !important;
     }
-    .card-img-overlay{
+
+    .col-md-8 {
+        width: 40% !important;
+    }
+
+    .img-card {
+
+        width: 75%;
+    }
+
+    .card-img-overlay {
         margin-left: 140px;
-        width:40%;
-        .m-wrap-genre{
-            width:30%;
-        }
+        width: 40%;
+
     }
-    card-title{
-        font-size:18px;
+
+    .m-wrap-genre {
+        width: 30%;
     }
-    
+
+    card-title {
+        font-size: 18px;
+    }
+
 }
-@media screen and (min-width: 700px) {
-    .img-card{
-        width:150%;
+
+@media screen and (min-device-width: 768px) and (max-device-width: 990px) {
+    .img-card {
+        width: 120%;
     }
-    .card-img-overlay{
-        width: 28%;
-        
+
+    .card-img-overlay {
+        width: 50%;
+
     }
-    .m-wrap-genre{
-        width:30%;
+
+    .col-md-8 {
+        width: 55% !important;
+        margin-left: 30px;
     }
-    
+
+    .m-wrap-genre {
+        width: 40%;
+    }
+
 }
+
 @media screen and (min-width: 992px) {
-    .img-card{
-        width:85%;
+    .img-card {
+        width: 85%;
     }
-    .card-img-overlay{
+
+    .card-img-overlay {
         width: 28%;
-        
+
     }
-    .m-wrap-genre{
-        width:20%;
+
+    .m-wrap-genre {
+        width: 20%;
     }
+
     .card-img-overlay:hover {
-        width:28%;
+        width: 28%;
         background: rgba(0, 0, 0, .2);
         box-shadow: 7px 5px #077c98;
 
@@ -168,8 +190,6 @@
         .card-title {
             opacity: .2;
         }
-
-
 
         .m-group-button {
             opacity: 1;

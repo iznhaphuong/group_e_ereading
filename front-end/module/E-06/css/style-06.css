@@ -77,33 +77,40 @@
   color: #00789a;
   transition: 0.5s;
 }
-@media screen and (max-width: 480px) {
+@media screen and (min-device-width: 414px) and (max-device-width: 736px) {
   .col-md-4 {
-    width: 50%;
+    width: 40% !important;
+  }
+  .col-md-8 {
+    width: 40% !important;
   }
   .img-card {
-    width: 40%;
+    width: 75%;
   }
   .card-img-overlay {
     margin-left: 140px;
     width: 40%;
   }
-  .card-img-overlay .m-wrap-genre {
+  .m-wrap-genre {
     width: 30%;
   }
   card-title {
     font-size: 18px;
   }
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-device-width: 768px) and (max-device-width: 990px) {
   .img-card {
-    width: 150%;
+    width: 120%;
   }
   .card-img-overlay {
-    width: 28%;
+    width: 50%;
+  }
+  .col-md-8 {
+    width: 55% !important;
+    margin-left: 30px;
   }
   .m-wrap-genre {
-    width: 30%;
+    width: 40%;
   }
 }
 @media screen and (min-width: 992px) {

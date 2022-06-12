@@ -6,7 +6,7 @@
                 <div class="col-md-6 column-left ">
                     <div class="card-update mb-4" type="max-width: 540px;">
                         <div class="row item g-0">
-                            <div class="col-md-4 ">
+                            <div class="col-md-4  ">
                                 <a href="#">
                                     <div class="m-wrap-genre">
                                         <div class="genre-item full"></div>
@@ -20,9 +20,9 @@
                                 </a>
 
                             </div>
-                            <div class="col-md-8 ">
+                            <div class="col-md-8  ">
                                 <div class="card-content">
-                                    <h2 class="card-title"><a href="#">Card title</a></h2>
+                                    <h3 class="card-title"><a href="#">Card title</a></h3>
                                     <p class="card-text"><small class="text-muted">By:</small><a href="#">Admin</a> <small class="text-muted">- 20/05/2022</small></p>
                                 </div>
                             </div>
