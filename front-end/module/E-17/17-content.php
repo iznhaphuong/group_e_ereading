@@ -1,4 +1,4 @@
-<div class="container">
+<div id="style-17">
 <div class="row flex-lg-nowrap">
 
   <div class="col">
@@ -58,7 +58,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
 
     <!-- User Form Modal -->
