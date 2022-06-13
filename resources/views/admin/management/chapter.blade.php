@@ -2,5 +2,5 @@
 
 @section('title', 'Quản lí chương truyện')
 @section('main')
-    {{-- @include('admin.management.partials.-content') --}}
+    @include('admin.management.partials.19-content')
 @endsection

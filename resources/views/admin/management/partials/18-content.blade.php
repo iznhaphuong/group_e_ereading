@@ -1,3 +1,9 @@
+{{-- My CSS File --}}
+@push('head-css')
+    <link name="style-18" rel="stylesheet" href="{{ asset('css/style-18.css') }}">
+@endpush
+
+
 <div class="type-18">
   <div class="row flex-lg-nowrap">
     <div class="col">
