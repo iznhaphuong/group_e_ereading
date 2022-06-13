@@ -14,7 +14,7 @@
             <div class="card-body">
               <div class="card-title">
                 <!-- <h6 class="mr-2"><span>Users</span><small class="px-1">Be a wise leader</small> -->
-                <button class="btn btn-primary border-light rounded-0" style="float: right;margin-bottom:15px;" type="button" data-bs-toggle="modal" data-bs-target="#createModal">Thêm chương truyện</button>
+                <button class="btn btn-add" style="float: right;margin-bottom:15px;" type="button" data-bs-toggle="modal" data-bs-target="#createModal">Thêm chương truyện</button>
                 </h6>
               </div>
               <div class="e-table">
@@ -45,25 +45,26 @@
                         <td class="text-nowrap align-middle"><span>1</span></td>
                         <td class="text-center align-middle">
                           <div class="btn-group align-top">
-                            <button class="btn btn-sm btn-outline-secondary badge" type="button" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
-                            <button class="btn btn-sm btn-outline-secondary badge" type="button"><i class="fa fa-trash"></i></button>
+                          <button class="btn btn-action btn-sm badge" type="button" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="btn btn-action btn-sm badge" type="button"><i class="fa fa-trash"></i></button>
                           </div>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <div class="d-flex justify-content-center">
-                  <ul class="pagination mt-3 mb-0">
-                    <li class="disabled page-item"><a href="#" class="page-link">‹</a></li>
-                    <li class="active page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">›</a></li>
-                    <li class="page-item"><a href="#" class="page-link">»</a></li>
-                  </ul>
+                <!-- Pagination -->
+                <div class="my-5 d-flex justify-content-center ">
+                  <nav aria-label="Pagination">
+                    <ul class="pagination">
+                      <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angle-left"></i></a>
+                      </li>
+                      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angle-right"></i></a></li>
+                    </ul>
+                  </nav>
                 </div>
               </div>
             </div>
@@ -189,7 +190,7 @@
                   <div class="row">
                     <div class="col d-flex justify-content-end">
                       <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Close</button>
-                      <button class="btn btn-primary" type="submit">Sửa</button>
+                      <button class="btn btn-primary text-white" type="submit">Sửa</button>
                     </div>
                   </div>
                 </form>
