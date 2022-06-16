@@ -1,15 +1,26 @@
-.type-01{
-    .nav-item{
-        .member{
-            padding: 6.5px;
-        }
+.type-01 {
+    .nav-link {
+        padding: 5px 15px !important;
+        font-size: .9rem;
     }
-    .btn{
-        color: black;
-        background: #077C98;
-    }
-    .btn:hover{
-        color: blue;
+    .nav-link.sign-in, .nav-link.user {
+        color: #00161E;
         background: white;
+    }
+
+    .nav-link.sign-in:hover, .nav-link.user:hover {
+        color: #077C98;
+        background: white;
+    }
+    
+    .nav-link.sign-up, .nav-link.sign-out {
+        color: white;
+        background: #077C98;
+
+    }
+    .nav-link.sign-up:hover, .nav-link.sign-out:hover {
+        color: #E8F6F8;
+        background: #00161E;
+
     }
 }

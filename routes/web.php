@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CreationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('test');
+    // return view('user.creation.reading');
+    // return view('user.creation.home');
+    // return view('admin.management.user'); - loi
+    // return view('admin.management.category'); -loi
+    return view('admin.management.creation');
+    // return view('admin.management.chapter');
 });
+
+Route::get('chi-tiet/{id}', [CreationController::class, 'show'])->name('detail');
+
+Route::get('dang-theo-doi', function () {
+    return view('user.creation.following');
+})->name('following');
+
+Route::get('lich-su', function () {
+    return view('user.creation.history');
+})->name('history');

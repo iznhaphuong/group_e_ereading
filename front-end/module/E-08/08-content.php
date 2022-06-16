@@ -1,13 +1,14 @@
-<div id="style-08">
+<div id="type-08">
     <div class="content">
-        <div class="footer-top bg-dark pt-5">
+        <div class="footer-top bg-footer-top pt-5">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 col-sm-12">
-                        <h5 class="text-white">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="me-3">
+                        <p class="title-col text-white pb-2">
                             ABOUT US
-                        </h5>
-                        <img class="img-fluid" src="./images/footer.png" alt="footer">
+                        </p>
+                        <img class="img-fluid footer-logo pb-3" src="./images/footer.png" alt="footer">
                         <p class="text-secondary">
                             Your source for the lifestyle news. This demo is crafted specifically to exhibit the use of
                             the
@@ -20,26 +21,29 @@
                             <span class="text-white-50">Email Us:</span> info@example.com <br>
                             <span class="text-white-50">Contact:</span> +1-320-0123-451
                         </p>
+                        </div>
+
                     </div>
-                    <div class="col-md-6 col-sm-12">
-                        <h5 class="text-white">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="mx-3">
+                        <p class="title-col text-white pb-2">
                             OUR PICKS
-                        </h5>
+                        </p>
                         <div class="row">
                             <div class="col-12 border-bottom border-secondary">
                                 <div class="row mb-4">
-                                    <div class="col-6">
+                                    <div class="col-4 p-0">
                                         <a href="#">
-                                            <img class="img-fluid img-fix" src="./images/our_picks_1.webp" alt="">
+                                            <img class="img-fluid img-fix picks" src="./images/our_picks_1.webp" alt="">
                                         </a>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-8 pe-0">
                                         <a href="#" class="text-decoration-none">
                                             <p class="text-white our-content">
                                                 Remember! Bad Habits That Make a Big Impact on Your Lifestyle
                                             </p>
                                         </a>
-                                        <p class="fs-6 text-secondary m-0">
+                                        <p class="text-date text-secondary m-0">
                                             Jan 13, 2021
                                         </p>
                                     </div>
@@ -47,18 +51,18 @@
                             </div>
                             <div class="col-12 border-bottom border-secondary">
                                 <div class="row my-4">
-                                    <div class="col-6">
+                                    <div class="col-4 p-0">
                                         <a href="#">
-                                            <img class="img-fluid img-fix" src="./images/our_picks_1.webp" alt="">
+                                            <img class="img-fluid img-fix picks" src="./images/our_picks_1.webp" alt="">
                                         </a>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-8 pe-0">
                                         <a href="#" class="text-decoration-none">
                                             <p class="text-white our-content">
                                                 Remember! Bad Habits That Make a Big Impact on Your Lifestyle
                                             </p>
                                         </a>
-                                        <p class="fs-6 text-secondary m-0">
+                                        <p class="text-date text-secondary m-0">
                                             Jan 13, 2021
                                         </p>
                                     </div>
@@ -66,33 +70,36 @@
                             </div>
                             <div class="col-12 border-bottom border-secondary mb-5">
                                 <div class="row my-4">
-                                    <div class="col-6">
+                                    <div class="col-4 p-0">
                                         <a href="#">
-                                            <img class="img-fluid img-fix" src="./images/our_picks_1.webp" alt="">
+                                            <img class="img-fluid img-fix picks" src="./images/our_picks_1.webp" alt="">
                                         </a>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-8 pe-0">
                                         <a href="#" class="text-decoration-none">
                                             <p class="text-white our-content">
                                                 Remember! Bad Habits That Make a Big Impact on Your Lifestyle
                                             </p>
                                         </a>
-                                        <p class="fs-6 text-secondary m-0">
+                                        <p class="text-date text-secondary m-0">
                                             Jan 13, 2021
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        </div>
+
                     </div>
-                    <div class="col-md-3 col-sm-12">
-                        <h5 class="text-white">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="ms-3">
+                        <p class="title-col text-white pb-2">
                             NEW COMMENTS
-                        </h5>
+                        </p>
                         <div class="row">
                             <div class="col-12">
                                 <p class="text-secondary mb-0">
-                                    <a class="text-success text-decoration-none" href="#">
+                                    <a class="text-name text-decoration-none" href="#">
                                         JOHN DOE
                                     </a> on
                                 </p>
@@ -104,7 +111,7 @@
                             </div>
                             <div class="col-12">
                                 <p class="text-secondary mb-0">
-                                    <a class="text-success text-decoration-none" href="#">
+                                    <a class="text-name text-decoration-none" href="#">
                                         JOHN DOE
                                     </a> on
                                 </p>
@@ -116,7 +123,7 @@
                             </div>
                             <div class="col-12">
                                 <p class="text-secondary mb-0">
-                                    <a class="text-success text-decoration-none" href="#">
+                                    <a class="text-name text-decoration-none" href="#">
                                         JOHN DOE
                                     </a> on
                                 </p>
@@ -128,7 +135,7 @@
                             </div>
                             <div class="col-12">
                                 <p class="text-secondary mb-0">
-                                    <a class="text-success text-decoration-none" href="#">
+                                    <a class="text-name text-decoration-none" href="#">
                                         JOHN DOE
                                     </a> on
                                 </p>
@@ -139,11 +146,13 @@
                                 </a>
                             </div>
                         </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom bg-black">
+        <div class="footer-bottom bg-footer-bottom">
             <div class="container p-5">
                 <div class="logo text-center text-white my-4">
                     <div class="d-inline-block">
@@ -170,9 +179,9 @@
 
                 <div class="footer-copy">
                     <p class="text-center text-secondary">
-                        &copy; 2022 ThemeSphere. Designed by
+                        &copy; 2022 Ereading. Designed by
                         <a href="#" class="text-decoration-none text-white-50">
-                            ThemeSphere.
+                            Ereading.
                         </a>
                     </p>
                 </div>

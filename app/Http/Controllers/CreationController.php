@@ -41,12 +41,12 @@ class CreationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Creation  $creation
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Creation $creation)
+    public function show($id)
     {
-        //
+        return view('user.creation.detail', ['creation' => Creation::find($id)]);
     }
 
     /**

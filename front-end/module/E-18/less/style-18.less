@@ -1,23 +1,92 @@
-body{
-  margin-top:20px;
-  background:black;
-  color: black;
+.type-18 {
+  ::-webkit-scrollbar {
+    width: 14px;
+  }
 
-  .type-18{
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #eee;
+    // border-radius: 10px;
+  }
 
-    .collum-description{
-      margin-right: -30px;
-      margin-bottom: -5px;
-      overflow: scroll;
-      height:200px;
-      width:200px;
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+    border: 4px solid #eee;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
+
+  .card-body {
+    display: grid;
+
+    .collum-description {
+      // margin-right: -30px;
+      margin-bottom: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      height: 200px;
+      // width:200px;
     }
-    .btn{
+
+    .btn.btn-action {
+      border: 1px solid black;
       color: black;
     }
-    .btn:hover{
-        color: blue;
-        background: white;
+
+    .btn.btn-add {
+      border: 1px solid #077c98;
+      color: #077c98;
+      font-weight: bold;
+    }
+
+    .btn.btn-add:hover,
+    .btn.btn-action:hover {
+      background: #077c98;
+      color: white;
+    }
+
+    .btn:hover {
+      color: #077c98;
+      background: white;
+    }
+
+    .btn-group>.badge {
+      padding: 15px;
+    }
+
+    .pagination {
+      li {
+        margin: 5px;
+      }
+
+      ul {
+        margin: 5px;
+      }
+
+      .page-item {
+        a.page-link {
+          color: #000;
+          font-weight: 500;
+          border-radius: 3px;
+        }
+
+        .page-link:hover {
+          background: #077c98;
+          color: #fff;
+        }
+      }
+
+      .page-item.active {
+        .page-link {
+          background: #077c98;
+          color: #fff;
+        }
+      }
     }
   }
 }
