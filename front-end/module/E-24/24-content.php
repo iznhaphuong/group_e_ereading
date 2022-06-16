@@ -8,7 +8,7 @@ $url_path = $url_host . $matches[1][0];
 $url_path = str_replace('\\', '/', $url_path);
 ?>
 
-<div class="type-23">
+<div class="type-24">
     <div class="container">
         <div class="my-5 browsing">Đang theo dõi</div>
         <div class="row wrap-23">
@@ -155,7 +155,7 @@ $url_path = str_replace('\\', '/', $url_path);
         </div>
     </div>
     <!-- Pagination -->
-    <div class="mt-5 d-flex justify-content-center ">
+    <div class="my-5 d-flex justify-content-center ">
         <nav aria-label="Pagination">
             <ul class="pagination">
                 <li class="page-item active"><a class="page-link" href="#"><i class="fa-solid fa-angle-left"></i></a>

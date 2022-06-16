@@ -1,0 +1,39 @@
+#type-08 .title-col {
+  font-weight: bold;
+}
+#type-08 .bg-footer-top {
+  background: #00171e !important;
+}
+#type-08 .bg-footer-bottom {
+  background: #000f16;
+}
+#type-08 .our-content:hover {
+  color: #077c98 !important;
+}
+#type-08 .our-content {
+  font-size: .9rem;
+  font-weight: bold;
+}
+#type-08 .footer-logo {
+  width: 80%;
+}
+#type-08 .text-name {
+  color: #077c98;
+  font-style: italic;
+  font-size: .9rem;
+}
+#type-08 .comment-content:hover {
+  opacity: .8;
+}
+#type-08 .icon-fix i {
+  width: 22px;
+}
+#type-08 img.picks {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+#type-08 .text-secondary.text-date {
+  font-size: .8rem;
+}
