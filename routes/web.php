@@ -17,9 +17,9 @@ Route::get('/', function () {
     // return view('user.creation.following');
     // return view('user.creation.history');
     // return view('user.creation.reading');
-    // return view('user.creation.home');
+    return view('user.creation.home');
     // return view('admin.management.user'); - loi
     // return view('admin.management.category'); -loi
-    return view('admin.management.creation');
+    // return view('admin.management.creation');
     // return view('admin.management.chapter');
 });

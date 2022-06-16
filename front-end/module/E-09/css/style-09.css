@@ -1,17 +1,23 @@
-.type-09 {
-  margin-top: 30px;
+.type-09 ul {
+  list-style: none;
+}
+.type-09 .browsing {
+  border-left: 4px solid #077c98;
+  padding-left: 30px;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.5em;
+}
+.type-09 .title-list {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #077c98;
 }
 .type-09 a {
   color: #000;
   text-decoration: none;
-}
-.type-09 .title {
-  color: #000;
-}
-.type-09 .title .new__stories__title {
-  text-transform: uppercase;
-  border-bottom: 1px solid #e2e2e2;
-  padding-bottom: 10px;
 }
 .type-09 .card {
   border: none;
@@ -22,26 +28,15 @@
 .type-09 .card .col-md-3 .card-image .card-img-overlay {
   transition: all .4s ease-out;
 }
-.type-09 .card .card-box {
-  background: #fff;
-  margin-bottom: 12px;
-}
-.type-09 .card .card-box h3 {
-  border-bottom: 2px solid #077c98;
-  color: #077c98;
-}
-.type-09 .card .card-box .chapters li a {
-  padding: 6px 2px 6px 16px;
+.type-09 .card .chapters li a {
   color: #333;
   display: block;
   border-bottom: 1px dashed #ddd;
   text-transform: capitalize;
 }
-.type-09 .col-md-9 {
-  padding-left: 8px;
-}
-.type-09 .col-md-9 .row h6 {
-  border-bottom: 1px dashed black;
+.type-09 .card .chapters {
+  border-radius: 5px;
+  border: 1px solid #ddd;
 }
 .type-09 .col-md-9 .card-body {
   justify-content: center;
@@ -66,25 +61,24 @@
   margin-top: 20px;
   margin-bottom: 0;
 }
-.type-09 .pagination {
-  width: 400px;
-  margin: auto;
-  text-align: center;
+.type-09 .pagination li {
+  margin: 5px;
 }
-.type-09 .pagination a {
-  display: block;
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  transition: background-color .3s;
+.type-09 .pagination ul {
+  margin: 5px;
 }
-.type-09 .pagination a.active {
-  background-color: #00a5f0;
-  color: white;
+.type-09 .pagination .page-item a.page-link {
+  color: #000;
+  font-weight: 500;
+  border-radius: 3px;
 }
-.type-09 .pagination a:hover:not(.active) {
-  background-color: #ddd;
+.type-09 .pagination .page-item .page-link:hover {
+  background: #077c98;
+  color: #fff;
+}
+.type-09 .pagination .page-item.active .page-link {
+  background: #077c98;
+  color: #fff;
 }
 @media screen and (max-width: 480px) {
   .img-card {
