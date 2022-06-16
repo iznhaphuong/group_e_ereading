@@ -1,3 +1,8 @@
+{{-- My CSS File --}}
+@push('head-css')
+    <link name="style-09" rel="stylesheet" href="{{ asset('css/style-09.css') }}">
+@endpush
+
 <div class="type-09">
     <div class="container">
         <div class="text-uppercase my-5 browsing">Tào tặc</div>
@@ -6,7 +11,7 @@
             <div class="row g-0 mt-3">
                 <div class="col-md-3">
                     <div class="card-image">
-                        <img src="./images/taotac.jpg" class="img-card rounded" alt="">
+                        <img src="{{ asset('images/covers/taotac.jpg') }}" class="img-card rounded" alt="">
                         </a>
                     </div>
                 </div>
