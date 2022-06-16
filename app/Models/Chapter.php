@@ -9,8 +9,8 @@ class Chapter extends Model
 {
     use HasFactory;
 
-    // public function creation()
-    // {
-    //     return $this->belongsTo(Creation::class);
-    // }
+    public function creation()
+    {
+        return $this->belongsTo(Creation::class);
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Rating;
 use App\Models\Creation;
 use Illuminate\Http\Request;
 
@@ -46,8 +46,9 @@ class CreationController extends Controller
      */
     public function show($id)
     {
-        return view('user.creation.detail', ['creation' => Creation::find($id)]);
-        var_dump(Creation::find($id));
+        $ratingAvg = Rating::where('creation_id',$id)->avg('star');
+        return view('user.creation.detail', ['creation' => Creation::find($id)],compact('ratingAvg'));
+
     }
 
     /**

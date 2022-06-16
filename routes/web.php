@@ -3,6 +3,9 @@
 use App\Http\Controllers\CreationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReadingController;
+use App\Http\Controllers\ChapterController;
+use App\Http\Controllers\RatingController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +25,7 @@ Route::get('/', function () {
 //    return view('admin.management.creation');
     // return view('admin.management.chapter');
 });
-Route::get('/reading',[ReadingController::class,'index']);
+// Route::get('/reading',[ReadingController::class,'index']);
 
 Route::get('/admin', function () {
     return view('admin.management.creation');
@@ -45,4 +48,6 @@ Route::get('dang-nhap', function () {
 Route::get('dang-ki', function () {
     return view('user.auth.register');
 });
+Route::get('reading/{creationId}/chapter/{id}', [ChapterController::class, 'show'])->name('chapter.show');
 
+Route::post('/add-rating', [RatingController::class, 'add'])->name('rating');
