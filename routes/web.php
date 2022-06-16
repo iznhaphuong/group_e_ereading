@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\CreationController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ReadingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,12 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     // return view('user.creation.reading');
-    // return view('user.creation.home');
+    return view('user.creation.home');
 //     return view('admin.management.user');
-     return view('admin.management.category');
+    //  return view('admin.management.category');
 //    return view('admin.management.creation');
     // return view('admin.management.chapter');
 });
+Route::get('/reading',[ReadingController::class,'index']);
 
 Route::get('/admin', function () {
     return view('admin.management.creation');
@@ -44,3 +45,4 @@ Route::get('dang-nhap', function () {
 Route::get('dang-ki', function () {
     return view('user.auth.register');
 });
+

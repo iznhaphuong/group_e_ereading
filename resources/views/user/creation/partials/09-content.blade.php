@@ -44,7 +44,7 @@
                         </li>
                         <li class="row">
                             <p class="col-12">
-                                <a id="read_story" href="#" class="btn btn-success text-white read-first-chap">Đoc Từ Đầu</a>
+                                <a id="read_story" href="{{ route('chapter.show',['id'=> 3]) }}" class="btn btn-success text-white read-first-chap">Đoc Từ Đầu</a>
                                 <a id="read_new_story" href="#" class="btn btn-primary text-white read-new-chap">Đọc Mới Nhất</a>
                                 <a class="follow-link btn btn-danger text-white"><i class="fa-solid fa-heart"></i> Theo dõi</a>
                                 <a class="unfollow-link btn btn-warning"><i class="fa-solid fa-heart-crack"></i> Bỏ theo dõi</a>

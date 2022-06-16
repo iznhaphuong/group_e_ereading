@@ -47,6 +47,7 @@ class CreationController extends Controller
     public function show($id)
     {
         return view('user.creation.detail', ['creation' => Creation::find($id)]);
+        var_dump(Creation::find($id));
     }
 
     /**
