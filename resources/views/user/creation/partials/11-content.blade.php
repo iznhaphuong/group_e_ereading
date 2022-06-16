@@ -11,7 +11,7 @@
                 <div class="title_name">
                     <span><a href="#">Tên truyện</a></span>
                 </div>
-                <h1 class="title_post_name">Tên chương truyện</h1>
+                <h1 class="title_post_name">{{$chapter->chapter_name}}</h1>
                 <div class="post_meta_name">
                     <span class="meta-item post-author">
                         <span>By </span>

@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chapter extends Model
 {
-    public function creation()
-    {
-        return $this->belongsTo('App\Models\Creation');
-    }
+    use HasFactory;
+
+    // public function creation()
+    // {
+    //     return $this->belongsTo(Creation::class);
+    // }
 }

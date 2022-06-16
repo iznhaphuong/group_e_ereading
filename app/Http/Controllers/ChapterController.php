@@ -44,7 +44,8 @@ class ChapterController extends Controller
      */
     public function show($id)
     {
-        //
+        echo ("err ".Chapter::find($id));
+        return view('user.creation.reading',['chapters' => Chapter::find($id)]);
     }
 
     /**

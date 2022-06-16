@@ -46,9 +46,7 @@ class ReadingController extends Controller
      */
     public function show($id)
     {
-        $chapter = Chapter::find($id);
-
-        return view('user.creation.reading')->with('chapter', $chapter);
+       
     }
     
     public function showAjax(Request $request)
