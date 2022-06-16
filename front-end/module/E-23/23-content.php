@@ -132,7 +132,7 @@ $url_path = str_replace('\\', '/', $url_path);
         </div>
     </div>
     <!-- Pagination -->
-    <div class="mt-5 d-flex justify-content-center ">
+    <div class="my-5 d-flex justify-content-center ">
         <nav aria-label="Pagination">
             <ul class="pagination">
                 <li class="page-item active"><a class="page-link" href="#"><i class="fa-solid fa-angle-left"></i></a>
