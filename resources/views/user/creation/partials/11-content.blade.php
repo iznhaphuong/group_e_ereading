@@ -1,5 +1,6 @@
 {{-- My CSS File --}}
 @push('head-css')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link name="style-11" rel="stylesheet" href="{{ asset('css/style-11.css') }}">
 @endpush
 
@@ -42,7 +43,7 @@
         </div>
 
         <div class="content">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente deserunt dolor eius explicabo repellat delectus labore consequuntur commodi suscipit placeat laboriosam ducimus illum similique amet, perferendis libero, blanditiis id recusandae.
+            <p class="chapter-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente deserunt dolor eius explicabo repellat delectus labore consequuntur commodi suscipit placeat laboriosam ducimus illum similique amet, perferendis libero, blanditiis id recusandae.
                 In aliquid vero id veritatis nihil animi iusto nulla similique enim? Laboriosam nostrum cum tempora quisquam omnis excepturi numquam quidem! Nostrum veniam maxime sunt animi, veritatis modi dignissimos nemo quos?
                 Cum eligendi numquam reiciendis, in porro hic fugiat rem facilis tenetur rerum facere, vitae ad. Ea adipisci modi earum nisi a fuga odit quidem nesciunt laborum facere, iusto inventore tempore?
                 Quidem provident earum odit incidunt laborum, natus, eum vitae veniam tenetur, fuga libero sunt voluptatum veritatis? Architecto, tempore nesciunt. Voluptatum doloremque sit quos accusamus ad nam aut libero quod repellat?

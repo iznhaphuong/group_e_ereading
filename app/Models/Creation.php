@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Creation extends Model
 {
     use HasFactory;
+    public function chapters()
+    {
+        return $this->hasMany('App\Models\Chapter','creation_id','id');
+    }
 }

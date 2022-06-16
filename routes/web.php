@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ReadingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,10 +17,11 @@ Route::get('/', function () {
     // return view('user.creation.following');
     // return view('user.creation.history');
     // return view('user.creation.reading');
-    // return view('user.creation.home');
+    return view('user.creation.home');
     // return view('admin.management.user'); - loi
     // return view('admin.management.category'); -loi
-    return view('admin.management.creation');
+    // return view('admin.management.creation');
     // return view('admin.management.chapter');
     // return view('user.creation.detail');
 });
+Route::get('/reading',[ReadingController::class,'index']);
