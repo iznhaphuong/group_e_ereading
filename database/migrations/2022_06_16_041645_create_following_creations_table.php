@@ -17,8 +17,8 @@ class CreateFollowingCreationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('creation_id');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('creation_id')->references('id')->on('creations')->onDelete('cascade');;
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreign('creation_id')->references('id')->on('creations')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
