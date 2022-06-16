@@ -5,22 +5,22 @@
 
 <div class="type-09">
     <div class="container">
-        <div class="text-uppercase my-5 browsing">Tào tặc</div>
+        <div class="text-uppercase my-5 browsing">{{ $creation->name }}</div>
         <hr class="pb-3">
         <div class="card my-3">
             <div class="row g-0 mt-3">
                 <div class="col-md-3">
                     <div class="card-image">
-                        <img src="{{ asset('images/covers/taotac.jpg') }}" class="img-card rounded" alt="">
+                        <img src="{{ asset('images/covers/'. $creation->image) }}" class="img-card rounded" alt="">
                         </a>
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <h3 class="card-title text-uppercase pb-2 ps-4">Tào tặc</h3>
+                    <h3 class="card-title text-uppercase pb-2 ps-4">{{ $creation->name }}</h3>
                     <ul class="pl-0 detail-content">
                         <li class="row">
                             <p class="col-2"><i style="font-weight: bold;" class="fa fa-user"></i> Tác giả</p>
-                            <p class="col-10">Canh Tân</p>
+                            <p class="col-10">{{ $creation->author }}</p>
                         </li>
                         <li class="row">
                             <p class="col-2"><i style="font-weight: bold;" class="fa fa-tag"></i> Thể loại</p>
@@ -40,7 +40,7 @@
                         </li>
                         <li class="row">
                             <p class="col-2"><i style="font-weight: bold;" class="fa fa-eye"></i> Lượt xem</p>
-                            <p class="col-10">12,030</p>
+                            <p class="col-10">{{ $creation->view }}</p>
                         </li>
                         <li class="row">
                             <p class="col-12">
