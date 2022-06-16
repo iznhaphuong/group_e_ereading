@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\categories_creation;
+use App\Models\rank;
 use Illuminate\Http\Request;
 
-class CategoriesCreationController extends Controller
+class RankController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class CategoriesCreationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\categories_creation  $categories_creation
+     * @param  \App\Models\rank  $rank
      * @return \Illuminate\Http\Response
      */
-    public function show(categories_creation $categories_creation)
+    public function show(rank $rank)
     {
         //
     }
@@ -52,10 +52,10 @@ class CategoriesCreationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\categories_creation  $categories_creation
+     * @param  \App\Models\rank  $rank
      * @return \Illuminate\Http\Response
      */
-    public function edit(categories_creation $categories_creation)
+    public function edit(rank $rank)
     {
         //
     }
@@ -64,10 +64,10 @@ class CategoriesCreationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\categories_creation  $categories_creation
+     * @param  \App\Models\rank  $rank
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, categories_creation $categories_creation)
+    public function update(Request $request, rank $rank)
     {
         //
     }
@@ -75,10 +75,10 @@ class CategoriesCreationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\categories_creation  $categories_creation
+     * @param  \App\Models\rank  $rank
      * @return \Illuminate\Http\Response
      */
-    public function destroy(categories_creation $categories_creation)
+    public function destroy(rank $rank)
     {
         //
     }

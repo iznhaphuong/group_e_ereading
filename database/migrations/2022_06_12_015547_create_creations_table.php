@@ -15,13 +15,13 @@ class CreateCreationsTable extends Migration
     {
         Schema::create('creations', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable(false)->change();
-            $table->text('image')->nullable(false)->change();
+            $table->string('name')->nullable(false);
+            $table->text('image')->nullable(false);
             $table->string('author')->default('Ẩn danh');
             $table->string('type')->nullable(false)->change();
             $table->string('source')->default('Internet');
             $table->integer('status');
-            $table->text('description')->nullable(false)->change();
+            $table->text('description')->nullable(false);
             $table->integer('version')->default(1);
             $table->integer('view')->default(0);
             $table->timestamps();
