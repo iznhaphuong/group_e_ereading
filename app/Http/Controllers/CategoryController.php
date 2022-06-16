@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\categories_creation;
 use Illuminate\Http\Request;
 
-class CategoriesCreationController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +40,10 @@ class CategoriesCreationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\categories_creation  $categories_creation
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(categories_creation $categories_creation)
+    public function show($id)
     {
         //
     }
@@ -52,10 +51,10 @@ class CategoriesCreationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\categories_creation  $categories_creation
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(categories_creation $categories_creation)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class CategoriesCreationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\categories_creation  $categories_creation
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, categories_creation $categories_creation)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +74,10 @@ class CategoriesCreationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\categories_creation  $categories_creation
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(categories_creation $categories_creation)
+    public function destroy($id)
     {
         //
     }
