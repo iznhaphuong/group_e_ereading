@@ -13,7 +13,7 @@
                 <li class="nav-item dropdown me-3 me-lg-1">
                     <a class="d-sm-flex align-items-sm-center nav-link dropdown-toggle hidden-arrow" href="#"
                         id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ asset('images/avatar-default.png') }}" class="rounded-circle" height="22"
+                        <img src="{{ asset('images/avatar-default.png') }}" class="rounded-circle h-22px" height="22"
                             alt="Admin" loading="lazy" />
                         <strong class="d-none d-sm-block ms-1">Admin</strong>
                     </a>

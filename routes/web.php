@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     // return view('user.creation.reading');
     // return view('user.creation.home');
-    // return view('admin.management.user'); - loi
-    // return view('admin.management.category'); -loi
-    return view('admin.management.creation');
+//     return view('admin.management.user');
+     return view('admin.management.category');
+//    return view('admin.management.creation');
     // return view('admin.management.chapter');
 });
 

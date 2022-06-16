@@ -1,21 +1,13 @@
 tailwind.config = {
-    theme: {
-        extend: {
-            colors: {
-                'default': '#077C98',
-            }
+    extend: {
+        height: {
+            '22px': '22px',
+        },
+        colors: {
+            'default': '#E8F6F8',
+            'default-hover': '#077C98',
+            'default-border': '#202C31',
+            'default-text': '#00161E',
         }
     }
 }
-
-const modal = document.querySelector('.modal');
-const showModal = document.querySelector('.add-user');
-const closeModal = document.querySelectorAll('.close-modal');
-showModal.addEventListener('click', function (){
-    modal.classList.remove('hidden')
-});
-closeModal.forEach(close => {
-    close.addEventListener('click', function (){
-        modal.classList.add('hidden')
-    });
-});
