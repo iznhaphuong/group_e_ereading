@@ -5,10 +5,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-lg-0 d-flex">
                     <li class="nav-item me-2">
-                        <a class="nav-link sign-in" href="#">Đăng nhập</a>
+                        <a class="nav-link sign-in" href="{{ url('dang-nhap') }}">Đăng nhập</a>
                     </li>
                     <li class="nav-item me-2">
-                        <a class="nav-link sign-up" href="#">Đăng kí</a>
+                        <a class="nav-link sign-up" href="{{ url('dang-ki') }}">Đăng kí</a>
                     </li>
                     <li class="nav-item me-2">
                         <a class="nav-link user" href="#"><i class="fa-solid fa-user-large pe-1"></i>Thành

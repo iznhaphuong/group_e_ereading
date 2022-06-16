@@ -23,6 +23,10 @@ Route::get('/', function () {
     // return view('admin.management.chapter');
 });
 
+Route::get('/admin', function () {
+    return view('admin.management.creation');
+});
+
 Route::get('chi-tiet/{id}', [CreationController::class, 'show'])->name('detail');
 
 Route::get('dang-theo-doi', function () {
@@ -32,3 +36,11 @@ Route::get('dang-theo-doi', function () {
 Route::get('lich-su', function () {
     return view('user.creation.history');
 })->name('history');
+
+Route::get('dang-nhap', function () {
+    return view('user.auth.login');
+});
+
+Route::get('dang-ki', function () {
+    return view('user.auth.register');
+});
