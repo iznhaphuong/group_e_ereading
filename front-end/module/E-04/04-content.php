@@ -3,6 +3,17 @@
         <div class="title">
             <h4 class="new__stories__title"> Top lượt xem</h4>
         </div>
+        <div class="mediaImage">
+            <a href="#" class="mainImage">
+                <img src="./images/danh-sach-truyen-tranh-han-quoc-9.png" class="img-fluid" alt="">
+                <h2 class="card-title"> <a class="title" href="#">Phượng Hoàng Trong Biển Tình </a></h2>
+                <span class="card-text"><span class="text-muted">Tác giả <a href="#">Jane Doe</a></span></span>
+                <span class="m-3">30/05/2022</span>
+                <p><i class="fa fa-eye" style="padding-top: 20px;"></i> 12,112,990</p>
+                <p><i class="fa fa-tag"></i> Tình cảm</p>
+                <p class="content">orem Ipsum has been the industry's standard dummy text ever since the 1500s, when an.</p>
+            </a>
+        </div>
         <div class="card my-3" style="max-width: 590px;">
             <div class="row g-0">
                 <div class="col-md-3">
@@ -26,7 +37,7 @@
                             <p><i class="fa fa-tag"></i> Tình cảm</p>
                             <p class="content">orem Ipsum has been the industry's standard dummy text ever since the 1500s, when an.</p>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -54,7 +65,7 @@
                             <p><i class="fa fa-tag"></i> Phiêu lưu</p>
                             <p class="content">orem Ipsum has been the industry's standard dummy text ever since the 1500s, when an.</p>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -82,7 +93,7 @@
                             <p><i class="fa fa-tag"></i> Ngôn tình</p>
                             <p class="content">orem Ipsum has been the industry's standard dummy text ever since the 1500s, when an.</p>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

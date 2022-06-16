@@ -11,23 +11,51 @@
 }
 .type-03 .image-wrapper {
   display: flex;
+  text-align: center;
+  justify-content: center;
 }
-.type-03 .image-wrapper .col-xs-3 img {
+.type-03 .image-wrapper .col-3 .row {
+  flex-direction: column;
+}
+.type-03 .image-wrapper .col-3 .row .col-6 img {
   display: block;
-  width: 85%;
-  height: 100%;
-  object-fit: cover;
+  width: 220px;
+  height: 90%;
+  object-fit: fill;
 }
-.type-03 .image-wrapper .col-xs-3 a {
+.type-03 .image-wrapper .col-6 img {
+  display: block;
+  width: 570px;
+  height: 75%;
+  object-fit: fill;
+  image-rendering: pixelated;
+}
+.type-03 .image-wrapper .col-3 .row .col-6 {
+  width: 100%;
+}
+.type-03 .image-wrapper .col-3 .row .col-6 a {
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 650;
   text-align: center;
 }
-.type-03 .image-wrapper .col-xs-3 .title:hover {
+.type-03 .image-wrapper .col-3 .row .col-6 .title:hover {
   color: #00789a;
   transition: .5s;
 }
-.type-03 .image-wrapper .col-xs-3 .image:hover {
+.type-03 .image-wrapper .col-3 .row .col-6 image:hover {
+  background: rgba(0,0,0,0.7);
+  transition: .5s;
+}
+.type-03 .image-wrapper .col-6 a {
+  text-decoration: none;
+  font-weight: 650;
+  text-align: center;
+}
+.type-03 .image-wrapper .col-6 .title:hover {
+  color: #00789a;
+  transition: .5s;
+}
+.type-03 .image-wrapper .col-6 image:hover {
   background: rgba(0,0,0,0.7);
 }
 @media (max-width: 480px) {
