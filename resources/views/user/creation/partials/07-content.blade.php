@@ -6,7 +6,7 @@
 
 @push('footer-js')
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script src="js/script-07.js"></script>
+<script src="{{ asset('js/script-07.js') }}"></script>
 @endpush
 
 <div class="type-07">

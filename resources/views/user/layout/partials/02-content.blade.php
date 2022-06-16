@@ -1,5 +1,5 @@
 @push('footer-js')
-    <script src="js/script-02.js"></script>
+    <script src="{{ asset('js/script-02.js') }}"></script>
 @endpush
 
 <div class="type-02">
