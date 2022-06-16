@@ -14,25 +14,57 @@
 
     .image-wrapper {
         display: flex;
+        text-align: center;
+        justify-content: center; 
 
-        .col-xs-3 img {
-            display: block;
-            width: 85%;
-            height: 100%;
-            object-fit: cover;
+        .col-3 .row{
+            flex-direction: column;
+            
         }
 
-        .col-xs-3{
+        .col-3 .row .col-6 img {
+            display: block;
+            width: 220px;
+            height: 90%;
+            object-fit: fill;
+        }
+
+        .col-6 img {
+            display: block;
+            width: 570px;
+            height: 75%;
+            object-fit: fill;
+            image-rendering: pixelated;    
+        }
+
+        .col-3 .row .col-6{
+            width: 100%;
             a{
                 text-decoration: none;
-                font-weight: 600;
+                font-weight: 650;
+                text-align:center;
+            }
+            .title:hover{
+                color: #00789a;
+                transition: .5s;               
+            }
+            image:hover{
+                background: rgba(0, 0, 0, .7);
+                transition: .5s;
+            }
+        }
+
+        .col-6{
+            a{
+                text-decoration: none;
+                font-weight: 650;
                 text-align: center;
             }
             .title:hover{
                 color: #00789a;
                 transition: .5s;
             }
-            .image:hover{
+            image:hover{
                 background: rgba(0, 0, 0, .7);
             }
         }
