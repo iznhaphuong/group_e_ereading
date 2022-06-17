@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Creation;
+use App\Models\FollowingCreation;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
+use  Illuminate\Database\Eloquent\Builder;
 
 class FollowingCreationController extends Controller
 {
@@ -11,9 +17,72 @@ class FollowingCreationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $controller = new Controller();
+        $UUID = $controller->getUUID();
+        $user = User::find($UUID);
+        $PER_PAGE = 4;
+
+        // Chi search
+        if ($request->input('q') && $request->sort == null) {
+            $keyword = $request->input('q');
+            $creations = $user->following_creations()
+                ->where('creations.name', 'like', '%' . $keyword . '%')
+                ->paginate($PER_PAGE);
+
+            return view('user.creation.following')
+                ->with('creations', $creations)
+                ->with('keyword', $keyword);
+        }
+        //Sort 
+        else if ($sort = $request->sort) {
+            $creations = $user->following_creations();
+            if ($keyword = $request->input('q')) {
+                echo $keyword;
+                $creations = $creations = $user->following_creations()
+                    ->where('creations.name', 'like', '%' . $keyword . '%');
+            }
+            switch ($sort) {
+                case 1:
+                    $creations = $creations->orderBy('id')->paginate($PER_PAGE);
+                    break;
+                case 2:
+                    $creations = $creations->orderBy('name')->paginate($PER_PAGE);
+                    break;
+                case 3:
+                    $creations = $creations->orderBy('name', 'DESC')->paginate($PER_PAGE);
+                    break;
+            }
+            if ($keyword) {
+                return view('user.creation.following')
+                    ->with('creations', $creations)
+                    ->with('sort', $sort)
+                    ->with('keyword', $keyword);
+            } else {
+                return view('user.creation.following')
+                    ->with('creations', $creations)
+                    ->with('sort', $sort);
+            }
+        }
+        //Mac dinh
+        else {
+            $creations = $user->following_creations()->paginate($PER_PAGE);
+            return view('user.creation.following')->with('creations', $creations);
+        }
+    }
+
+    public function searchAjax(Request $request)
+    {
+        $controller = new Controller();
+        $UUID = $controller->getUUID();
+        $creations = DB::table('following_creations')
+            ->join('creations', 'creations.id', '=', 'creation_id')
+            ->where([
+                ['user_id', '=',  $UUID],
+                ['creations.name', 'like', '%' . $request->keyword . '%']
+            ])->get();
+        return $creations;
     }
 
     /**
@@ -34,7 +103,8 @@ class FollowingCreationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = $request->UUID;
+        $creation_id = $request->creation_id;
     }
 
     /**

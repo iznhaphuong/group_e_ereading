@@ -12,6 +12,7 @@ use App\Models\Creation;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 
 class CreationController extends Controller
 {
@@ -143,5 +144,23 @@ class CreationController extends Controller
     public function destroy(Creation $creation)
     {
         //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id is encrypted
+     * @return \Illuminate\Http\Response
+     */
+    public function show2($id)
+    {
+        $creation = DB::table('creations')
+            ->select('*')
+            ->where(
+                DB::raw('md5(concat(id,name))'),
+                '=',
+                $id
+            )->get()[0];
+        return view('user.creation.detail', ['creation' => $creation]);
     }
 }
