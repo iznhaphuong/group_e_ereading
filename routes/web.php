@@ -68,5 +68,9 @@ Route::get('dang-ki', function () {
 })->name('register');
 Route::post('custom-register', [UserController::class, 'create'])->name('register.custom');
 Route::get('reading/{creationId}', [ChapterController::class, 'show'])->name('chapter.show');
-
+//rating
 Route::post('/add-rating', [RatingController::class, 'add'])->name('rating');
+//read-chapter
+Route::get('reading-{number}', [ChapterController::class, 'paginate'])->name('chapter.next');
+
+ 

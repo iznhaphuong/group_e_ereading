@@ -58,17 +58,44 @@ class ChapterController extends Controller
         $chapterList = DB::table('chapters')
         ->select('*')
         ->where('creation_id','=',$creation->id)
-        ->orderBy('chapter_number', 'asc')->get();
+        ->orderBy('chapter_number', 'asc')
+        ->get();
         $chapter = DB::table('chapters')
         ->select('*')
         ->where('creation_id','=',$creation->id)
         ->where('chapter_number', '=', '1')
         ->get()[0];
-        // dd($chapter);
-        return view('user.creation.reading',compact('creation','chapter'));
+        // dd($chapterList);
+        return view('user.creation.reading',compact('creation','chapter','chapterList'));
 
     }
 
+    //Next chapter page
+    public function paginate($number)
+    {
+        $chapter = DB::table('chapters')
+        ->select('*')
+        ->where(
+            DB::raw('md5(concat(creation_id,chapter_number))'),
+            '=',
+            $number
+        )->get()[0];
+        $creation = DB::table('creations')
+        ->select('*')
+        ->where('id','=',$chapter->creation_id)
+        ->get()[0];
+        $chapterList = DB::table('chapters')
+        ->select('*')
+        ->where('creation_id','=',$creation->id)
+        ->orderBy('chapter_number', 'asc')
+        ->get();
+       
+        $endChapter =  end($chapterList) ;
+        // dd($endChapter);
+        return view('user.creation.reading',compact('creation','chapter','chapterList','endChapter'));
+
+    }
+   
     /**
      * Show the form for editing the specified resource.
      *
