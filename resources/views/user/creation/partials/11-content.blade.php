@@ -50,7 +50,7 @@
                     @endif
                     @endforeach
                 </select>
-
+                
                 @if ($chapter->chapter_number == $endChapter->chapter_number)
                 <a class="next-page m-3 pagi" style="display: none;" id="next-chapter" href="{{  url('reading-' . $nextId) }}">
                     <span>Chương sau</span>

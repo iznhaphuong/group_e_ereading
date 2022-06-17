@@ -65,8 +65,13 @@ class ChapterController extends Controller
         ->where('creation_id','=',$creation->id)
         ->where('chapter_number', '=', '1')
         ->get()[0];
+        $endChapter = DB::table('chapters')
+        ->select('*')
+        ->where('creation_id','=',$creation->id)
+        ->orderBy('chapter_number', 'desc')
+        ->get()[0];
         // dd($chapterList);
-        return view('user.creation.reading',compact('creation','chapter','chapterList'));
+        return view('user.creation.reading',compact('creation','chapter','chapterList','endChapter'));
 
     }
 
@@ -94,7 +99,7 @@ class ChapterController extends Controller
         ->where('creation_id','=',$creation->id)
         ->orderBy('chapter_number', 'desc')
         ->get()[0];
-
+        
         // dd($endChapter);
         return view('user.creation.reading',compact('creation','chapter','chapterList','endChapter'));
 
