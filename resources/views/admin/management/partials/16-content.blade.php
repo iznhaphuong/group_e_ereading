@@ -1,7 +1,6 @@
 {{-- My CSS File --}}
 @push('head-css')
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="{{ asset('js/script-16.js') }}"></script>
 @endpush
 
 <div id="style-16">
@@ -93,16 +92,17 @@
                                     <span>{{$user->user_exp}}</span>
                                 </td>
 
-                                <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#editModal"
-                                            class="text-indigo-600 hover:text-indigo-900">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                                             viewBox="0 0 24 24"
-                                             stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                        </svg>
-                                    </button>
+                                <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200">
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#editModal"
+                                        data-id="{{ $hash->encodeHex($user->id + $salt) }}" data-version="{{ $hash->encodeHex($user->user_version + $salt)  }}"
+                                        class="text-indigo-600 hover:text-indigo-900 editModel">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                         viewBox="0 0 24 24"
+                                         stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                    </svg>
+                                </button>
                                 </td>
                                 <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
                                     <a href="#" class="text-gray-600 hover:text-gray-900">
@@ -147,7 +147,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="py-1">
-                        <form method="post" action="{{ route('user.create') }}" class="form" novalidate="" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('user.create') }}" class="form" novalidate=""
+                              enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col">
@@ -160,7 +161,8 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Tên đăng nhập</label>
-                                                <input class="form-control" type="text" name="user_username" placeholder=""
+                                                <input class="form-control" type="text" name="user_username"
+                                                       placeholder=""
                                                        value="" required>
                                             </div>
                                         </div>
@@ -175,7 +177,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Mật khẩu</label>
-                                            <input class="form-control" type="password" name="user_password" placeholder="" required>
+                                            <input class="form-control" type="password" name="user_password"
+                                                   placeholder="" required>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -200,7 +203,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-sm-6 mb-3">
-                                    <input type="file" class="form-control" name="user_avatar" required>
+                                    <input accept=".jpg, .jpeg, .png" type="file" class="form-control" name="user_avatar" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -230,50 +233,59 @@
                 </div>
                 <div class="modal-body">
                     <div class="py-1">
-                        <form class="form" novalidate="">
+                        <form method="post" action="{{ route('category.update') }}" class="form" novalidate="" enctype="multipart/form-data">
+                            @csrf
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
+                                        <input type="text" id="inputId" name="id" class="hidden">
+                                        <input type="text" id="inputUserVersion" name="version" class="hidden">
                                         <label>Tên người dùng</label>
-                                        <input class="form-control" type="text" name="name" placeholder=""
-                                               value="">
+                                        <input class="form-control" type="text" name="user_name" placeholder=""
+                                               value="" required id="inputUserName">
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Tên đăng nhập</label>
-                                                <input class="form-control" type="text" name="name" placeholder=""
-                                                       value="">
+                                                <input class="form-control" type="text" name="user_username"
+                                                       placeholder=""
+                                                       id="inputUserUserName"
+                                                       value="" required>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input class="form-control" type="text" name="author" placeholder=""
-                                                       value="">
+                                                <input class="form-control" type="text" name="user_email" placeholder=""
+                                                       id="inputUserEmail"
+                                                       value="" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Mật khẩu</label>
-                                            <input class="form-control" type="text" name="type" placeholder="">
+                                            <input class="form-control" type="password" name="user_password"
+                                                   id="inputUserPassword"
+                                                   placeholder="">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
-                                                <label style="display: block;" for="status">Loại tài khoản</label>
-                                                <select id="status" name="status">
-                                                    <option value="0">Người dùng</option>
-                                                    <option value="1">Quản lý</option>
+                                                <label style="display: block;" for="statusTypes">Loại tài khoản</label>
+                                                <select id="statusTypes" name="user_type">
+                                                    <option id="inputUserType0" value="1">Người dùng</option>
+                                                    <option id="inputUserType1" value="0">Quản lý</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Kinh nghiệm</label>
-                                                <input class="form-control" type="text" name="source" placeholder=""
+                                                <input class="form-control" type="text" name="user_exp" placeholder=""
+                                                       id="inputUserExp"
                                                        value="">
                                             </div>
                                         </div>
@@ -282,7 +294,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-sm-6 mb-3">
-                                    <input type="file" name="image">
+                                    <input id="userAvatar" type="file" name="user_avatar" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -290,7 +302,7 @@
                                     <button type="button" class="btn btn-secondary me-2 text-default-text bg-default"
                                             data-bs-dismiss="modal">Close
                                     </button>
-                                    <button class="btn btn-primary text-default-text bg-default" type="submit">Sửa
+                                    <button id="btn-edit" class="btn btn-primary text-default-text bg-default" type="submit">Sửa
                                     </button>
                                 </div>
                             </div>
@@ -301,4 +313,4 @@
         </div>
     </div>
 </div>
-
+<script src="{{ asset('js/script-16.js') }}"></script>

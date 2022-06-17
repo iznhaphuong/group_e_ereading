@@ -45,6 +45,7 @@ Route::delete('admin/danh-muc/xoa/{id}', [CategoryController::class, 'destroy'])
 // User
 Route::get('admin/nguoi-dung', [UserController::class, 'index'])->name('user.index');
 Route::post('admin/nguoi-dung', [UserController::class, 'store'])->name('user.create');
+Route::post('admin/nguoi-dung/cap-nhat', [UserController::class, 'update'])->name('category.update');
 
 Route::get('chi-tiet/{id}', [CreationController::class, 'show']);
 Route::post('chi-tiet/{id}', [FollowingCreationController::class, 'destroy']);
