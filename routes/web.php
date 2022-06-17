@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\CreationController;
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
+
 use App\Http\Controllers\CreationController;
-=======
+
 use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\RatingController;
@@ -37,9 +36,9 @@ Route::resource('admin', CreationController::class);
 
 // Route::get('/reading',[ReadingController::class,'index']);
 
-Route::get('/admin', function () {
-    return view('admin.management.creation');
-});
+// Route::get('/admin', function () {
+//     return view('admin.management.creation');
+// });
 
 Route::get('chi-tiet/{id}', [CreationController::class, 'show'])->name('detail');
 
