@@ -22,17 +22,14 @@ use App\Http\Controllers\CategoryController;
 */
 
 Route::get('/', function () {
-    // return view('user.creation.reading');
     return view('user.creation.home');
     //     return view('admin.management.user');
     //     return view('admin.management.category');
-    //    return view('admin.management.creation');
     // return view('admin.management.chapter');
-    // return view('user.creation.detail');
 });
 
-//Trang admin
-// Route::resource('admin', CreationController::class);
+//  Admin
+Route::resource('admin', CreationController::class);
 
 // Route::get('/reading',[ReadingController::class,'index']);
 
@@ -49,9 +46,8 @@ Route::delete('admin/danh-muc/xoa/{id}', [CategoryController::class, 'destroy'])
 Route::get('admin/nguoi-dung', [UserController::class, 'index'])->name('user.index');
 Route::post('admin/nguoi-dung', [UserController::class, 'store'])->name('user.create');
 
-Route::get('chi-tiet/{id}', [CreationController::class, 'show'])->name('detail');
-Route::get('chi-tiet-mahoa/{id}', [CreationController::class, 'show2']);
-Route::post('chi-tiet-mahoa/{id}', [FollowingCreationController::class, 'destroy']);
+Route::get('chi-tiet/{id}', [CreationController::class, 'show']);
+Route::post('chi-tiet/{id}', [FollowingCreationController::class, 'destroy']);
 
 Route::get('dang-theo-doi', [FollowingCreationController::class, 'index'])->name('following');
 Route::post('dang-theo-doi',[FollowingCreationController::class, 'destroy']);

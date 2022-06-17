@@ -62,7 +62,7 @@
                                             @php
                                                 $id = md5($creation->id . $creation->name);
                                             @endphp
-                                            <li class="button-item"><a href="{{ url('chi-tiet-mahoa/' . $id) }}"
+                                            <li class="button-item"><a href="{{ url('chi-tiet/' . $id) }}"
                                                     title="Đọc tiếp"><i class="fa-solid fa-book-open"></i></a></li>
                                             <li class="unfollow"
                                                 data-url={{ url()->current() }}
@@ -113,8 +113,8 @@
                 <input type="hidden" id="id_hidden" name="id">
                 <input type="hidden" id="url_hidden" name="url" value="{{ url()->current() }}">
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bỏ theo dõi</button>
-                    <button id="delete" type="submit" class="btn btn-primary">Xóa</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button id="delete" type="submit" class="btn btn-primary">Bỏ theo dõi</button>
                 </div>
             </div>
         </div>
