@@ -140,11 +140,10 @@ class CategoryController extends Controller
         return redirect()->route('category.index')->with('success', 'Xóa vĩnh viễn thành công');
     }
 
-    public function getCategory(Request $request)
+    public function getCategory($id)
     {
         //
         $hash = new Hashids('', 32);
-        $id = $request->id;
         $category = Category::find($hash->decodeHex($id));
         return $category;
     }
