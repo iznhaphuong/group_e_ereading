@@ -39,7 +39,6 @@ class FollowingCreationController extends Controller
         else if ($sort = $request->sort) {
             $creations = $user->following_creations();
             if ($keyword = $request->input('q')) {
-                echo $keyword;
                 $creations = $creations = $user->following_creations()
                     ->where('creations.name', 'like', '%' . $keyword . '%');
             }

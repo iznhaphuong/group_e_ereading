@@ -96,7 +96,7 @@ class CategoryController extends Controller
 //            return redirect()->route('category.index')->with('error', 'Cập nhật thất bại');
 //        }
         $check = "";
-        if (checked) {
+        if ($checked) {
             $check = 'success';
         } else {
             $check = 'error';
