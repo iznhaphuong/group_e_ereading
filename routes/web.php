@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CreationController;
@@ -23,10 +24,10 @@ Route::get('/', function () {
     // return view('user.creation.following');
     // return view('user.creation.history');
     // return view('user.creation.reading');
-    // return view('user.creation.home');
-    // return view('admin.management.user'); - loi
-    // return view('admin.management.category'); -loi
-    return view('admin.management.creation');
+     return view('user.creation.home');
+//     return view('admin.management.user');
+//     return view('admin.management.category');
+//    return view('admin.management.creation');
     // return view('admin.management.chapter');
     // return view('user.creation.detail');
 });
@@ -40,6 +41,8 @@ Route::get('/', function () {
 //     return view('admin.management.creation');
 // });
 
+Route::get('admin/danh-muc', [CategoryController::class, 'index'])->name('category.index');
+Route::post('admin/danh-muc', [CategoryController::class, 'store'])->name('category.create');
 Route::get('chi-tiet/{id}', [CreationController::class, 'show'])->name('detail');
 
 Route::get('dang-theo-doi', function () {
