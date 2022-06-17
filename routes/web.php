@@ -28,8 +28,13 @@ Route::get('/', function () {
     // return view('admin.management.chapter');
 })->name('home');
 
-//  Admin
-//Route::resource('admin', CreationController::class);
+    // return view('user.creation.detail');
+});
+
+//Trang admin
+Route::resource('admin', CreationController::class);
+
+Route::resource('chapter', ChapterController::class);
 
 // Route::get('/reading',[ReadingController::class,'index']);
 
