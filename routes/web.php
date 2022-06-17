@@ -30,7 +30,10 @@ Route::get('/', function () {
 
 
 //Trang admin
-Route::resource('admin', CreationController::class);
+Route::get('admin/creation', [CreationController::class, 'index'])->name('admin.index');
+Route::post('admin/creation', [CreationController::class, 'store'])->name('admin.store');
+Route::post('admin/creation/update', [CreationController::class, 'update'])->name('admin.update');
+Route::get('admin/creation/destroy', [CreationController::class, 'destroy'])->name('admin.destroy');
 
 Route::resource('chapter', ChapterController::class);
 

@@ -27,10 +27,12 @@ class CreationController extends Controller
     {
         $dataCategories = Category::all();
         $dataCreations = Creation::all();
+
+        $crypt = new Crypt();
         foreach ($dataCreations as $value) {
 
-            $key = "hocBE";
-            $version = Crypt::encryptString($value->version);
+            $key = config('key.key');
+            $version = $crypt::encryptString($value->version);
 
             //$mac hash lần 1 trung hòa tất cả
             $mac = hash_hmac('sha256', $version, $key);
@@ -40,16 +42,18 @@ class CreationController extends Controller
             $value->version = $version;
         }
 
-        return view('admin.management.creation', compact('dataCreations', 'dataCategories'));
+        return view('admin.management.creation', compact('dataCreations', 'dataCategories', 'crypt'));
         //
     }
 
     public function checkVersion($id, $version) {
+        $key = config('key.key');
+
+        $idSua = Crypt::decryptString($id);
         
-        $creation = Creation::find($id);
+        $creation = Creation::find($idSua);
 
         list($encryptVersion, $mac) = explode(':', $version);
-        $key = "hocBE";
 
         //So sanh version hiện tại với version trước đó
         if (hash_equals(hash_hmac('sha256', $encryptVersion, $key), $mac)) { //lay phan tach ra vaf cho "nhom2" so sanhs vs mac ==> kq
@@ -64,7 +68,9 @@ class CreationController extends Controller
 
     public function getCreation($id) {
         
-        $creation = Creation::find($id);
+        $idSua = Crypt::decryptString($id);
+
+        $creation = Creation::find($idSua);
         $arr = [$creation, $creation->categories];
         return $arr;
     }
@@ -88,9 +94,13 @@ class CreationController extends Controller
     public function store(Request $request)
     {
         // return view('admin.management.creation', compact('dataCreations', 'dataCategories'));
-        // $request->validate([
-        //     'file' => 'required|mimes:pdf,xlx,csv|max:2048',
-        // ]);
+        $request->validate([
+            'name' => 'required',
+            'author' => 'required',
+            'source' => 'required',
+            'status' => 'required',
+            'description' => 'required'
+        ]);
 
 
         $creation = new Creation();
@@ -100,7 +110,8 @@ class CreationController extends Controller
         $creation->source = $request->input('source');
         $creation->status = $request->input('status');
         $creation->description = $request->input('description');
-
+            // print_r($request->file('image'));
+            // die;
         //Processing image
         if ($request->file('image')) {
             $file = $request->file('image');
@@ -144,22 +155,33 @@ class CreationController extends Controller
      * @param  \App\Models\Creation  $creation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        var_dump("12312312");
-        die;
+        $key = config('key.key');
+
+        $id = Crypt::decryptString($request->input('idEdit'));
+
         $creation = Creation::find($id);
 
         $creation->name = $request->input('name');
         $creation->author = $request->input('author');
         $creation->source = $request->input('source');
         $creation->status = $request->input('status');
-        $creation->status = $request->input('types');
+
+
+        //Cập nhật và xóa bảng truyện thuộc danh mục nào
+        if($request->input('types') != null){
+            DB::table('category_creation')->where('creation_id', (int)$id)->delete();
+
+            foreach ($request->input('types') as $value) {
+                $categoryCreation = new CategoryCreation();
+                $categoryCreation->category_id = $value;
+                $categoryCreation->creation_id = $creation->id;
+                $categoryCreation->save();
+            }
+        }
+
         $creation->description = $request->input('description');
-
-
-        print_r($request->input('name'));
-        // $creation->image = $request->input('image');
 
         //Edit image
         if($request->hasFile('image')){
@@ -180,7 +202,7 @@ class CreationController extends Controller
         $version = $request->input('version');
 
         list($encryptVersion, $mac) = explode(':', $version);
-        $key = "hocBE";
+        $key = config('key.key');
 
         //So sanh version hiện tại với version trước đó
         if (hash_equals(hash_hmac('sha256', $encryptVersion, $key), $mac)) { //lay phan tach ra vaf cho "nhom2" so sanhs vs mac ==> kq
@@ -188,15 +210,14 @@ class CreationController extends Controller
             $idVersionOld = Crypt::decryptString($encryptVersion);
             if (hash_equals($idVersionOld, (string)$creation->version)) {
                 //Update data
-                
+                $creation->version = (int)$idVersionOld + 1;
+                $creation->update();
 
-                $creation->vesion = (int)$idVersionOld + 1;
-
-                $creation->save();
+                return redirect()->route('admin.index')->with('success', 'Edit truyện thành công');
             }
         }
-        $creation->update();
-        return redirect()->route('admin.index')->with('success', 'Edit truyện thành công');
+        
+        return redirect()->route('admin.index')->with('success', 'Version của bạn đã cũ');
     }
 
     /**
@@ -205,9 +226,16 @@ class CreationController extends Controller
      * @param  \App\Models\Creation  $creation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Creation $creation)
+    public function destroy(Request $request)
     {
-        //
+        $key = config('key.key');
+
+        $id = Crypt::decryptString($request->input('idDelete1'));
+
+
+        $deleted = Creation::find($id);
+        $deleted->delete();
+        return redirect()->route('admin.index')->with('success', 'Xóa truyện thành công');
     }
 
     /**
