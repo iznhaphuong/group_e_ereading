@@ -60,7 +60,7 @@
                                             @php
                                                 $id = md5($creation->id . $creation->name);
                                             @endphp
-                                            <li class="button-item"><a href="{{ url('chi-tiet/' . $id) }}"
+                                            <li class="button-item"><a href="{{ url('chi-tiet-mahoa/' . $id) }}"
                                                     title="Đọc tiếp"><i class="fa-solid fa-book-open"></i></a></li>
                                             <li class="button-item"><a href="#" title="Bỏ theo dõi"><i
                                                         class="fa-solid fa-heart-crack"></i></a></li>

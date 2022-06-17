@@ -5,8 +5,6 @@ use App\Http\Controllers\FollowingCreationController;
 use App\Models\FollowingCreation;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\CreationController;
-
 use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\RatingController;
@@ -33,7 +31,7 @@ Route::get('/', function () {
 });
 
 //Trang admin
-// Route::resource('admin', CreationController::class);
+Route::resource('admin', CreationController::class);
 
 // Route::get('/reading',[ReadingController::class,'index']);
 
@@ -47,6 +45,7 @@ Route::put('admin/danh-muc/cap-nhat/{id}', [CategoryController::class, 'update']
 Route::delete('admin/danh-muc/xoa/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
 
 Route::get('chi-tiet/{id}', [CreationController::class, 'show'])->name('detail');
+Route::get('chi-tiet-mahoa/{id}', [CreationController::class, 'show2']);
 
 Route::get('dang-theo-doi', [FollowingCreationController::class, 'index'])->name('following');
 
