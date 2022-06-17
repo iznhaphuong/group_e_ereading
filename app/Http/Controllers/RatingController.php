@@ -1,20 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Chapter;
-use App\Models\Creation;
+use App\Models\Rating;
 
 use Illuminate\Http\Request;
-class ChapterController extends Controller
+
+class RatingController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -38,28 +38,36 @@ class ChapterController extends Controller
         //
     }
 
+    public function add(Request $request)
+    {
+        // $rated = Rating::where($request->only('creation_id','user_id','star'))->first();
+        // if($rated){
+        //     return redirect()->with('mess','Bạn đã gửi đánh giá!');
+        // }else{
+        Rating::create($request->only('creation_id','user_id','star'));
+      
+    // }
+    return redirect()->back();
+    }
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id,$creationId)
+    public function show($id)
     {
-        $creation = Creation::find($creationId);
-        $chapter = Chapter::find($id);
-        return view('user.creation.reading',['chapter', $chapter],['creation', $creation]);
-
+        return view('user.creation.detail', ['creation' => Creation::find($id)]);
 
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Creation  $creation
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Creation $creation)
     {
         //
     }
@@ -68,10 +76,10 @@ class ChapterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Creation  $creation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Creation $creation)
     {
         //
     }
@@ -79,10 +87,10 @@ class ChapterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Creation  $creation
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Creation $creation)
     {
         //
     }

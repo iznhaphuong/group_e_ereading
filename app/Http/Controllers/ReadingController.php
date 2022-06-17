@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Chapter;
-use App\Models\Creation;
 
 use Illuminate\Http\Request;
-class ChapterController extends Controller
+
+class ReadingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +13,7 @@ class ChapterController extends Controller
      */
     public function index()
     {
+        return view('user.creation.reading');
 
     }
 
@@ -44,13 +44,16 @@ class ChapterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id,$creationId)
+    public function show($id)
     {
-        $creation = Creation::find($creationId);
+       
+    }
+    
+    public function showAjax(Request $request)
+    {
+        $id = $request->chapterId;
         $chapter = Chapter::find($id);
-        return view('user.creation.reading',['chapter', $chapter],['creation', $creation]);
-
-
+        return $chapter;
     }
 
     /**

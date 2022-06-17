@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Chapter;
-use App\Models\Creation;
 
+use App\Models\CategoryCreation;
 use Illuminate\Http\Request;
-class ChapterController extends Controller
+
+class CategoryCreationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ChapterController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -41,25 +41,21 @@ class ChapterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\CategoryCreation  $categoryCreation
      * @return \Illuminate\Http\Response
      */
-    public function show($id,$creationId)
+    public function show(CategoryCreation $categoryCreation)
     {
-        $creation = Creation::find($creationId);
-        $chapter = Chapter::find($id);
-        return view('user.creation.reading',['chapter', $chapter],['creation', $creation]);
-
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\CategoryCreation  $categoryCreation
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(CategoryCreation $categoryCreation)
     {
         //
     }
@@ -68,10 +64,10 @@ class ChapterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\CategoryCreation  $categoryCreation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CategoryCreation $categoryCreation)
     {
         //
     }
@@ -79,10 +75,10 @@ class ChapterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\CategoryCreation  $categoryCreation
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(CategoryCreation $categoryCreation)
     {
         //
     }

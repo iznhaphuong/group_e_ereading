@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\FollowingCreationController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ChapterController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,4 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/dang-theo-doi/search', [FollowingCreationController::class, 'searchAjax']);
+Route::get('/category/get-one/{id}', [CategoryController::class, 'getCategory']);
+Route::get('/category/get-version/{id}', [CategoryController::class, 'getVersion']);
