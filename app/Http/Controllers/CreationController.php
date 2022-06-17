@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\categories_creation;
 use App\Models\Category;
 use App\Models\CategoryCreation;
 
@@ -109,7 +108,6 @@ class CreationController extends Controller
     {
         $ratingAvg = Rating::where('creation_id',$id)->avg('star');
         return view('user.creation.detail', ['creation' => Creation::find($id)],compact('ratingAvg'));
-
     }
 
     /**

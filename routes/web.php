@@ -4,10 +4,10 @@ use App\Http\Controllers\CreationController;
 use App\Http\Controllers\FollowingCreationController;
 use App\Models\FollowingCreation;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,16 +22,16 @@ use App\Http\Controllers\RatingController;
 
 Route::get('/', function () {
     // return view('user.creation.reading');
-     return view('user.creation.home');
-//     return view('admin.management.user');
-//     return view('admin.management.category');
-//    return view('admin.management.creation');
+    return view('user.creation.home');
+    //     return view('admin.management.user');
+    //     return view('admin.management.category');
+    //    return view('admin.management.creation');
     // return view('admin.management.chapter');
     // return view('user.creation.detail');
 });
 
 //Trang admin
-Route::resource('admin', CreationController::class);
+// Route::resource('admin', CreationController::class);
 
 // Route::get('/reading',[ReadingController::class,'index']);
 
