@@ -100,17 +100,6 @@ class CreationController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-       
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Creation  $creation
@@ -150,7 +139,7 @@ class CreationController extends Controller
      * @param  int  $id is encrypted
      * @return \Illuminate\Http\Response
      */
-    public function show2($id)
+    public function show($id)
     {
 
         $controller = new Controller();
