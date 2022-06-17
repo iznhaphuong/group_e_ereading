@@ -8,11 +8,12 @@ use Illuminate\Html\HtmlFacade;
     <meta charset="utf-8">
     <title>@yield('title', 'Admin')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-    <link name="bootstrap" rel="stylesheet" href="css/bootstrap.min.css">
-    <link name="font-awesome" rel="stylesheet" type="text/css" href="font-awesome/css/all.min.css">
+    <link name="bootstrap" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link name="font-awesome" rel="stylesheet" type="text/css" href="{{ asset('font-awesome/css/all.min.css') }}">
     <link name="style-14" rel="stylesheet" href="{{ asset('css/style-14.css') }}">
     <link name="style-15" rel="stylesheet" href="{{ asset('css/style-15.css') }}">
     @stack('head-css')
@@ -35,7 +36,7 @@ use Illuminate\Html\HtmlFacade;
         {{-- @include() --}}
     </footer>
     {{-- script --}}
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     @stack('footer-js')
 </body>
 

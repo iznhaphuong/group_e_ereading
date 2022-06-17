@@ -34,7 +34,7 @@
 .type-24 .m-wrap-infor {
   position: absolute;
   bottom: 0;
-  width: 89%;
+  width: 85%;
   transition: all 1s;
 }
 .type-24 .genre-item.full::after {

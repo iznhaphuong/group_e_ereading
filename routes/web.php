@@ -1,12 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\CreationController;
-
+use App\Http\Controllers\FollowingCreationController;
+use App\Models\FollowingCreation;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,19 +21,17 @@ use App\Http\Controllers\RatingController;
 */
 
 Route::get('/', function () {
-    // return view('user.creation.following');
-    // return view('user.creation.history');
     // return view('user.creation.reading');
-    // return view('user.creation.home');
-    // return view('admin.management.user'); - loi
-    // return view('admin.management.category'); -loi
-    return view('admin.management.creation');
+    return view('user.creation.home');
+    //     return view('admin.management.user');
+    //     return view('admin.management.category');
+    //    return view('admin.management.creation');
     // return view('admin.management.chapter');
     // return view('user.creation.detail');
 });
 
-
-Route::resource('admin', CreationController::class);
+//Trang admin
+// Route::resource('admin', CreationController::class);
 
 // Route::get('/reading',[ReadingController::class,'index']);
 
@@ -40,11 +39,17 @@ Route::resource('admin', CreationController::class);
 //     return view('admin.management.creation');
 // });
 
-Route::get('chi-tiet/{id}', [CreationController::class, 'show'])->name('detail');
+Route::get('admin/danh-muc', [CategoryController::class, 'index'])->name('category.index');
+Route::post('admin/danh-muc', [CategoryController::class, 'store'])->name('category.create');
+Route::put('admin/danh-muc/cap-nhat/{id}', [CategoryController::class, 'update'])->name('category.update');
+Route::delete('admin/danh-muc/xoa/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
 
-Route::get('dang-theo-doi', function () {
-    return view('user.creation.following');
-})->name('following');
+Route::get('chi-tiet/{id}', [CreationController::class, 'show'])->name('detail');
+Route::get('chi-tiet-mahoa/{id}', [CreationController::class, 'show2']);
+Route::post('chi-tiet-mahoa/{id}', [FollowingCreationController::class, 'destroy']);
+
+Route::get('dang-theo-doi', [FollowingCreationController::class, 'index'])->name('following');
+Route::post('dang-theo-doi',[FollowingCreationController::class, 'destroy']);
 
 Route::get('lich-su', function () {
     return view('user.creation.history');

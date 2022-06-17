@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class FollowingCreation extends Model
 {
     use HasFactory;
+    
 }
