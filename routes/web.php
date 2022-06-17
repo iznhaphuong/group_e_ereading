@@ -44,6 +44,7 @@ Route::get('/', function () {
 Route::get('admin/danh-muc', [CategoryController::class, 'index'])->name('category.index');
 Route::post('admin/danh-muc', [CategoryController::class, 'store'])->name('category.create');
 Route::put('admin/danh-muc/cap-nhat/{id}', [CategoryController::class, 'update'])->name('category.update');
+Route::delete('admin/danh-muc/xoa/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
 
 Route::get('chi-tiet/{id}', [CreationController::class, 'show'])->name('detail');
 
