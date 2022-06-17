@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use  Illuminate\Database\Eloquent\Builder;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Illuminate\Support\Facades\Redirect;
 
 class FollowingCreationController extends Controller
 {
@@ -23,7 +25,8 @@ class FollowingCreationController extends Controller
         $UUID = $controller->getUUID();
         $user = User::find($UUID);
         $PER_PAGE = 4;
-
+        $message = $request->message;
+        echo $message;
         // Chi search
         if ($request->input('q') && $request->sort == null) {
             $keyword = $request->input('q');
@@ -69,19 +72,6 @@ class FollowingCreationController extends Controller
             $creations = $user->following_creations()->paginate($PER_PAGE);
             return view('user.creation.following')->with('creations', $creations);
         }
-    }
-
-    public function searchAjax(Request $request)
-    {
-        $controller = new Controller();
-        $UUID = $controller->getUUID();
-        $creations = DB::table('following_creations')
-            ->join('creations', 'creations.id', '=', 'creation_id')
-            ->where([
-                ['user_id', '=',  $UUID],
-                ['creations.name', 'like', '%' . $request->keyword . '%']
-            ])->get();
-        return $creations;
     }
 
     /**
@@ -146,8 +136,13 @@ class FollowingCreationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->input('id');
+        FollowingCreation::destroy($id);
+        $url = $request->input('url');
+        // $message = 'Bỏ theo dõi ' . $request->input('name') . ' thành công';
+        header('Location: ' . $url);
+        die();
     }
 }

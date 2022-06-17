@@ -4,6 +4,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 @endpush
 
+@push('footer-js')
+    <script src="{{ asset('js/script-09.js') }}"></script>
+@endpush
 
 <div class="type-09">
     <div class="container">
@@ -33,17 +36,19 @@
                                 <a href="#">Bi kịch</a>
                             </div>
                         </li>
+
                         <li class="row">
                             <p class="col-2">
-                                @if ($creation->status == 0)   
-                                <i class="fa-solid fa-toggle-off" style="color:red"></i>
-                                Trạng thái</p>
+                                @if ($creation->status == 0)
+                                    <i class="fa-solid fa-toggle-off" style="color:red"></i>
+                                    Trạng thái
+                            </p>
                             <p class="col-10" style="color:red">Chưa hoàn thành</p>
-                                @elseif ($creation->status == 1) 
-                                <i class="fa-solid fa-toggle-on" style="color:green"></i>
-                                Trạng thái</p>
+                        @elseif ($creation->status == 1)
+                            <i class="fa-solid fa-toggle-on" style="color:green"></i>
+                            Trạng thái</p>
                             <p class="col-10" style="color:green">Đã hoàn thành</p>
-                                @endif 
+                            @endif
                         </li>
                         <li class="row">
                             <p class="col-2"><i style="font-weight: bold;" class="fa fa-clock"></i> Số chương</p>
@@ -59,10 +64,12 @@
                                     class="btn btn-success text-white read-first-chap">Đoc Từ Đầu</a>
                                 <a id="read_new_story" href="#"
                                     class="btn btn-primary text-white read-new-chap">Đọc Mới Nhất</a>
-                                <a class="follow-link btn btn-danger text-white"><i class="fa-solid fa-heart"></i> Theo
-                                    dõi</a>
-                                <a class="unfollow-link btn btn-warning"><i class="fa-solid fa-heart-crack"></i> Bỏ theo
-                                    dõi</a>
+                                @if ($is_followed == 1)
+                                    <a id="unfollow" data-id="{{ $creation->id }}" data-name="{{ $creation->name }}"  data-bs-toggle="modal" data-bs-target="#notice" class="unfollow-link btn btn-warning"><i class="fa-solid fa-heart-crack"></i> Bỏ theo dõi</a>
+                                @else
+                                    <a class="follow-link btn btn-danger text-white"><i class="fa-solid fa-heart"></i>
+                                        Theo dõi</a>
+                                @endif
                             </p>
                         </li>
                         <li class="me-0">
@@ -135,6 +142,28 @@
                 </ul>
             </nav>
         </div>
+        <!-- Modal -->
+        <form action="{{ url()->current() }}" method="POST" class="modal fade" id="notice"
+            tabindex="-1" aria-labelledby="notice-title" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="notice-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="notice-body">
+                    </div>
+                    @csrf
+                    <input type="hidden" id="id_hidden" name="id">
+                    <input type="hidden" id="url_hidden" name="url" value="{{ url()->current() }}">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button id="delete" type="submit" class="btn btn-primary">Bỏ theo dõi</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
