@@ -92,8 +92,22 @@ class FollowingCreationController extends Controller
      */
     public function store(Request $request)
     {
-        $user_id = $request->UUID;
-        $creation_id = $request->creation_id;
+        $controller = new Controller();
+        $UUID = $controller->getUUID();
+        $creation_id = $request->id;
+
+        $following_creation = new FollowingCreation();
+
+        $isExisted = FollowingCreation::where([
+            'creation_id' => $creation_id,
+            'user_id' => $UUID
+        ])->count();
+
+        if ($isExisted < 1) {
+            $following_creation->user_id = $UUID;
+            $following_creation->creation_id = $creation_id;
+        }
+        return  $following_creation->save();
     }
 
     /**
@@ -138,10 +152,15 @@ class FollowingCreationController extends Controller
      */
     public function destroy(Request $request)
     {
+        $controller = new Controller();
+        $UUID = $controller->getUUID();
         $id = $request->input('id');
-        FollowingCreation::destroy($id);
+        
+        $creation_del = FollowingCreation::where(['user_id' => $UUID, 'creation_id' => $id]);
+        $creation_del->delete();
+        
         $url = $request->input('url');
-        // $message = 'Bỏ theo dõi ' . $request->input('name') . ' thành công';
+        $message = 'Bỏ theo dõi ' . $request->input('name') . ' thành công';
         header('Location: ' . $url);
         die();
     }

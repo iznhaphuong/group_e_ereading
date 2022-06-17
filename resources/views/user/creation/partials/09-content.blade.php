@@ -41,8 +41,7 @@
                             <p class="col-2">
                                 @if ($creation->status == 0)
                                     <i class="fa-solid fa-toggle-off" style="color:red"></i>
-                                    Trạng thái
-                            </p>
+                                    Trạng thái</p>
                             <p class="col-10" style="color:red">Chưa hoàn thành</p>
                         @elseif ($creation->status == 1)
                             <i class="fa-solid fa-toggle-on" style="color:green"></i>
@@ -66,12 +65,24 @@
                                 <a id="read_story" href="{{ route('chapter.show', $id) }}" class="btn btn-success text-white read-first-chap">Đọc Từ Đầu</a>
                                 <a id="read_new_story" href="#"
                                     class="btn btn-primary text-white read-new-chap">Đọc Mới Nhất</a>
-                                @if ($is_followed == 1)
-                                    <a id="unfollow" data-id="{{ $creation->id }}" data-name="{{ $creation->name }}"  data-bs-toggle="modal" data-bs-target="#notice" class="unfollow-link btn btn-warning"><i class="fa-solid fa-heart-crack"></i> Bỏ theo dõi</a>
+                                <span id="wrap-follow">
+                                    @if ($is_followed == 1)
+                                    <span id="unfollow" onclick="unfollow()"
+                                    data-id="{{ $creation->id }}"
+                                    data-name="{{ $creation->name }}"
+                                    data-url="{{ url()->current() }}"
+                                    data-bs-toggle="modal" data-bs-target="#notice" class="unfollow-link btn btn-warning"><i class="fa-solid fa-heart-crack"></i> Bỏ theo dõi</span>
                                 @else
-                                    <a class="follow-link btn btn-danger text-white"><i class="fa-solid fa-heart"></i>
-                                        Theo dõi</a>
+                                    <span
+                                    onclick="followCreation()"
+                                    id="follow"
+                                    data-id="{{ $creation->id }}"
+                                    data-name="{{ $creation->name }}"
+                                    data-url="{{ url()->current() }}"
+                                    class="follow-link btn btn-danger text-white"><i class="fa-solid fa-heart"></i>
+                                        Theo dõi</span>
                                 @endif
+                                </span>
                             </p>
                         </li>
                         
