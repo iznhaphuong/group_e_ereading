@@ -1,26 +1,29 @@
 {{-- My CSS File --}}
 @push('head-css')
     <link name="style-09" rel="stylesheet" href="{{ asset('css/style-09.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+
 @endpush
+
 
 <div class="type-09">
     <div class="container">
-        <div class="text-uppercase my-5 browsing">Tào tặc</div>
+        <div class="text-uppercase my-5 browsing">{{ $creation->name }}</div>
         <hr class="pb-3">
         <div class="card my-3">
             <div class="row g-0 mt-3">
                 <div class="col-md-3">
                     <div class="card-image">
-                        <img src="{{ asset('images/covers/taotac.jpg') }}" class="img-card rounded" alt="">
+                        <img src="{{ asset('images/covers/'. $creation->image) }}" class="img-card rounded" alt="">
                         </a>
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <h3 class="card-title text-uppercase pb-2 ps-4">Tào tặc</h3>
+                    <h3 class="card-title text-uppercase pb-2 ps-4">{{ $creation->name }}</h3>
                     <ul class="pl-0 detail-content">
                         <li class="row">
                             <p class="col-2"><i style="font-weight: bold;" class="fa fa-user"></i> Tác giả</p>
-                            <p class="col-10">Canh Tân</p>
+                            <p class="col-10">{{ $creation->author }}</p>
                         </li>
                         <li class="row">
                             <p class="col-2"><i style="font-weight: bold;" class="fa fa-tag"></i> Thể loại</p>
@@ -40,11 +43,11 @@
                         </li>
                         <li class="row">
                             <p class="col-2"><i style="font-weight: bold;" class="fa fa-eye"></i> Lượt xem</p>
-                            <p class="col-10">12,030</p>
+                            <p class="col-10">{{ $creation->view }}</p>
                         </li>
                         <li class="row">
                             <p class="col-12">
-                                <a id="read_story" href="#" class="btn btn-success text-white read-first-chap">Đoc Từ Đầu</a>
+                                <a id="read_story" href="{{url('reading/1/chapter/1') }}" class="btn btn-success text-white read-first-chap">Đoc Từ Đầu</a>
                                 <a id="read_new_story" href="#" class="btn btn-primary text-white read-new-chap">Đọc Mới Nhất</a>
                                 <a class="follow-link btn btn-danger text-white"><i class="fa-solid fa-heart"></i> Theo dõi</a>
                                 <a class="unfollow-link btn btn-warning"><i class="fa-solid fa-heart-crack"></i> Bỏ theo dõi</a>
@@ -52,7 +55,9 @@
                         </li>
                         <li class="me-0">
                             <!-- Rating bar -->
-                            <form>
+                           
+                            <!-- <form action="{{url('add-rating')}}" method="POST">
+                            @csrf
                                 <div class="stars">
                                     <input type="radio" name="star" class="star-1" id="star-1" />
                                     <label class="star-1" for="star-1">1</label>
@@ -66,9 +71,21 @@
                                     <label class="star-5" for="star-5">5</label>
                                     <span></span>
                                 </div>
-                            </form>
+                            </form> -->
+                           
                         </li>
                     </ul>
+                    <hr>
+                    <div id="rateYo"></div>
+                    
+                    <form action="{{route('rating')}}" method="POST" class="form-inline" id="formRating" role="form">
+                    @csrf
+                        <div class="from-group">
+                            <input class="form-control" name="star" id="star"/>
+                            <input class="form-control" name="creation_id" id="creation_id" value="{{$creation->id}}"/>
+                            <input class="form-control" name="user_id" id="user_id" value="1"/>
+                        </div>
+                    </form>
                 </div>
             </div>
             <!-- Description -->
@@ -106,3 +123,34 @@
         </div>
     </div>
 </div>
+
+@push('footer-js')
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+<script>
+$(function () {
+    let ratingAvg = '{{$ratingAvg}}';
+ $("#rateYo").rateYo({
+   rating: ratingAvg,
+   fullStar: true,
+   numStars: 5
+ }).on("rateyo.set", function(e,data){
+    $('#star').val(data.rating);
+    $('#formRating').submit();
+ });
+//  $("#rateYo-log").rateYo({
+//    rating: 3,
+//    fullStar: true,
+//    numStars: 5
+//  }).on("rateyo.set", function(e,data){
+//     // $('#rating-star').val(data.rating);
+//     alert("Vui lòng đăng nhập để đánh giá");
+//  })
+});
+// Getter
+var normalFill = $("#rateYo").rateYo("option", "fullStar"); //returns true
+ 
+// Setter
+$("#rateYo").rateYo("option", "fullStar", true); //returns a jQuery Element
+</script>
+@endpush

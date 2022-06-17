@@ -25,4 +25,9 @@ class Creation extends Model
         return $this->belongsToMany(Category::class);
     }
 
+
+    public function chapters()
+    {
+        return $this->hasMany(Chapter::class);
+    }
 }

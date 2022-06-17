@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\categories_creation;
 use App\Models\Category;
 use App\Models\CategoryCreation;
+
+use App\Models\Rating;
+
 use App\Models\Creation;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Encryption\DecryptException;
@@ -98,12 +101,14 @@ class CreationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Creation  $creation
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Creation $creation)
+    public function show($id)
     {
-        //
+        $ratingAvg = Rating::where('creation_id',$id)->avg('star');
+        return view('user.creation.detail', ['creation' => Creation::find($id)],compact('ratingAvg'));
+
     }
 
     /**

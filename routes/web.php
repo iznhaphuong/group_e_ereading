@@ -9,7 +9,6 @@ use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\RatingController;
 
->>>>>>> main
 /*
 |--------------------------------------------------------------------------
 | Web Routes
