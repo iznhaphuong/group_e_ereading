@@ -12,7 +12,7 @@
 <div class="type-07">
   <!-- Slider main container -->
   <p class="title-list text-uppercase">Truyện mới cập nhật</p>
-  <hr class="pb-3">
+<hr>
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">

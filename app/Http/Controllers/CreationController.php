@@ -106,8 +106,14 @@ class CreationController extends Controller
      */
     public function show($id)
     {
+        
         $ratingAvg = Rating::where('creation_id',$id)->avg('star');
-        return view('user.creation.detail', ['creation' => Creation::find($id)],compact('ratingAvg'));
+        if($ratingAvg == null){
+            $ratingAvg =0;
+            return view('user.creation.detail', ['creation' => Creation::find($id)],compact('ratingAvg'));
+        }else{
+            return view('user.creation.detail', ['creation' => Creation::find($id)],compact('ratingAvg'));
+        }
 
     }
 

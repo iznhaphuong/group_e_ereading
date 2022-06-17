@@ -8,7 +8,7 @@
     border: solid 3px #6e7491;
     padding: 40px 60px;
     max-width: 800px;
-    width: 70%;
+    width: 100%;
     margin: 100px auto 0;
     font-size: 17px;
     line-height: 28px;
@@ -33,10 +33,7 @@
 .type-11 .container .header-top .post_meta_item .title_name a {
     text-decoration: none;
 }
-.type-11 .container .header-top .post_meta_item .title_name:hover {
-    opacity: 0.8;
-    transition: 0.5s;
-}
+
 .type-11 .container .header-top .chapter_pagination {
     margin: 0 auto;
     justify-content: center;
@@ -52,19 +49,12 @@
     padding: 8px;
     background-color: #077C98;
 }
-.type-11 .container .header-top .chapter_pagination .pagi:hover{
-    background-color: #000;
-    transition: 0.5s;
-}
+
 .type-11 .container .header-top .chapter_pagination .select-page {
     width: 300px;
 }
 
-.type-11 .container .header-top:hover {
-    transition:0.5s;
-    transform: translateY(-15px) scale(1.1);
-    box-shadow: 3px 15px 8px -10px rgba(0, 0, 0, 0.3);
-}
+
 .type-11 .container .content {
     margin: 80px 0;
     text-align: justify;
@@ -76,4 +66,37 @@
     padding: 20px 30px;
     font-size: 20px;
     line-height:2;
+}
+@media screen and (max-width: 480px)and (max-device-width: 736px) {
+    .type-11 .pagi span{
+        opacity: 0;
+    }
+    .type-11 .container .header-top .chapter_pagination .pagi{
+        position: relative;
+    }
+    .type-11 .container .header-top .chapter_pagination .next-page i {
+        top: 14px;
+        position: absolute;
+        right: 30px;
+    }
+}
+@media screen and (min-width: 768px)and (max-device-width: 990px) {
+    .type-11 .container .header-top .chapter_pagination .pagi span{
+        font-size:14px ;
+    }
+}
+@media screen and (min-width: 992px) {
+    .type-11 .container .header-top .chapter_pagination .pagi:hover{
+        background-color: #000;
+        transition: 0.5s;
+    }
+    .type-11 .container .header-top:hover {
+        transition:0.5s;
+        transform: translateY(-15px) scale(1.1);
+        box-shadow: 3px 15px 8px -10px rgba(0, 0, 0, 0.3);
+    }
+    .type-11 .container .header-top .post_meta_item .title_name:hover {
+        opacity: 0.8;
+        transition: 0.5s;
+    }
 }

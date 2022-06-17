@@ -11,13 +11,13 @@
                 <div class="title_name">
                     <span><a href="#">{{$creation->name }}</a></span>
                 </div>
-                <h1 class="title_post_name">{{$chapter->chapter_name}}</h1>
+                <h2 class="title_post_name">{{$chapter->chapter_name}}</h2>
                 <div class="post_meta_name">
                     <span class="meta-item post-author">
-                        <span>By </span>
-                        Author
+                        <span>Tác giả:</span>
+                        {{$creation->author}}
                     </span>
-                    <span class="meta-item date">09/06/2022</span>
+
                 </div>
             </div>
             <div class="chapter_pagination">

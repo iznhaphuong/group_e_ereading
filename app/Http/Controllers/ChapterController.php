@@ -44,12 +44,11 @@ class ChapterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id,$creationId)
+    public function show($creationId)
     {
         $creation = Creation::find($creationId);
-        $chapter = Chapter::find($id);
-        return view('user.creation.reading',['chapter', $chapter],['creation', $creation]);
-
+        $chapter = Chapter::find(1);
+        return view('user.creation.reading',compact('creation','chapter'));
 
     }
 

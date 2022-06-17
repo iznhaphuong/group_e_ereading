@@ -47,36 +47,20 @@
                         </li>
                         <li class="row">
                             <p class="col-12">
-                                <a id="read_story" href="{{url('reading/1/chapter/1') }}" class="btn btn-success text-white read-first-chap">Đoc Từ Đầu</a>
+                                <a id="read_story" href="{{ route('chapter.show', $creation ->id) }}" class="btn btn-success text-white read-first-chap">Đọc Từ Đầu</a>
                                 <a id="read_new_story" href="#" class="btn btn-primary text-white read-new-chap">Đọc Mới Nhất</a>
                                 <a class="follow-link btn btn-danger text-white"><i class="fa-solid fa-heart"></i> Theo dõi</a>
                                 <a class="unfollow-link btn btn-warning"><i class="fa-solid fa-heart-crack"></i> Bỏ theo dõi</a>
                             </p>
                         </li>
-                        <li class="me-0">
-                            <!-- Rating bar -->
-                           
-                            <!-- <form action="{{url('add-rating')}}" method="POST">
-                            @csrf
-                                <div class="stars">
-                                    <input type="radio" name="star" class="star-1" id="star-1" />
-                                    <label class="star-1" for="star-1">1</label>
-                                    <input type="radio" name="star" class="star-2" id="star-2" />
-                                    <label class="star-2" for="star-2">2</label>
-                                    <input type="radio" name="star" class="star-3" id="star-3" />
-                                    <label class="star-3" for="star-3">3</label>
-                                    <input type="radio" name="star" class="star-4" id="star-4" />
-                                    <label class="star-4" for="star-4">4</label>
-                                    <input type="radio" name="star" class="star-5" id="star-5" />
-                                    <label class="star-5" for="star-5">5</label>
-                                    <span></span>
-                                </div>
-                            </form> -->
-                           
-                        </li>
+                        
                     </ul>
                     <hr>
-                    <div id="rateYo"></div>
+                    <div class="rating-star" style="display:flex">
+                        <div id="rateYo"></div>
+                        <h4 id="star-avg"></h4>
+                    </div>
+
                     
                     <form action="{{route('rating')}}" method="POST" class="form-inline" id="formRating" role="form">
                     @csrf
@@ -129,14 +113,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script>
 $(function () {
+    
     let ratingAvg = '{{$ratingAvg}}';
+    $('#star-avg').text(ratingAvg+"/5");
  $("#rateYo").rateYo({
    rating: ratingAvg,
    fullStar: true,
    numStars: 5
  }).on("rateyo.set", function(e,data){
-    $('#star').val(data.rating);
+    $('#star').val(data.rating);  
+    
     $('#formRating').submit();
+    alert("Vui lòng đăng nhập để đánh giá "+data.rating);
  });
 //  $("#rateYo-log").rateYo({
 //    rating: 3,
