@@ -4,18 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, Notifiable, SoftDeletes;
 
-    protected $table = 'categories';
     protected $fillable = [
-        'name'
+        'name',
+        'version',
+        'created_at',
+        'updated_at',
     ];
 
-    public function creations()
-    {
-        return $this->belongsToMany(Creation::class);
-    }
+    protected $hidden = [
+        'version',
+        'created_at',
+        'updated_at',
+    ];
 }

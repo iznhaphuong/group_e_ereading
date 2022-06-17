@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Chapter;
 use App\Models\Creation;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 class ChapterController extends Controller
@@ -46,8 +47,24 @@ class ChapterController extends Controller
      */
     public function show($creationId)
     {
-        $creation = Creation::find($creationId);
-        $chapter = Chapter::find(1);
+        $creation = DB::table('creations')
+        ->select('*')
+        ->where(
+            DB::raw('md5(concat(id,name))'),
+            '=',
+            $creationId
+        )->get()[0];
+
+        $chapterList = DB::table('chapters')
+        ->select('*')
+        ->where('creation_id','=',$creation->id)
+        ->orderBy('chapter_number', 'asc')->get();
+        $chapter = DB::table('chapters')
+        ->select('*')
+        ->where('creation_id','=',$creation->id)
+        ->where('chapter_number', '=', '1')
+        ->get()[0];
+        // dd($chapter);
         return view('user.creation.reading',compact('creation','chapter'));
 
     }
