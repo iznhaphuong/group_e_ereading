@@ -106,7 +106,7 @@
                         <div class="col">
                           <div class="form-group">
                             <label style="display: block;" for="id">Thuộc mã tác phẩm</label>
-                            <select class="form-control" id="id" name="creation_id[]">
+                            <select class="form-control" id="id" name="creation_id">
                                 @foreach($creation as $value)                       
                                 <option value="{{ $value->id }}">{{ $value->name }}</option>
                                 @endforeach
