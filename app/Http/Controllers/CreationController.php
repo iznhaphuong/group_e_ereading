@@ -77,7 +77,7 @@ class CreationController extends Controller
         if($request->file('image')){
             $file= $request->file('image');
             $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('public/images/covers'), $filename);
+            $file-> move(public_path('images/covers'), $filename);
             //save 
             $creation->image = $filename;
         }
@@ -87,8 +87,8 @@ class CreationController extends Controller
         //Lấy id mơi tạo
         $id = $creation->id;
 
+        //Cập nhật bảng truyện thuộc danh mục nào
         foreach ($request->input('types') as $key => $value) {
-            // print_r($value);
             $categoryCreation = new CategoryCreation();
             $categoryCreation->category_id = $value;
             $categoryCreation->creation_id = $creation->id;

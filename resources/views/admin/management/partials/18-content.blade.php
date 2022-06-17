@@ -48,7 +48,7 @@
                       <tr>
                         <td class="align-middle">{{ $value->id }}</td>
                         <td class="text-center align-middle">
-                          <img src="{{ url('public/images/covers/'.$value->image) }}" alt="ảnh" style="width: 80px;">
+                          <img src="{{ asset('images/covers/'.$value->image) }}" alt="ảnh" style="width: 80px;">
                         </td>
                         <!-- text-nowrap -->
                         <td class="text-center align-middle">{{ $value->name }}</td>
