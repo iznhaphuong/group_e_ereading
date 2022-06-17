@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Creation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CreationController extends Controller
 {
@@ -39,17 +40,6 @@ class CreationController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return view('user.creation.detail', ['creation' => Creation::find($id)]);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Creation  $creation
@@ -81,5 +71,23 @@ class CreationController extends Controller
     public function destroy(Creation $creation)
     {
         //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id is encrypted
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $creation = DB::table('creations')
+            ->select('*')
+            ->where(
+                DB::raw('md5(concat(id,name))'),
+                '=',
+                $id
+            )->get()[0];
+        return view('user.creation.detail', ['creation' => $creation]);
     }
 }

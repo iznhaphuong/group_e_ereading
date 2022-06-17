@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CreationController;
+use App\Http\Controllers\FollowingCreationController;
+use App\Models\FollowingCreation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,9 +30,8 @@ Route::get('/admin', function () {
 
 Route::get('chi-tiet/{id}', [CreationController::class, 'show'])->name('detail');
 
-Route::get('dang-theo-doi', function () {
-    return view('user.creation.following');
-})->name('following');
+Route::get('dang-theo-doi', [FollowingCreationController::class, 'index'])->name('following');
+Route::get('dang-theo-doi/search', [FollowingCreationController::class, 'search']);
 
 Route::get('lich-su', function () {
     return view('user.creation.history');
