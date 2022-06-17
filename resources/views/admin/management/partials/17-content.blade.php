@@ -187,11 +187,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="py-1">
-                        <form class="form" novalidate="">
+                        <form method="post" action="{{ route('category.delete') }}" class="form" novalidate="">
+                            @method('DELETE')
+                            @csrf
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
                                         <div id="delete-text"></div>
+                                        <input type="text" id="inputIdDel" name="id" class="hidden">
                                     </div>
                                 </div>
                             </div>
@@ -200,7 +203,7 @@
                                     <button type="button" class="btn btn-secondary me-2 text-default-text bg-default"
                                             data-bs-dismiss="modal">Đóng
                                     </button>
-                                    <button type="button" data-bs-dismiss="modal" id="btn-delete"
+                                    <button type="submit" id="btn-delete"
                                             class="btn btn-primary text-default-text me-2 bg-default">Xóa
                                     </button>
                                 </div>

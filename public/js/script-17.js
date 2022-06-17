@@ -83,30 +83,8 @@ async function showDeleteCategory(id) {
     const result = await response.json();
 
     const text = document.getElementById('delete-text');
+    const idDel = document.getElementById('inputIdDel');
+    idDel.value = id;
     text.innerHTML = 'Bạn có chắc chắn muốn xóa danh mục "' + result.name.toUpperCase() + '" này không?';
 
-    //
-    const btnDel = document.getElementById('btn-delete');
-    if (btnDel) {
-        btnDel.addEventListener('click', (e) => {
-            deleteCategory(id);
-        });
-    }
-}
-
-async function deleteCategory(id) {
-    const url = '/admin/danh-muc/xoa/' + id;
-    const data = { id: id };
-    const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
-    const response = await fetch(url, {
-        method: "DELETE",
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'X-CSRF-TOKEN': token
-        },
-        // body: JSON.stringify(data)
-    });
-    console.log(response.json());
-    location.reload();
 }
