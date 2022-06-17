@@ -1,7 +1,6 @@
 {{-- My CSS File --}}
 @push('head-css')
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="{{ asset('js/script-16.js') }}"></script>
 @endpush
 
 <div id="style-16">
@@ -93,16 +92,17 @@
                                     <span>{{$user->user_exp}}</span>
                                 </td>
 
-                                <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#editModal"
-                                            class="text-indigo-600 hover:text-indigo-900">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                                             viewBox="0 0 24 24"
-                                             stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                        </svg>
-                                    </button>
+                                <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200">
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#editModal"
+                                        data-id="{{ $hash->encodeHex($user->id + $salt) }}" data-version="{{ $hash->encodeHex($user->user_version + $salt)  }}"
+                                        class="text-indigo-600 hover:text-indigo-900 editModel">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                         viewBox="0 0 24 24"
+                                         stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                    </svg>
+                                </button>
                                 </td>
                                 <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
                                     <a href="#" class="text-gray-600 hover:text-gray-900">
@@ -118,14 +118,15 @@
 
                                 </td>
                                 <td class="text-sm font-medium leading-5 whitespace-no-wrap border-b border-gray-200 ">
-                                    <a href="#">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                            data-id="{{ $hash->encodeHex($user->id + $salt) }}" class="delete-user">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                              class="w-6 h-6 text-red-600 hover:text-red-800"
                                              fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                   d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                         </svg>
-                                    </a>
+                                    </button>
 
                                 </td>
                             </tr>
@@ -147,7 +148,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="py-1">
-                        <form method="post" action="{{ route('user.create') }}" class="form" novalidate="" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('user.create') }}" class="form" novalidate=""
+                              enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col">
@@ -160,7 +162,8 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Tên đăng nhập</label>
-                                                <input class="form-control" type="text" name="user_username" placeholder=""
+                                                <input class="form-control" type="text" name="user_username"
+                                                       placeholder=""
                                                        value="" required>
                                             </div>
                                         </div>
@@ -175,7 +178,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Mật khẩu</label>
-                                            <input class="form-control" type="password" name="user_password" placeholder="" required>
+                                            <input class="form-control" type="password" name="user_password"
+                                                   placeholder="" required>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -200,7 +204,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-sm-6 mb-3">
-                                    <input type="file" class="form-control" name="user_avatar" required>
+                                    <input accept=".jpg, .jpeg, .png" type="file" class="form-control" name="user_avatar" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -230,50 +234,59 @@
                 </div>
                 <div class="modal-body">
                     <div class="py-1">
-                        <form class="form" novalidate="">
+                        <form method="post" action="{{ route('user.update') }}" class="form" novalidate="" enctype="multipart/form-data">
+                            @csrf
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
+                                        <input type="text" id="inputId" name="id" class="hidden">
+                                        <input type="text" id="inputUserVersion" name="version" class="hidden">
                                         <label>Tên người dùng</label>
-                                        <input class="form-control" type="text" name="name" placeholder=""
-                                               value="">
+                                        <input class="form-control" type="text" name="user_name" placeholder=""
+                                               value="" required id="inputUserName">
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Tên đăng nhập</label>
-                                                <input class="form-control" type="text" name="name" placeholder=""
-                                                       value="">
+                                                <input class="form-control" type="text" name="user_username"
+                                                       placeholder=""
+                                                       id="inputUserUserName"
+                                                       value="" required>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input class="form-control" type="text" name="author" placeholder=""
-                                                       value="">
+                                                <input class="form-control" type="text" name="user_email" placeholder=""
+                                                       id="inputUserEmail"
+                                                       value="" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Mật khẩu</label>
-                                            <input class="form-control" type="text" name="type" placeholder="">
+                                            <input class="form-control" type="password" name="user_password"
+                                                   id="inputUserPassword"
+                                                   placeholder="">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
-                                                <label style="display: block;" for="status">Loại tài khoản</label>
-                                                <select id="status" name="status">
-                                                    <option value="0">Người dùng</option>
-                                                    <option value="1">Quản lý</option>
+                                                <label style="display: block;" for="statusTypes">Loại tài khoản</label>
+                                                <select id="statusTypes" name="user_type">
+                                                    <option id="inputUserType0" value="1">Người dùng</option>
+                                                    <option id="inputUserType1" value="0">Quản lý</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Kinh nghiệm</label>
-                                                <input class="form-control" type="text" name="source" placeholder=""
+                                                <input class="form-control" type="text" name="user_exp" placeholder=""
+                                                       id="inputUserExp"
                                                        value="">
                                             </div>
                                         </div>
@@ -282,7 +295,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-sm-6 mb-3">
-                                    <input type="file" name="image">
+                                    <input id="userAvatar" type="file" name="user_avatar" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -290,7 +303,7 @@
                                     <button type="button" class="btn btn-secondary me-2 text-default-text bg-default"
                                             data-bs-dismiss="modal">Close
                                     </button>
-                                    <button class="btn btn-primary text-default-text bg-default" type="submit">Sửa
+                                    <button id="btn-edit" class="btn btn-primary text-default-text bg-default" type="submit">Sửa
                                     </button>
                                 </div>
                             </div>
@@ -300,5 +313,44 @@
             </div>
         </div>
     </div>
-</div>
 
+    <!-- Delete Form Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xóa Danh Mục</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="py-1">
+                        <form method="post" action="{{ route('user.delete') }}" class="form" novalidate="">
+                            @method('DELETE')
+                            @csrf
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div id="delete-text"></div>
+                                        <input type="text" id="inputIdDel" name="id" class="hidden">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col d-flex justify-content-end mt-3">
+                                    <button type="button" class="btn btn-secondary me-2 text-default-text bg-default"
+                                            data-bs-dismiss="modal">Đóng
+                                    </button>
+                                    <button type="submit" data-bs-dismiss="modal" id="btn-delete"
+                                            class="btn btn-primary text-default-text me-2 bg-default">Xóa
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="{{ asset('js/script-16.js') }}"></script>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChapterController;
@@ -23,4 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/category/get-one/{id}', [CategoryController::class, 'getCategory']);
 Route::get('/category/get-version/{id}', [CategoryController::class, 'getVersion']);
+Route::get('/user/get-one/{id}', [UserController::class, 'getUser']);
+Route::get('/user/get-version/{id}', [UserController::class, 'getVersion']);
 Route::post('/follow', [FollowingCreationController::class, 'store']);
