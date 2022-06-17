@@ -37,11 +37,36 @@ class CreationController extends Controller
 
             $version .= ":" . $mac;
 
-            $value->vesion = $version;
+            $value->version = $version;
         }
 
         return view('admin.management.creation', compact('dataCreations', 'dataCategories'));
         //
+    }
+
+    public function checkVersion($id, $version) {
+        
+        $creation = Creation::find($id);
+
+        list($encryptVersion, $mac) = explode(':', $version);
+        $key = "hocBE";
+
+        //So sanh version hiện tại với version trước đó
+        if (hash_equals(hash_hmac('sha256', $encryptVersion, $key), $mac)) { //lay phan tach ra vaf cho "nhom2" so sanhs vs mac ==> kq
+            //Mã hóa ngược lại lấy id version
+            $idVersionOld = Crypt::decryptString($encryptVersion);
+            if (hash_equals($idVersionOld, (string)$creation->version)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function getCreation($id) {
+        
+        $creation = Creation::find($id);
+        $arr = [$creation, $creation->categories];
+        return $arr;
     }
 
     /**
@@ -133,36 +158,21 @@ class CreationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'ltitle' => 'required',
-            'lemail' => 'required',
-            'ldescription' => 'required',
-        ]);
-
-        $news = News::find($id);
-
-        list($encryptVersion, $mac) = explode(':', $version);
-        $key = "hocBE";
-
-        //So sanh version hiện tại với version trước đó
-        if (hash_equals(hash_hmac('sha256', $encryptVersion, $key), $mac)) { //lay phan tach ra vaf cho "nhom2" so sanhs vs mac ==> kq
-            //Mã hóa ngược lại lấy id version
-            $idVersionOld = Crypt::decryptString($encryptVersion);
-            if (hash_equals($idVersionOld, (string)$news->vesion)) {
-                //Update data
-                $news->title = $request->input('ltitle');
-                $news->email = $request->input('lemail');
-                $news->description = $request->input('ldescription');
-                $news->vesion = (int)$idVersionOld + 1;
-                $news->save();
-
-                return ;
-            }
-        }
-
-
-
+        var_dump("12312312");
+        die;
         $creation = Creation::find($id);
+
+        $creation->name = $request->input('name');
+        $creation->author = $request->input('author');
+        $creation->source = $request->input('source');
+        $creation->status = $request->input('status');
+        $creation->status = $request->input('types');
+        $creation->description = $request->input('description');
+
+
+        print_r($request->input('name'));
+        // $creation->image = $request->input('image');
+
         //Edit image
         if($request->hasFile('image')){
             $destination = 'images/covers/'.$creation->image;
@@ -178,7 +188,27 @@ class CreationController extends Controller
         }
 
 
+        //Mã hóa ngược lại để tăng
+        $version = $request->input('version');
+
+        list($encryptVersion, $mac) = explode(':', $version);
+        $key = "hocBE";
+
+        //So sanh version hiện tại với version trước đó
+        if (hash_equals(hash_hmac('sha256', $encryptVersion, $key), $mac)) { //lay phan tach ra vaf cho "nhom2" so sanhs vs mac ==> kq
+            //Mã hóa ngược lại lấy id version
+            $idVersionOld = Crypt::decryptString($encryptVersion);
+            if (hash_equals($idVersionOld, (string)$creation->version)) {
+                //Update data
+                
+
+                $creation->vesion = (int)$idVersionOld + 1;
+
+                $creation->save();
+            }
+        }
         $creation->update();
+        return redirect()->route('admin.index')->with('success', 'Edit truyện thành công');
     }
 
     /**
