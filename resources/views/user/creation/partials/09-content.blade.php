@@ -160,7 +160,7 @@
         </form>
 
         <!-- Continue Modal  -->
-        <div data-id="{{ $creation->id }}" class="modal fade show d-block" id="continue" tabindex="-1"
+        <div data-id="{{ $creation->id }}" data-name="{{ $creation->name }}" class="modal fade" id="continue" tabindex="-1"
             aria-labelledby="continue-title" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
