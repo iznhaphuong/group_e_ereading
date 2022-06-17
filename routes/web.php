@@ -26,10 +26,10 @@ Route::get('/', function () {
     //     return view('admin.management.user');
     //     return view('admin.management.category');
     // return view('admin.management.chapter');
-});
+})->name('home');
 
 //  Admin
-Route::resource('admin', CreationController::class);
+//Route::resource('admin', CreationController::class);
 
 // Route::get('/reading',[ReadingController::class,'index']);
 
@@ -58,12 +58,17 @@ Route::get('lich-su', [CreationController::class, 'showHistory'])->name('history
 
 Route::get('dang-nhap', function () {
     return view('user.auth.login');
-});
+})->name('login');
+Route::post('custom-login', [UserController::class, 'login'])->name('login.custom');
 
 Route::get('dang-ki', function () {
     return view('user.auth.register');
-});
+})->name('register');
+Route::post('custom-register', [UserController::class, 'create'])->name('register.custom');
 Route::get('reading/{creationId}', [ChapterController::class, 'show'])->name('chapter.show');
-
+//rating
 Route::post('/add-rating', [RatingController::class, 'add'])->name('rating');
+//read-chapter
+Route::get('reading-{number}', [ChapterController::class, 'paginate'])->name('chapter.next');
+
  

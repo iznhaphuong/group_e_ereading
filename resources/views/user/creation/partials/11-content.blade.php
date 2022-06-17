@@ -1,12 +1,13 @@
 {{-- My CSS File --}}
 @push('head-css')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link name="style-11" rel="stylesheet" href="{{ asset('css/style-11.css') }}">
-@endpush
+
 
 @push('footer-js')
-    <script src="{{ asset('js/script-11.js') }}"></script>
+
+<link name="style-11" rel="stylesheet" href="{{ asset('css/style-11.css') }}">
 @endpush
+@section('title', $creation->name . '-Chương ' . $chapter->chapter_number)
 
 <div class="type-11">
     <div class="container my-5">
@@ -24,24 +25,49 @@
 
                 </div>
             </div>
+
             <div class="chapter_pagination">
-                <a class="pre-page m-3 pagi" href="#">
+                @php
+                $prevId = md5($creation->id . $chapter->chapter_number-1);
+
+                $nextId = md5($creation->id . $chapter->chapter_number+1);
+
+                @endphp
+                @if($chapter->chapter_number == 1)
+                <a class="pre-page m-3 pagi " style="display: none;" href="{{  url('reading-' . $prevId) }}">
                     <i class="fa-solid fa-angle-left"></i>
                     <span>Chương trước</span>
                 </a>
-
-                <select class="form-select select-page m-3" aria-label="Default select example">
-                    <option selected>Chương 1</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                @else
+                <a class="pre-page m-3 pagi " href="{{  url('reading-' . $prevId) }}">
+                    <i class="fa-solid fa-angle-left"></i>
+                    <span>Chương trước</span>
+                </a>
+                @endif
+                <select class="form-select select-page m-3" id="select-chapter" name="select-chapter" aria-label="Default select example">
+                    <option selected>Chương {{$chapter->chapter_number}}</option>
+                    @foreach($chapterList as $chap)
+                    @if($chap->chapter_number != $chapter->chapter_number)
+                    <a href="{{  url('reading-' . $chap->chapter_number) }}">
+                        <option value="{{$chap->chapter_number}}">Chương {{$chap->chapter_number}}</option>
+                    </a>
+                    @endif
+                    @endforeach
                 </select>
+               
+                @if ($chapter->chapter_number == $endChapter) 
 
-                <a class="next-page m-3 pagi" href="#">
+                        <a class="next-page m-3 pagi" style="display: none;"id="next-chapter" href="{{  url('reading-' . $nextId) }}">
+                    <span>Chương sau</span>
+                    <i class="fa-solid fa-angle-right"></i>
+
+                @else     
+                <a class="next-page m-3 pagi" id="next-chapter" href="{{  url('reading-' . $nextId) }}">
                     <span>Chương sau</span>
                     <i class="fa-solid fa-angle-right"></i>
 
                 </a>
+                @endif
             </div>
 
         </div>
@@ -51,3 +77,6 @@
         </div>
     </div>
 </div>
+@push('footer-js')
+<script src="{{ asset('js/script-11.js') }}"></script>
+@endpush

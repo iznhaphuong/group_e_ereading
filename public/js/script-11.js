@@ -1,3 +1,4 @@
+
 let creation_id = document.querySelector('#title').dataset.creationId;
 let chapter_id = document.querySelector('#chapter-content').dataset.chapterId;
 let my_history = JSON.parse(localStorage.getItem('my_history'));
@@ -27,4 +28,7 @@ if (flag) {
 }
 console.log(my_history);
 localStorage.setItem('my_history', JSON.stringify(my_history))
+
+
+const chapter = document.querySelector('#select-chapter').value;
 

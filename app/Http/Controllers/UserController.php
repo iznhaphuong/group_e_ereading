@@ -29,26 +29,47 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        if ($request->input('user_password') == $request->input('user_repassword')) {
+            $data = new User();
+            if ($request->file('user_avatar')) {
+                $file = $request->file('user_avatar');
+                $name = date('YmdHi') . $file->getClientOriginalName();
+                $file->move(public_path('images/'), $name);
+                $data['user_avatar'] = $name;
+                $data['user_name'] = $request->input('user_name');
+                $data['user_username'] = $request->input('user_username');
+                $data['user_email'] = $request->input('user_email');
+                $data['user_password'] = Hash::make($request->input('user_password') . 'DzeroK');
+            }
+            $checked = $data->save();
+            if ($checked) {
+                return redirect()->route('login')->with('success', 'Thêm thành công');
+            } else {
+                return redirect()->route('register')->with('error', 'Thêm thất bại');
+            }
+        } else {
+            return redirect()->route('register')->with('error', 'Mật khẩu không khớp');
+        }
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         //
         $data = new User();
-        if ($request->file('user_avatar')){
+        if ($request->file('user_avatar')) {
             $file = $request->file('user_avatar');
-            $name = date('YmdHi').$file->getClientOriginalName();
+            $name = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('images/'), $name);
             $data['user_avatar'] = $name;
             $data['user_name'] = $request->input('user_name');
@@ -69,7 +90,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -80,7 +101,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -91,20 +112,21 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request)
     {
         //
-        $hash = new Hashids('', 32);$data = new User();
+        $hash = new Hashids('', 32);
+        $data = new User();
         $salt = 1122;
         $id = $hash->decodeHex($request->input('id')) - $salt;
         $version = $hash->decodeHex($request->input('version')) - $salt;
         $version++;
-        if ($request->file('user_avatar')){
+        if ($request->file('user_avatar')) {
             $file = $request->file('user_avatar');
-            $name = date('YmdHi').$file->getClientOriginalName();
+            $name = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('images/'), $name);
             $data['user_avatar'] = $name;
             $data['user_name'] = $request->input('user_name');
@@ -160,12 +182,33 @@ class UserController extends Controller
         return $user;
     }
 
-    public function getVersion($id) {
+    public function getVersion($id)
+    {
         $hash = new Hashids('', 32);
         $id = $hash->decodeHex($id);
         $salt = 1122;
         $id = $id - $salt;
         $user = User::find($id);
         return $hash->encodeHex($user->user_version + $salt);
+    }
+
+
+    public function login(Request $request)
+    {
+        $input = $request->all();
+
+        $this->validate($request, [
+            'user_username' => 'required',
+            'user_password' => 'required',
+        ]);
+
+        $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'user_email' : 'user_username';
+        if (auth()->attempt(array($fieldType => $input['user_username'], 'password' => Hash::make($input['user_password'] . 'DzeroK')))) {
+            return redirect()->route('home');
+        } else {
+            return redirect()->route('login')
+                ->with('error', 'Email-Address And Password Are Wrong.');
+        }
+
     }
 }
