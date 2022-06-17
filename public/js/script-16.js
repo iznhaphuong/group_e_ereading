@@ -76,3 +76,21 @@ async function showEditUser(id, version) {
         }
     }
 }
+
+const user_del = document.querySelectorAll('.delete-user');
+user_del.forEach(item => {
+    item.addEventListener('click', (e) => {
+        showDeleteUser(item.dataset.id);
+    })
+})
+
+async function showDeleteUser(id) {
+    const url = '/api/user/get-one/' + id;
+    const response = await fetch(url);
+    const result = await response.json();
+
+    const text = document.getElementById('delete-text');
+    const del = document.getElementById('inputIdDel');
+    del.value = id;
+    text.innerHTML = 'Bạn có chắc chắn muốn xóa người dùng "' + result.user_name.toUpperCase() + '" này không?';
+}

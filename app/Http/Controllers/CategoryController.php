@@ -101,16 +101,16 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
      * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
 //        $id = $request->id;
         $hash = new Hashids('', 32);
         $salt = 1122;
-        Category::find($hash->decodeHex($id - $salt))->delete();
+        $id = $hash->decodeHex($request->input('id')) - $salt;
+        Category::find($id)->delete();
         return redirect()->route('category.index')->with('success', 'Xóa thành công');
     }
 

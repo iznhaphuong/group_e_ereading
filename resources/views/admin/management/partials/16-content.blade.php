@@ -118,14 +118,15 @@
 
                                 </td>
                                 <td class="text-sm font-medium leading-5 whitespace-no-wrap border-b border-gray-200 ">
-                                    <a href="#">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                            data-id="{{ $hash->encodeHex($user->id + $salt) }}" class="delete-user">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                              class="w-6 h-6 text-red-600 hover:text-red-800"
                                              fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                   d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                         </svg>
-                                    </a>
+                                    </button>
 
                                 </td>
                             </tr>
@@ -233,7 +234,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="py-1">
-                        <form method="post" action="{{ route('category.update') }}" class="form" novalidate="" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('user.update') }}" class="form" novalidate="" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col">
@@ -312,5 +313,44 @@
             </div>
         </div>
     </div>
+
+    <!-- Delete Form Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xóa Danh Mục</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="py-1">
+                        <form method="post" action="{{ route('user.delete') }}" class="form" novalidate="">
+                            @method('DELETE')
+                            @csrf
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div id="delete-text"></div>
+                                        <input type="text" id="inputIdDel" name="id" class="hidden">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col d-flex justify-content-end mt-3">
+                                    <button type="button" class="btn btn-secondary me-2 text-default-text bg-default"
+                                            data-bs-dismiss="modal">Đóng
+                                    </button>
+                                    <button type="submit" data-bs-dismiss="modal" id="btn-delete"
+                                            class="btn btn-primary text-default-text me-2 bg-default">Xóa
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <script src="{{ asset('js/script-16.js') }}"></script>
