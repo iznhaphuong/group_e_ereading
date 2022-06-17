@@ -28,8 +28,6 @@ Route::get('/', function () {
     // return view('admin.management.chapter');
 })->name('home');
 
-    // return view('user.creation.detail');
-});
 
 //Trang admin
 Route::resource('admin', CreationController::class);
@@ -76,4 +74,16 @@ Route::post('/add-rating', [RatingController::class, 'add'])->name('rating');
 //read-chapter
 Route::get('reading-{number}', [ChapterController::class, 'paginate'])->name('chapter.next');
 
- 
+
+Route::get('/notification', function () {
+    return view('user.demo.notification');
+});
+
+Route::get('get-pusher', function (){
+   return view('user.demo.form_pusher');
+});
+
+Route::get('/pusher', function(Illuminate\Http\Request $request) {
+    event(new App\Events\PusherEvent($request));
+    return redirect('get-pusher');
+});
