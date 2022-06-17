@@ -6,6 +6,8 @@ use App\Models\Creation;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+
 class ChapterController extends Controller
 {
     /**
@@ -17,7 +19,8 @@ class ChapterController extends Controller
     {
         $chapter = Chapter::all();
         $creation = Creation::all();
-        return view('admin.management.chapter', compact('chapter', 'creation'));
+        $crypt = new Crypt();
+        return view('admin.management.chapter', compact('chapter', 'creation', 'crypt'));
     }
 
     /**
@@ -39,11 +42,11 @@ class ChapterController extends Controller
     public function store(Request $request)
     {
         $chapter = new Chapter();
+
         //save 
         $chapter->chapter_name = $request->input('name');
         $chapter->creation_id = (int)$request->input('creation_id');
         $chapter->chapter_content = $request->input('content');
-
 
         //save 
         $chapter->save();
@@ -146,8 +149,15 @@ class ChapterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $key = config('key.key');
+
+        $id = Crypt::decryptString($request->input('idDelete1'));
+
+
+        $deleted = Chapter::find($id);
+        $deleted->delete();
+        return redirect()->route('chapter.index')->with('success', 'Xóa truyện thành công');
     }
 }
