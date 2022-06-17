@@ -24,6 +24,7 @@ class CreateCreationsTable extends Migration
             $table->text('description')->nullable(false);
             $table->integer('version')->default(1);
             $table->integer('view')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

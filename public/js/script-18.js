@@ -1,3 +1,4 @@
+
 //Edit
 const creation_edit = document.querySelectorAll('.editModel');
 
@@ -17,13 +18,23 @@ async function showEditCreation(id, version, urlImg) {
     const resultVersion = await responseVersion.text();
 
     //Lấy id ở tường sửa
+    let idHidden = document.getElementById('idEdit');
+    let versionEdit = document.getElementById('versionEdit');
     let edit_name = document.getElementById('edit_name');
     let edit_author = document.getElementById('edit_author');
     let edit_source = document.getElementById('edit_source');
     let edit_status = document.getElementById('edit_status');
+
     let edit_types = document.getElementById('edit_types');
+    let types_new = document.getElementById('types');
+    let types_new_new = [];
+    
+
     let edit_description = document.getElementById('edit_description');
+
+
     let edit_image = document.getElementById('edit_image');
+    let image = document.getElementById('image');
 
     // console.log(resultVersion)
 
@@ -46,21 +57,10 @@ async function showEditCreation(id, version, urlImg) {
         
         edit_image.src = urlImg+'/'+result[0].image;
 
-        const btnEdit = document.getElementById('btn-edit');
-        if (btnEdit) {
-            btnEdit.addEventListener('click', (e) => {
-                
-                // editCreation(id, 
-                //     edit_name.value,
-                //     edit_author.value,
-                //     edit_source.value,
-                //     edit_status.value,
-                //     edit_types.value,
-                //     edit_description.value,
-                //     edit_image.src, 
-                //     version);
-            });
-        }
+        idHidden.value = id;
+
+        versionEdit.value = version;
+        
     } else {
         console.log('version khac nhau');
         if (confirm("Version khác nhau, bạn có muốn tải lại trang không?")) {
@@ -69,7 +69,7 @@ async function showEditCreation(id, version, urlImg) {
     }
 }
 
-// async function editCreation(id, edit_name, edit_author, edit_source, edit_status ,edit_types, edit_description, edit_image, version) {
+// async function editCreation(id, edit_name, edit_author, edit_source, edit_status ,arr_type, edit_description, edit_image, version) {
 //     const url = '/admin/' + id;
 
 //     const data = {
@@ -77,7 +77,7 @@ async function showEditCreation(id, version, urlImg) {
 //                 author : edit_author,
 //                 source : edit_source,
 //                 status : edit_status,
-//                 types : edit_types,
+//                 types : arr_type,
 //                 description : edit_description,
 //                 image : edit_image,
 //                 version: version
@@ -92,6 +92,10 @@ async function showEditCreation(id, version, urlImg) {
 //         },
 //         body: JSON.stringify(data)
 //     });
+
+//     var a = response.text();
+    
+//     console.log(a);
 //     location.reload();
 // }
 
