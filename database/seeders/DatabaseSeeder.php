@@ -102,5 +102,29 @@ class DatabaseSeeder extends Seeder
                 Liệu rằng cuộc sống của Lâm có bị đảo lộn?'
             ]
         ]);
+
+        //Insert for categories_creations table
+        DB::table('category_creation')->insert([
+            [
+                'creation_id' => '1',
+                'category_id' => '5',
+            ],
+            [
+                'creation_id' => '1',
+                'category_id' => '3',
+            ],
+            [
+                'creation_id' => '2',
+                'category_id' => '1',
+            ],
+            [
+                'creation_id' => '2',
+                'category_id' => '4',
+            ],
+            [
+                'creation_id' => '3',
+                'category_id' => '5',
+            ]
+        ]);
     }
 }

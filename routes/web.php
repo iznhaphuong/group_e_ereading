@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CreationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,3 +24,6 @@ Route::get('/', function () {
     // return view('admin.management.chapter');
     // return view('user.creation.detail');
 });
+
+
+ Route::resource('admin', CreationController::class);

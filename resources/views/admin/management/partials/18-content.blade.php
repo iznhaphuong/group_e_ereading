@@ -17,7 +17,12 @@
         <div class="col mb-3">
           <div class="e-panel card">
             <div class="card-body">
-              <div class="card-title">
+              <div class="card-title" style="position: relative;">
+                @if ($message = Session::get('success'))
+                  <div class="alert alert-success alert-block" style="position: absolute;left: 0;">
+                          <strong>{{ $message }}</strong>
+                  </div>
+                @endif
                 <!-- <h6 class="mr-2"><span>Users</span><small class="px-1">Be a wise leader</small> -->
                 <button class="btn btn-add" style="float: right;margin-bottom:15px;" type="button" data-bs-toggle="modal" data-bs-target="#createModal">Thêm Truyện</button>
                 </h6>
@@ -39,22 +44,25 @@
                       </tr>
                     </thead>
                     <tbody>
+                    @foreach($dataCreations as $value)
                       <tr>
-                        <td class="align-middle">
-                          1
-                        </td>
+                        <td class="align-middle">{{ $value->id }}</td>
                         <td class="text-center align-middle">
-                          <div class="bg-light d-inline-flex justify-content-center align-items-center align-top" style="width: 35px; height: 35px; border-radius: 3px;"><i class="fa fa-fw fa-photo" style="opacity: 0.8;"></i></div>
+                          <img src="{{ url('public/images/covers/'.$value->image) }}" alt="ảnh" style="width: 80px;">
                         </td>
                         <!-- text-nowrap -->
-                        <td class="text-center align-middle">Letizia Puncher</td>
-                        <td class="text-center align-middle"><span>Author</span></td>
-                        <td class="text-center align-middle">Viễn cổ</td>
-                        <td class="text-center align-middle">Đang cập nhật</td>
-                        <td>
-                          <p class="collum-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi, in ipsam soluta voluptates deleniti labore ut. Et nesciunt tempore, autem quo porro commodi consequatur dolorem sit ut provident odit nam. Aspernatur quod reiciendis rerum id? Nam fugit officia illum officiis omnis nesciunt harum, sed molestias, totam laudantium at eum ratione nulla quo?</p>
+                        <td class="text-center align-middle">{{ $value->name }}</td>
+                        <td class="text-center align-middle"><span>{{ $value->author }}</span></td>
+                        <td class="text-center align-middle">
+                          @foreach($value->categories as $category)
+                            {{ $category->name }},
+                          @endforeach
                         </td>
-                        <td class="text-center align-middle">1200</td>
+                        <td class="text-center align-middle">{{ $value->status }}</td>
+                        <td>
+                          <p class="collum-description">{{ $value->description }}</p>
+                        </td>
+                        <td class="text-center align-middle">{{ $value->view }}</td>
                         <td class="text-center align-middle">
                           <div class="btn-group align-top">
                             <button class="btn btn-action btn-sm badge" type="button" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -62,6 +70,7 @@
                           </div>
                         </td>
                       </tr>
+                    @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -95,53 +104,69 @@
             </div>
             <div class="modal-body">
               <div class="py-1">
-                <form class="form" novalidate="">
+                <form class="form" active="{{ route('admin.store') }}" method="POST" novalidate="" enctype="multipart/form-data">
+                @csrf
                   <div class="row">
                     <div class="col">
                       <div class="row">
                         <div class="col">
-                          <div class="form-group">
+                          <div class="form-group" enctype="multipart/form-data">
                             <label>Tên tác phẩm</label>
-                            <input class="form-control" type="text" name="name" placeholder="" value="">
+                            <input class="form-control" type="text" name="name" placeholder="" value="" required>
                           </div>
                         </div>
                         <div class="col">
                           <div class="form-group">
                             <label>Tác giả</label>
-                            <input class="form-control" type="text" name="author" placeholder="" value="">
+                            <input class="form-control" type="text" name="author" placeholder="" value="" required>
                           </div>
                         </div>
                       </div>
-                      <div class="row">
+                      <!-- <div class="row">
                         <div class="col">
                           <div class="form-group">
                             <label>Thể loại</label>
                             <input class="form-control" type="text" name="type" placeholder="">
+                            <label for="creations">Truyện thuộc thể loại:</label>
+                            <select name="creations" id="creations" multiple>
+                              <option value="volvo">Volvo</option>
+                              <option value="saab">Saab</option>
+                              <option value="opel">Opel</option>
+                              <option value="audi">Audi</option>
+                            </select>
                           </div>
                         </div>
-                      </div>
-                      <div class="row">
+                      </div> -->
+                      <div class="row" style="align-items: center;margin-top: 20px;">
                         <div class="col">
                           <div class="form-group">
                             <label>Nguồn</label>
-                            <input class="form-control" type="text" name="source" placeholder="link" value="">
+                            <input class="form-control" type="text" name="source" placeholder="" value="" required>
                           </div>
                         </div>
                         <div class="col">
-                          <div class="form-group">
+                          <!-- <div class="form-group"> -->
                             <label style="display: block;" for="status">Trạng thái</label>
-                            <select id="status" name="status">
+                            <select id="status" name="status" required>
                               <option value="0">Chưa Hoàn thành</option>
                               <option value="1">Hoàn thành</option>
                             </select>
-                          </div>
+                          <!-- </div> -->
+                        </div>
+                        <div class="col" style="display: flex;align-items: center;">
+                            <label for="creations" style="padding-right: 10px;">Thể loại:  </label>
+                            <select name="types[]" id="creations" multiple required>
+                              @foreach($dataCategories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                              @endforeach
+                            </select>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col mb-3">
                           <div class="form-group">
                             <label>Mô tả truyện</label>
-                            <textarea class="form-control" rows="5" name="description" placeholder=""></textarea>
+                            <textarea class="form-control" rows="5" name="description" placeholder="" required></textarea>
                           </div>
                         </div>
                       </div>
@@ -149,7 +174,7 @@
                   </div>
                   <div class="row">
                     <div class="col-12 col-sm-6 mb-3">
-                      <input type="file" name="image">
+                      <input type="file" name="image" required>
                     </div>
                   </div>
                   <div class="row">
@@ -159,7 +184,6 @@
                     </div>
                   </div>
                 </form>
-
               </div>
             </div>
           </div>
