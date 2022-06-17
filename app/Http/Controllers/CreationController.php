@@ -132,6 +132,35 @@ class CreationController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'ltitle' => 'required',
+            'lemail' => 'required',
+            'ldescription' => 'required',
+        ]);
+
+        $news = News::find($id);
+
+        list($encryptVersion, $mac) = explode(':', $version);
+        $key = "hocBE";
+
+        //So sanh version hiện tại với version trước đó
+        if (hash_equals(hash_hmac('sha256', $encryptVersion, $key), $mac)) { //lay phan tach ra vaf cho "nhom2" so sanhs vs mac ==> kq
+            //Mã hóa ngược lại lấy id version
+            $idVersionOld = Crypt::decryptString($encryptVersion);
+            if (hash_equals($idVersionOld, (string)$news->vesion)) {
+                //Update data
+                $news->title = $request->input('ltitle');
+                $news->email = $request->input('lemail');
+                $news->description = $request->input('ldescription');
+                $news->vesion = (int)$idVersionOld + 1;
+                $news->save();
+
+                return ;
+            }
+        }
+
+
+
         $creation = Creation::find($id);
         //Edit image
         if($request->hasFile('image')){

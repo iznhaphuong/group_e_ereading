@@ -190,7 +190,7 @@
             </div>
             <div class="modal-body">
               <div class="py-1">
-              <form class="form" active="{{ route('admin.update') }}" novalidate="" enctype="multipart/form-data">
+              <form class="form" id="editForm" active="" novalidate="" enctype="multipart/form-data">
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}
                   <!-- @csrf -->
