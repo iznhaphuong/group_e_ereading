@@ -35,7 +35,10 @@ Route::post('admin/creation', [CreationController::class, 'store'])->name('admin
 Route::post('admin/creation/update', [CreationController::class, 'update'])->name('admin.update');
 Route::get('admin/creation/destroy', [CreationController::class, 'destroy'])->name('admin.destroy');
 
-Route::resource('chapter', ChapterController::class);
+Route::get('admin/chapter', [ChapterController::class, 'index'])->name('chapter.index');
+Route::post('admin/chapter', [ChapterController::class, 'store'])->name('chapter.store');
+// Route::post('admin/creation/update', [CreationController::class, 'update'])->name('admin.update');
+Route::get('admin/chapter/destroy', [ChapterController::class, 'destroy'])->name('chapter.destroy');
 
 // Route::get('/reading',[ReadingController::class,'index']);
 

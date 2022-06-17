@@ -52,7 +52,14 @@
                         <td class="text-center align-middle">
                           <div class="btn-group align-top">
                           <button class="btn btn-action btn-sm badge" type="button" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="btn btn-action btn-sm badge" type="button"><i class="fa fa-trash"></i></button>
+                          <button class="btn-delete btn btn-action btn-sm badge" type="button" data-bs-target="#deleteModal" data-name="{{ $value->chapter_name }}" 
+                            data-id="<?php
+                                $key = config('key.key');
+
+                                $idMaHoa = $crypt::encryptString($value->id);
+
+                                echo $idMaHoa;
+                          ?>" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></button>
                           </div>
                         </td>
                       </tr>
@@ -202,6 +209,45 @@
         </div>
       </div>
 
+
+
+      <!-- Delete Form Modal -->
+      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Xóa Truyện</h5> 
+            </div>
+            <div class="modal-body">
+              <div class="py-1">
+                <form class="form" action="{{ route('chapter.destroy') }}">
+                  {{ method_field('Delete') }}
+                  @csrf
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <input type="hidden" name="idDelete1" id="idDelete">
+                        <div id="delete-text" style="text-align: center;"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col d-flex justify-content-end mt-3">
+                      <button type="button" class="btn btn-secondary me-2 text-default-text bg-default" data-bs-dismiss="modal">Đóng
+                      </button>
+                      <button type="submit"  class="btn btn-primary text-default-text me-2 bg-default">Xóa
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
+
+<script src="{{ asset('js/script-19.js') }}"></script>
