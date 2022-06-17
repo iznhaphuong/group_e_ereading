@@ -50,24 +50,21 @@
                     @endif
                     @endforeach
                 </select>
-               
-                @if ($chapter->chapter_number == $endChapter) 
 
-                        <a class="next-page m-3 pagi" style="display: none;"id="next-chapter" href="{{  url('reading-' . $nextId) }}">
+                @if ($chapter->chapter_number == $endChapter->chapter_number)
+                <a class="next-page m-3 pagi" style="display: none;" id="next-chapter" href="{{  url('reading-' . $nextId) }}">
                     <span>Chương sau</span>
                     <i class="fa-solid fa-angle-right"></i>
-
-                @else     
+                </a>
+                @else
                 <a class="next-page m-3 pagi" id="next-chapter" href="{{  url('reading-' . $nextId) }}">
                     <span>Chương sau</span>
                     <i class="fa-solid fa-angle-right"></i>
-
                 </a>
                 @endif
             </div>
 
         </div>
-
         <div class="content">
             <p class="chapter-content">{{$chapter->chapter_content}}</p>
         </div>
