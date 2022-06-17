@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\CreationController;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\CreationController;
+
 use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\RatingController;
@@ -18,18 +20,25 @@ use App\Http\Controllers\RatingController;
 */
 
 Route::get('/', function () {
+    // return view('user.creation.following');
+    // return view('user.creation.history');
     // return view('user.creation.reading');
-    return view('user.creation.home');
-//     return view('admin.management.user');
-    //  return view('admin.management.category');
-//    return view('admin.management.creation');
+    // return view('user.creation.home');
+    // return view('admin.management.user'); - loi
+    // return view('admin.management.category'); -loi
+    return view('admin.management.creation');
     // return view('admin.management.chapter');
+    // return view('user.creation.detail');
 });
+
+//Trang admin
+// Route::resource('admin', CreationController::class);
+
 // Route::get('/reading',[ReadingController::class,'index']);
 
-Route::get('/admin', function () {
-    return view('admin.management.creation');
-});
+// Route::get('/admin', function () {
+//     return view('admin.management.creation');
+// });
 
 Route::get('chi-tiet/{id}', [CreationController::class, 'show'])->name('detail');
 

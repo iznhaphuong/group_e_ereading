@@ -8,6 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Creation extends Model
 {
     use HasFactory;
+
+    protected $table = 'creations';
+    protected $fillable = [
+        'name',
+        'image',
+        'author',
+        'source',
+        'status',
+        'description',
+        'version'
+    ];
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+
     public function chapters()
     {
         return $this->hasMany(Chapter::class);
