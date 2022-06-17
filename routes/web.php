@@ -54,9 +54,7 @@ Route::post('chi-tiet/{id}', [FollowingCreationController::class, 'destroy']);
 Route::get('dang-theo-doi', [FollowingCreationController::class, 'index'])->name('following');
 Route::post('dang-theo-doi',[FollowingCreationController::class, 'destroy']);
 
-Route::get('lich-su', function () {
-    return view('user.creation.history');
-})->name('history');
+Route::get('lich-su', [CreationController::class, 'showHistory'])->name('history');
 
 Route::get('dang-nhap', function () {
     return view('user.auth.login');

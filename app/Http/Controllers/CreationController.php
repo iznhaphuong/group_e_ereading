@@ -141,7 +141,6 @@ class CreationController extends Controller
      */
     public function show($id)
     {
-
         $controller = new Controller();
         $UUID = $controller->getUUID();
         $creation = DB::table('creations')
@@ -151,10 +150,10 @@ class CreationController extends Controller
                 '=',
                 $id
             )->get()[0];
-            $ratingAvg = Rating::where('creation_id',$creation->id)->avg('star');
-            if($ratingAvg == null){
-                $ratingAvg =0;
-            }
+        $ratingAvg = Rating::where('creation_id', $creation->id)->avg('star');
+        if ($ratingAvg == null) {
+            $ratingAvg = 0;
+        }
         $is_followed = FollowingCreation::where([
             'user_id' => $UUID,
             'creation_id' => $creation->id
@@ -169,4 +168,37 @@ class CreationController extends Controller
             ]
         );
     }
+    //For history
+    public function getHistory(Request $request)
+    {
+        $creation_ids = [];
+        foreach ($request->history as $item) {
+            array_push($creation_ids, $item['creation_id']);
+        }
+        $creations = Creation::whereIn('id', $creation_ids)->get();
+
+
+        Controller::setBaseHistory($creations);
+
+        $controller = new Controller();
+        $controller->setUUID(2);
+        return (Controller::getBaseHistory());
+    }
+
+    public function showHistory()
+    {
+        return view('user.creation.history');
+    }
+
+    public function getRecentChap(Request $request)
+    {
+        $creation_id = $request->creation_id;
+        $chapter_id = $request->chapter_id;
+
+        $chap_number = DB::table('creations')
+            ->join('chapters', 'creations.id', '=', 'chapters.creation_id')
+            ->select('chapters.chapter_number', 'chapters.chapter_name')
+            ->where('chapters.id', '=', $chapter_id)->get();
+        return $chap_number;
+        }
 }

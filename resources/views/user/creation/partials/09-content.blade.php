@@ -41,7 +41,8 @@
                             <p class="col-2">
                                 @if ($creation->status == 0)
                                     <i class="fa-solid fa-toggle-off" style="color:red"></i>
-                                    Trạng thái</p>
+                                    Trạng thái
+                            </p>
                             <p class="col-10" style="color:red">Chưa hoàn thành</p>
                         @elseif ($creation->status == 1)
                             <i class="fa-solid fa-toggle-on" style="color:green"></i>
@@ -59,44 +60,40 @@
                         </li>
                         <li class="row">
                             <p class="col-12">
-                                     @php
-                                        $id = md5($creation->id . $creation->name);
-                                    @endphp
-                                <a id="read_story" href="{{ route('chapter.show', $id) }}" class="btn btn-success text-white read-first-chap">Đọc Từ Đầu</a>
+                                @php
+                                    $id = md5($creation->id . $creation->name);
+                                @endphp
+                                <a id="read_story" href="{{ route('chapter.show', $id) }}"
+                                    class="btn btn-success text-white read-first-chap">Đọc Từ Đầu</a>
                                 <a id="read_new_story" href="#"
                                     class="btn btn-primary text-white read-new-chap">Đọc Mới Nhất</a>
                                 <span id="wrap-follow">
                                     @if ($is_followed == 1)
-                                    <span id="unfollow" onclick="unfollow()"
-                                    data-id="{{ $creation->id }}"
-                                    data-name="{{ $creation->name }}"
-                                    data-url="{{ url()->current() }}"
-                                    data-bs-toggle="modal" data-bs-target="#notice" class="unfollow-link btn btn-warning"><i class="fa-solid fa-heart-crack"></i> Bỏ theo dõi</span>
-                                @else
-                                    <span
-                                    onclick="followCreation()"
-                                    id="follow"
-                                    data-id="{{ $creation->id }}"
-                                    data-name="{{ $creation->name }}"
-                                    data-url="{{ url()->current() }}"
-                                    class="follow-link btn btn-danger text-white"><i class="fa-solid fa-heart"></i>
-                                        Theo dõi</span>
-                                @endif
+                                        <span id="unfollow" onclick="unfollow()" data-id="{{ $creation->id }}"
+                                            data-name="{{ $creation->name }}" data-url="{{ url()->current() }}"
+                                            data-bs-toggle="modal" data-bs-target="#notice"
+                                            class="unfollow-link btn btn-warning"><i
+                                                class="fa-solid fa-heart-crack"></i> Bỏ theo dõi</span>
+                                    @else
+                                        <span onclick="followCreation()" id="follow" data-id="{{ $creation->id }}"
+                                            data-name="{{ $creation->name }}" data-url="{{ url()->current() }}"
+                                            class="follow-link btn btn-danger text-white"><i
+                                                class="fa-solid fa-heart"></i>
+                                            Theo dõi</span>
+                                    @endif
                                 </span>
                             </p>
                         </li>
-                        
                     </ul>
                     <hr>
                     <div class="rating-star" style="display:flex">
                         <div id="rateYo"></div>
                         <h4 id="star-avg"></h4>
                     </div>
+                    <form action="{{ route('rating') }}" method="POST" class="form-inline" id="formRating"
+                        role="form">
+                        @csrf
 
-                    
-                    <form action="{{route('rating')}}" method="POST" class="form-inline" id="formRating" role="form">
-                    @csrf
-                               
                         <div class="from-group">
                             <input class="form-control" name="star" id="star" />
                             <input class="form-control" name="creation_id" id="creation_id"
@@ -140,8 +137,8 @@
             </nav>
         </div>
         <!-- Modal -->
-        <form action="{{ url()->current() }}" method="POST" class="modal fade" id="notice"
-            tabindex="-1" aria-labelledby="notice-title" aria-hidden="true">
+        <form action="{{ url()->current() }}" method="POST" class="modal fade" id="notice" tabindex="-1"
+            aria-labelledby="notice-title" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -161,40 +158,60 @@
                 </div>
             </div>
         </form>
+
+        <!-- Continue Modal  -->
+        <div data-id="{{ $creation->id }}" class="modal fade show d-block" id="continue" tabindex="-1"
+            aria-labelledby="continue-title" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="continue-title"></h5>
+                    </div>
+                    <div class="modal-body" id="continue-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button id="continue-close" type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Đóng</button>
+                        <a href="" id="continue-link" class="btn btn-primary text-white">Tiếp tục</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 @push('footer-js')
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
-<script>
-$(function () {
-    
-    let ratingAvg = '{{$ratingAvg}}';
-    $('#star-avg').text(ratingAvg+"/5");
- $("#rateYo").rateYo({
-   rating: ratingAvg,
-   fullStar: true,
-   numStars: 5
- }).on("rateyo.set", function(e,data){
-    $('#star').val(data.rating);  
-    
-    $('#formRating').submit();
-    alert("Vui lòng đăng nhập để đánh giá "+data.rating);
- });
-//  $("#rateYo-log").rateYo({
-//    rating: 3,
-//    fullStar: true,
-//    numStars: 5
-//  }).on("rateyo.set", function(e,data){
-//     // $('#rating-star').val(data.rating);
-//     alert("Vui lòng đăng nhập để đánh giá");
-//  })
-});
-// Getter
-var normalFill = $("#rateYo").rateYo("option", "fullStar"); //returns true
- 
-// Setter
-$("#rateYo").rateYo("option", "fullStar", true); //returns a jQuery Element
-</script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+    <script>
+        $(function() {
+
+            let ratingAvg = '{{ $ratingAvg }}';
+            $('#star-avg').text(ratingAvg + "/5");
+            $("#rateYo").rateYo({
+                rating: ratingAvg,
+                fullStar: true,
+                numStars: 5
+            }).on("rateyo.set", function(e, data) {
+                $('#star').val(data.rating);
+
+                $('#formRating').submit();
+                alert("Vui lòng đăng nhập để đánh giá " + data.rating);
+            });
+            //  $("#rateYo-log").rateYo({
+            //    rating: 3,
+            //    fullStar: true,
+            //    numStars: 5
+            //  }).on("rateyo.set", function(e,data){
+            //     // $('#rating-star').val(data.rating);
+            //     alert("Vui lòng đăng nhập để đánh giá");
+            //  })
+        });
+        // Getter
+        var normalFill = $("#rateYo").rateYo("option", "fullStar"); //returns true
+
+        // Setter
+        $("#rateYo").rateYo("option", "fullStar", true); //returns a jQuery Element
+    </script>
 @endpush
