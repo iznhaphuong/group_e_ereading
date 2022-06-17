@@ -65,14 +65,18 @@
                         <td class="text-center align-middle">{{ $value->view }}</td>
                         <td class="text-center align-middle">
                           <div class="btn-group align-top">
-                            <button class="btn btn-action btn-sm badge edit" type="button" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="btn btn-action btn-sm badge editModel" type="button" 
+                                    data-bs-toggle="modal" data-bs-target="#editModal1"
+                                    data-id="{{ $value->id }}"
+                                    data-version="{{ $value->version }}"
+                                    data-url="{{ asset('images/covers/') }}"><i class="fa-solid fa-pen-to-square"></i></button>
                             <button class="btn btn-action btn-sm badge" type="button"><i class="fa fa-trash"></i></button>
                           </div>
                         </td>
                         <!-- Dữ liệu Nguồn -->
-                        <input type="hidden" class="source" value="{{ $value->source }}">
+                        <input type="hidden" class="source" name="source" value="{{ $value->source }}">
                         <!-- Dữ liệu Version -->
-                        <input type="hidden" class="version" value="{{ $value->version }}">
+                        <input type="hidden" class="version" name="version" value="{{ $value->version }}">
                       </tr>
                     @endforeach
                     </tbody>
@@ -179,9 +183,8 @@
         </div>
       </div>
 
-
       <!-- Edit Form Modal -->
-      <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="editModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -228,11 +231,12 @@
                         </div>
                         <div class="col" style="display: flex;align-items: center;">
                             <label for="types" style="padding-right: 10px;">Thể loại:  </label>
-                            <select name="types[]" id="edit_types" multiple required>
+                            <select name="types[]" multiple required>
                               @foreach($dataCategories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                               @endforeach
-                            </select>
+                            </select>                         
+                            <input type="text" id="edit_types">
                         </div>
                       </div>
                       <div class="row">
@@ -247,13 +251,14 @@
                   </div>
                   <div class="row">
                     <div class="col-12 col-sm-6 mb-3">
-                      <input type="file" name="image" id="edit_image" required>
+                      <input type="file" name="image" required>
+                      <img id="edit_image" src="" alt="">
                     </div>
                   </div>
                   <div class="row">
                     <div class="col d-flex justify-content-end">
                       <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Close</button>
-                      <button class="btn btn-primary text-white" type="submit">Thêm</button>
+                      <button class="btn btn-primary text-white" id="btn-edit" type="submit">Sửa</button>
                     </div>
                   </div>
                 </form>
@@ -265,51 +270,4 @@
   </div>
 </div>
 
-<script>
-      $(document).ready(function() {
-            var table = $('#datatable').DataTable();
-            //Start Edit Record
-            table.on('click', '.edit', function() {
-                $tr = $(this).closest('tr');
-                if ($($tr).hasClass('child')) {
-                    $tr = $tr.prev('.parent');
-                }
-
-                var data = table.row($tr).data();
-                console.log(data);
-
-                var source = document.querySelector('.source').value;
-                var version = document.querySelector('.version').value;
-
-                $('#edit_name').val(data[2]);
-                $('#edit_author').val(data[3]);
-                $('#edit_source').val(source.value);
-                $('#edit_status').val(data[5]);
-                $('#edit_types').val(data[4]);
-                $('#edit_description').val(data[6]);
-                $('#edit_image').val(data[1]);
-
-                // $('#editForm').attr('action', '/news/'+ data[0]);
-                // const url = '{{ route("admin.update/"' + data[0] + '") }}';
-                $('#editForm').attr('action', '{{ route("admin.update/"' + data[0] + '") }}');
-                $('.editModal').modal('show');
-            })
-
-            table.on('click', '.delete', function() {
-                $tr = $(this).closest('tr');
-                if ($($tr).hasClass('child')) {
-                    $tr = $tr.prev('.parent');
-                }
-
-                var data = table.row($tr).data();
-                console.log(data);
-
-                $('#idDelete').text('Are you sure you want to delete name is ' + data[1]);
-                // var version = document.querySelector('#version').value;
-
-                // $('#editForm').attr('action', '/news/'+ data[0]);
-                $('#deleteForm').attr('action', '/news/'+ data[0]);
-                $('.deleteModal').modal('show');
-            })
-        })
-</script>
+<script src="{{ asset('js/script-18.js') }}"></script>
