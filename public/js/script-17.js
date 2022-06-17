@@ -56,7 +56,7 @@ async function editCategory(id, text, version) {
     const url = '/admin/danh-muc/cap-nhat/' + id;
     console.log(id)
     console.log(text)
-    const data = {name: text, version: version};
+    const data = { name: text, version: version };
     const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
     const response = await fetch(url, {
         method: "PUT",
@@ -96,7 +96,7 @@ async function showDeleteCategory(id) {
 
 async function deleteCategory(id) {
     const url = '/admin/danh-muc/xoa/' + id;
-    const data = {id: id};
+    const data = { id: id };
     const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
     const response = await fetch(url, {
         method: "DELETE",

@@ -4,6 +4,10 @@
     <link name="style-11" rel="stylesheet" href="{{ asset('css/style-11.css') }}">
 @endpush
 
+@push('footer-js')
+    <script src="{{ asset('js/script-11.js') }}"></script>
+@endpush
+
 <div class="type-11">
     <div class="container my-5">
         <div class="header-top ">
@@ -11,7 +15,7 @@
                 <div class="title_name">
                     <span><a href="#">{{$creation->name }}</a></span>
                 </div>
-                <h2 class="title_post_name">{{$chapter->chapter_name}}</h2>
+                <h2 class="title_post_name" id="title" data-creation-id="{{ $creation->id }}">{{$chapter->chapter_name}}</h2>
                 <div class="post_meta_name">
                     <span class="meta-item post-author">
                         <span>Tác giả:</span>
@@ -43,7 +47,7 @@
         </div>
 
         <div class="content">
-            <p class="chapter-content">{{$chapter->chapter_content}}</p>
+            <p class="chapter-content" id="chapter-content" data-chapter-id="{{ $chapter->id }}">{{$chapter->chapter_content}}</p>
         </div>
     </div>
 </div>

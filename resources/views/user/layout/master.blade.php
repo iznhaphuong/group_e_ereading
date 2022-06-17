@@ -40,6 +40,7 @@ use Illuminate\Html\HtmlFacade;
     {{-- script --}}
     @yield('js')
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/style-common.js') }}"></script>
     @stack('footer-js')
 </body>
 
