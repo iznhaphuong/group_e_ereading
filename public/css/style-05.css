@@ -10,7 +10,11 @@
   font-size: 1.2rem;
 }
 .type-05 .card {
-  border: none;
+  padding:0 10px;
+  border-bottom: 1px solid ;
+}
+.type-05 .card .row {
+  padding:30px 0;
 }
 .type-05 .card .col-md-3 .card-image {
   position: relative;
@@ -95,41 +99,44 @@
   margin-top: 20px;
   margin-bottom: 0;
 }
-@media screen and (max-width: 480px) {
-  .img-card {
+@media screen and (max-width: 480px)and (max-device-width: 736px) {
+  .type-05 .img-card {
+    margin-left: 118px;
+    width: 40%;
+  }
+  .type-05 .card{
+    width:392px;
+  }
+  .type-05 .card-img-overlay {
     margin-left: 140px;
     width: 40%;
   }
-  .card-img-overlay {
-    margin-left: 140px;
-    width: 40%;
-  }
-  .card-img-overlay .m-wrap-genre {
+  .type-05 .card-img-overlay .m-wrap-genre {
     width: 30%;
   }
-  card-title {
+  .type-05 .card-title {
     font-size: 18px;
   }
 }
-@media screen and (min-width: 700px) {
-  .img-card {
-    width: 95%;
+@media screen and (min-width: 768px)and (max-device-width: 990px) {
+  .type-05 .img-card {
+    width: 110%;
   }
-  .card-img-overlay {
-    width: 95%;
+  .type-05 .card-img-overlay {
+    width: 85%;
   }
-  .card-img-overlay .m-wrap-genre {
-    width: 95%;
+  .type-05 .card-img-overlay .m-wrap-genre {
+    width: 85%;
   }
 }
 @media screen and (min-width: 992px) {
-  .img-card {
-    width: 95%;
+  .type-05 .img-card {
+    width: 85%;
   }
-  .card-img-overlay {
-    width: 95%;
+  .type-05 .card-img-overlay {
+    width: 85%;
   }
-  .card-img-overlay .m-wrap-genre {
-    width: 95%;
+  .type-05 .card-img-overlay .m-wrap-genre {
+    width: 85%;
   }
 }

@@ -107,8 +107,7 @@ class CreationController extends Controller
      */
     public function show($id)
     {
-        $ratingAvg = Rating::where('creation_id', $id)->avg('star');
-        return view('user.creation.detail', ['creation' => Creation::find($id)], compact('ratingAvg'));
+       
     }
 
     /**
@@ -153,6 +152,7 @@ class CreationController extends Controller
      */
     public function show2($id)
     {
+
         $controller = new Controller();
         $UUID = $controller->getUUID();
         $creation = DB::table('creations')
@@ -162,6 +162,10 @@ class CreationController extends Controller
                 '=',
                 $id
             )->get()[0];
+            $ratingAvg = Rating::where('creation_id',$creation->id)->avg('star');
+            if($ratingAvg == null){
+                $ratingAvg =0;
+            }
         $is_followed = FollowingCreation::where([
             'user_id' => $UUID,
             'creation_id' => $creation->id
@@ -170,7 +174,9 @@ class CreationController extends Controller
             'user.creation.detail',
             [
                 'creation' => $creation,
-                'is_followed' => $is_followed
+                'is_followed' => $is_followed,
+                'ratingAvg' => $ratingAvg
+
             ]
         );
     }

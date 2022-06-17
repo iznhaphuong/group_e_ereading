@@ -75,19 +75,20 @@
 }
 @media screen and (min-device-width: 414px) and (max-device-width: 736px) {
   .type-06 .col-md-4 {
-    width: 40% !important;
+    width: 50% !important;
   }
   .type-06 .col-md-8 {
     width: 40% !important;
   }
   .type-06 .img-card {
-    width: 75%;
+    width: 65%;
   }
   .type-06 .card-img-overlay {
     margin-left: 140px;
     width: 40%;
   }
   .type-06 .m-wrap-genre {
+
     width: 30%;
   }
   .type-06 .card-title {

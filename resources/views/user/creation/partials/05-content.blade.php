@@ -8,7 +8,7 @@
         <hr class="pb-3">
         <div class="card my-3">
             <div class="row g-0">
-                <div class="col-md-3">
+                <div class="col-md-3    ">
                     <div class="card-image">
                         <a href="">
                             <img src="{{ asset('images/covers/dao-si-kinh-ky.jpg') }}" class="img-card rounded" alt="">

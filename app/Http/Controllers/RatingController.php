@@ -46,7 +46,7 @@ class RatingController extends Controller
         // }else{
         Rating::create($request->only('creation_id','user_id','star'));
       
-    // }
+
     return redirect()->back();
     }
     /**
