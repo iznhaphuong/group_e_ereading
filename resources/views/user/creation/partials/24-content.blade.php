@@ -64,10 +64,14 @@
                                             @endphp
                                             <li class="button-item"><a href="{{ url('chi-tiet-mahoa/' . $id) }}"
                                                     title="Đọc tiếp"><i class="fa-solid fa-book-open"></i></a></li>
-                                            <li class="unfollow" data-url={{ url()->current() }}
-                                                data-id="{{ $creation->id }}" class="button-item"><a
-                                                    data-bs-toggle="modal" data-bs-target="#notice"
-                                                    title="Bỏ theo dõi"><i class="fa-solid fa-heart-crack"></i></a></li>
+                                            <li class="unfollow"
+                                                data-url={{ url()->current() }}
+                                                data-id="{{ $creation->id }}"
+                                                data-name="{{ $creation->name }}"
+                                                class="button-item"><a
+                                                data-bs-toggle="modal" data-bs-target="#notice"
+                                                title="Bỏ theo dõi"><i class="fa-solid fa-heart-crack"></i></a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="m-wrap-genre">
