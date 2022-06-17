@@ -18,12 +18,7 @@
         <div class="col mb-3">
           <div class="e-panel card">
             <div class="card-body">
-              <div class="card-title" style="position: relative;">
-                @if ($message = Session::get('success'))
-                  <div class="alert alert-success alert-block" style="position: absolute;left: 0;">
-                          <strong>{{ $message }}</strong>
-                  </div>
-                @endif
+              <div class="card-title">
                 <!-- <h6 class="mr-2"><span>Users</span><small class="px-1">Be a wise leader</small> -->
                 <button class="btn btn-add" style="float: right;margin-bottom:15px;" type="button" data-bs-toggle="modal" data-bs-target="#createModal">Thêm chương truyện</button>
                 </h6>
@@ -35,20 +30,25 @@
                       <tr>
                         <th width="5%">id</th>
                         <th width="15%">Tên chương</th>
-                        <th width="60%">Mô tả tác phẩm </th>
+                        <th width="10%">Số chương </th>
+                        <th width="50%">Mô tả tác phẩm </th>
                         <th width="10%">Mã tác phẩm </th>
                         <th width="10%">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach($chapter as $value)
                       <tr>
-                        <td class="align-middle">{{ $value->id }}</td>
-                        <td class="text-nowrap align-middle">{{ $value->chapter_name }}</td>
-                        <td>
-                          <div class="colum-description">{{ $value->chapter_content	 }}</div>
+                        <td class="align-middle">
+                          1
                         </td>
-                        <td class="text-nowrap align-middle"><span>{{ $value->creation_id }}</span></td>
+                        <td class="text-nowrap align-middle">Letizia Puncher</td>
+                        <td class="align-middle text-center">
+                          <div class="bg-light d-inline-flex justify-content-center align-items-center align-top" style="width: 35px; height: 35px; border-radius: 3px;">100</div>
+                        </td>
+                        <td>
+                          <div class="colum-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur quod reic iendis rerum id? Nam fugit officia illum officiis omnis nesciunt harum, sed molestias, totam laudantium at eum ratione nulla quo?</div>
+                        </td>
+                        <td class="text-nowrap align-middle"><span>1</span></td>
                         <td class="text-center align-middle">
                           <div class="btn-group align-top">
                           <button class="btn btn-action btn-sm badge" type="button" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -56,7 +56,6 @@
                           </div>
                         </td>
                       </tr>
-                      @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -90,8 +89,7 @@
             </div>
             <div class="modal-body">
               <div class="py-1">
-                <form class="form" action="{{ route('chapter.store') }}" method="post" novalidate="">
-                @csrf
+                <form class="form" novalidate="">
                   <div class="row">
                     <div class="col">
                       <div class="row">
@@ -106,11 +104,18 @@
                         <div class="col">
                           <div class="form-group">
                             <label style="display: block;" for="id">Thuộc mã tác phẩm</label>
-                            <select class="form-control" id="id" name="creation_id[]">
-                                @foreach($creation as $value)                       
-                                <option value="{{ $value->id }}">{{ $value->name }}</option>
-                                @endforeach
+                            <select class="form-control" id="id" name="creation_id">
+                              <!-- <option value="0">Chưa Hoàn thành</option>
+                            <option value="1">Hoàn thành</option> -->
                             </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Số chương</label>
+                            <input class="form-control" type="text" name="total" placeholder="">
                           </div>
                         </div>
                       </div>

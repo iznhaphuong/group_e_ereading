@@ -13,18 +13,4 @@ class Chapter extends Model
     {
         return $this->belongsTo(Creation::class);
     }
-
-    protected $fillable = [
-        'chapter_name',
-        'chapter_content',
-        'chapter_version',
-        'created_at',
-        'updated_at',
-    ];
-
-    protected $hidden = [
-        'version',
-        'created_at',
-        'updated_at',
-    ];
 }

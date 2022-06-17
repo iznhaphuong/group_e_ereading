@@ -31,9 +31,7 @@ Route::get('/', function () {
 });
 
 //Trang admin
-Route::resource('admin', CreationController::class);
-
-Route::resource('chapter', ChapterController::class);
+// Route::resource('admin', CreationController::class);
 
 // Route::get('/reading',[ReadingController::class,'index']);
 
