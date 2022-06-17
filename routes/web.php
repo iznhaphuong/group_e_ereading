@@ -67,7 +67,11 @@ Route::get('dang-nhap', function () {
 Route::get('dang-ki', function () {
     return view('user.auth.register');
 });
+//reading page
 Route::get('reading/{creationId}', [ChapterController::class, 'show'])->name('chapter.show');
-
+//rating
 Route::post('/add-rating', [RatingController::class, 'add'])->name('rating');
+//read-chapter
+Route::get('reading-{number}', [ChapterController::class, 'paginate'])->name('chapter.next');
+
  
