@@ -23,13 +23,13 @@
                         </div>
                         <!-- Upload img -->
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="default_size">Default size</label>
-                        <input name="user_avatar" class="block mb-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="default_size" type="file">
+                        <input name="avatar" class="block mb-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="default_size" type="file">
                         <!-- End Upload img -->
 
                         <!-- Name input -->
                         <div class="mb-6">
                             <input type="text"
-                                name="user_name"
+                                name="name"
                                 class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="name" placeholder="Tên" />
                         </div>
@@ -37,7 +37,7 @@
                         <!-- Email input -->
                         <div class="mb-6">
                             <input type="text"
-                                name="user_email"
+                                name="email"
                                 class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="email" placeholder="Email" />
                         </div>
@@ -45,7 +45,7 @@
                         <!-- Username input -->
                         <div class="mb-6">
                             <input type="text"
-                                name="user_username"
+                                name="username"
                                 class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="username" placeholder="Tài khoản" />
                         </div>
@@ -53,7 +53,7 @@
                         <!-- Password input -->
                         <div class="mb-6">
                             <input type="password"
-                                name="user_password"
+                                name="password"
                                 class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="password" placeholder="Mật khẩu" />
                         </div>
@@ -61,7 +61,7 @@
                         <!-- Repassword input -->
                         <div class="mb-6">
                             <input type="password"
-                                name="user_repassword"
+                                name="repassword"
                                 class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="repassword" placeholder="Nhập lại mật khẩu" />
                         </div>
