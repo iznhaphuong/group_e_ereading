@@ -48,9 +48,7 @@ class ChapterController extends Controller
     {
         $creation = Creation::find($creationId);
         $chapter = Chapter::find($id);
-        return view('user.creation.reading',['chapter', $chapter],['creation', $creation]);
-
-
+        return view('user.creation.reading', compact('creation', 'chapter'));
     }
 
     /**

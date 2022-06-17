@@ -12,6 +12,7 @@ use App\Models\Creation;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\File;
 
 class CreationController extends Controller
 {
@@ -129,9 +130,25 @@ class CreationController extends Controller
      * @param  \App\Models\Creation  $creation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Creation $creation)
+    public function update(Request $request, $id)
     {
-        //
+        $creation = Creation::find($id);
+        //Edit image
+        if($request->hasFile('image')){
+            $destination = 'images/covers/'.$creation->image;
+            if(File::exists($destination)){
+                File::delete($destination);
+            }
+            $file= $request->file('image');
+            $extention = $file->getClientOriginalName();
+            $filename = time().'.'.$extention;
+            $file-> move(public_path('images/covers'), $filename);
+            //save 
+            $creation->image = $filename;
+        }
+
+
+        $creation->update();
     }
 
     /**

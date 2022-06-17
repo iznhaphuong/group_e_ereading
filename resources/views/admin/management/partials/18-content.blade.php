@@ -29,7 +29,7 @@
               </div>
               <div class="e-table">
                 <div class="table-responsive table-lg mt-3">
-                  <table class="table table-bordered">
+                  <table id="datatable" class="table table-bordered">
                     <thead>
                       <tr>
                         <th width="3%">id</th>
@@ -65,10 +65,14 @@
                         <td class="text-center align-middle">{{ $value->view }}</td>
                         <td class="text-center align-middle">
                           <div class="btn-group align-top">
-                            <button class="btn btn-action btn-sm badge" type="button" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="btn btn-action btn-sm badge edit" type="button" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa-solid fa-pen-to-square"></i></button>
                             <button class="btn btn-action btn-sm badge" type="button"><i class="fa fa-trash"></i></button>
                           </div>
                         </td>
+                        <!-- Dữ liệu Nguồn -->
+                        <input type="hidden" class="source" value="{{ $value->source }}">
+                        <!-- Dữ liệu Version -->
+                        <input type="hidden" class="version" value="{{ $value->version }}">
                       </tr>
                     @endforeach
                     </tbody>
@@ -122,21 +126,6 @@
                           </div>
                         </div>
                       </div>
-                      <!-- <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label>Thể loại</label>
-                            <input class="form-control" type="text" name="type" placeholder="">
-                            <label for="creations">Truyện thuộc thể loại:</label>
-                            <select name="creations" id="creations" multiple>
-                              <option value="volvo">Volvo</option>
-                              <option value="saab">Saab</option>
-                              <option value="opel">Opel</option>
-                              <option value="audi">Audi</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div> -->
                       <div class="row" style="align-items: center;margin-top: 20px;">
                         <div class="col">
                           <div class="form-group">
@@ -146,16 +135,16 @@
                         </div>
                         <div class="col">
                           <!-- <div class="form-group"> -->
-                            <label style="display: block;" for="status">Trạng thái</label>
-                            <select id="status" name="status" required>
+                            <label style="display: block;" for="statusadd">Trạng thái</label>
+                            <select id="statusadd" name="status" required>
                               <option value="0">Chưa Hoàn thành</option>
                               <option value="1">Hoàn thành</option>
                             </select>
                           <!-- </div> -->
                         </div>
                         <div class="col" style="display: flex;align-items: center;">
-                            <label for="creations" style="padding-right: 10px;">Thể loại:  </label>
-                            <select name="types[]" id="creations" multiple required>
+                            <label for="typeCategory" style="padding-right: 10px;">Thể loại:  </label>
+                            <select name="types[]" id="typeCategory" multiple required>
                               @foreach($dataCategories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                               @endforeach
@@ -196,58 +185,61 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Thêm Truyện</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Sửa Truyện</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div class="py-1">
-                <form class="form" novalidate="">
+              <form class="form" active="{{ route('admin.update') }}" novalidate="" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+                  {{ method_field('PUT') }}
+                  <!-- @csrf -->
                   <div class="row">
                     <div class="col">
                       <div class="row">
                         <div class="col">
-                          <div class="form-group">
+                          <div class="form-group" enctype="multipart/form-data">
                             <label>Tên tác phẩm</label>
-                            <input class="form-control" type="text" name="name" placeholder="" value="">
+                            <input class="form-control" id="edit_name" type="text" name="name" placeholder="" value="" required>
                           </div>
                         </div>
                         <div class="col">
                           <div class="form-group">
                             <label>Tác giả</label>
-                            <input class="form-control" type="text" name="author" placeholder="" value="">
+                            <input class="form-control" id="edit_author" type="text" name="author" placeholder="" value="" required>
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label>Thể loại</label>
-                            <input class="form-control" type="text" name="type" placeholder="">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
+                      <div class="row" style="align-items: center;margin-top: 20px;">
                         <div class="col">
                           <div class="form-group">
                             <label>Nguồn</label>
-                            <input class="form-control" type="text" name="source" placeholder="link" value="">
+                            <input class="form-control" id="edit_source" type="text" name="source" placeholder="" value="" required>
                           </div>
                         </div>
                         <div class="col">
-                          <div class="form-group">
+                          <!-- <div class="form-group"> -->
                             <label style="display: block;" for="status">Trạng thái</label>
-                            <select id="status" name="status">
+                            <select id="edit_status" name="status" required>
                               <option value="0">Chưa Hoàn thành</option>
                               <option value="1">Hoàn thành</option>
                             </select>
-                          </div>
+                          <!-- </div> -->
+                        </div>
+                        <div class="col" style="display: flex;align-items: center;">
+                            <label for="types" style="padding-right: 10px;">Thể loại:  </label>
+                            <select name="types[]" id="edit_types" multiple required>
+                              @foreach($dataCategories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                              @endforeach
+                            </select>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col mb-3">
                           <div class="form-group">
                             <label>Mô tả truyện</label>
-                            <textarea class="form-control" rows="5" name="description" placeholder=""></textarea>
+                            <textarea class="form-control" id="edit_description" rows="5" name="description" placeholder="" required></textarea>
                           </div>
                         </div>
                       </div>
@@ -255,7 +247,7 @@
                   </div>
                   <div class="row">
                     <div class="col-12 col-sm-6 mb-3">
-                      <input type="file" name="image">
+                      <input type="file" name="image" id="edit_image" required>
                     </div>
                   </div>
                   <div class="row">
@@ -265,7 +257,6 @@
                     </div>
                   </div>
                 </form>
-              </div>
             </div>
           </div>
         </div>
@@ -273,3 +264,52 @@
     </div>
   </div>
 </div>
+
+<script>
+      $(document).ready(function() {
+            var table = $('#datatable').DataTable();
+            //Start Edit Record
+            table.on('click', '.edit', function() {
+                $tr = $(this).closest('tr');
+                if ($($tr).hasClass('child')) {
+                    $tr = $tr.prev('.parent');
+                }
+
+                var data = table.row($tr).data();
+                console.log(data);
+
+                var source = document.querySelector('.source').value;
+                var version = document.querySelector('.version').value;
+
+                $('#edit_name').val(data[2]);
+                $('#edit_author').val(data[3]);
+                $('#edit_source').val(source.value);
+                $('#edit_status').val(data[5]);
+                $('#edit_types').val(data[4]);
+                $('#edit_description').val(data[6]);
+                $('#edit_image').val(data[1]);
+
+                // $('#editForm').attr('action', '/news/'+ data[0]);
+                // const url = '{{ route("admin.update/"' + data[0] + '") }}';
+                $('#editForm').attr('action', '{{ route("admin.update/"' + data[0] + '") }}');
+                $('.editModal').modal('show');
+            })
+
+            table.on('click', '.delete', function() {
+                $tr = $(this).closest('tr');
+                if ($($tr).hasClass('child')) {
+                    $tr = $tr.prev('.parent');
+                }
+
+                var data = table.row($tr).data();
+                console.log(data);
+
+                $('#idDelete').text('Are you sure you want to delete name is ' + data[1]);
+                // var version = document.querySelector('#version').value;
+
+                // $('#editForm').attr('action', '/news/'+ data[0]);
+                $('#deleteForm').attr('action', '/news/'+ data[0]);
+                $('.deleteModal').modal('show');
+            })
+        })
+</script>
