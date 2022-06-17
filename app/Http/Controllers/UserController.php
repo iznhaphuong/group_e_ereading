@@ -134,12 +134,21 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
+        $hash = new Hashids('', 32);
+        $salt = 1122;
+        $id = $hash->decodeHex($request->input('id')) - $salt;
+        $checked = User::find($id)->delete();
+        if ($checked) {
+            return redirect()->route('user.index')->with('success', 'Xóa thành công');
+        } else {
+            return redirect()->route('user.index')->with('error', 'Xóa không thành công');
+        }
+
     }
 
     public function getUser($id)

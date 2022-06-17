@@ -40,12 +40,13 @@ Route::resource('admin', CreationController::class);
 Route::get('admin/danh-muc', [CategoryController::class, 'index'])->name('category.index');
 Route::post('admin/danh-muc', [CategoryController::class, 'store'])->name('category.create');
 Route::put('admin/danh-muc/cap-nhat/{id}', [CategoryController::class, 'update'])->name('category.update');
-Route::delete('admin/danh-muc/xoa/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
+Route::delete('admin/danh-muc/xoa', [CategoryController::class, 'destroy'])->name('category.delete');
 
 // User
 Route::get('admin/nguoi-dung', [UserController::class, 'index'])->name('user.index');
 Route::post('admin/nguoi-dung', [UserController::class, 'store'])->name('user.create');
-Route::post('admin/nguoi-dung/cap-nhat', [UserController::class, 'update'])->name('category.update');
+Route::post('admin/nguoi-dung/cap-nhat', [UserController::class, 'update'])->name('user.update');
+Route::delete('admin/nguoi-dung/xoa', [UserController::class, 'destroy'])->name('user.delete');
 
 Route::get('chi-tiet/{id}', [CreationController::class, 'show']);
 Route::post('chi-tiet/{id}', [FollowingCreationController::class, 'destroy']);
