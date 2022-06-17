@@ -1,13 +1,21 @@
 {{-- My CSS File --}}
 @push('head-css')
-    <link name="style-09" rel="stylesheet" href="{{ asset('css/style-09.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+<link name="style-09" rel="stylesheet" href="{{ asset('css/style-09.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 @endpush
 
 @push('footer-js')
-    <script src="{{ asset('js/script-09.js') }}"></script>
+<script src="{{ asset('js/script-09.js') }}"></script>
 @endpush
+<?php
 
+use App\Http\Controllers\Controller;
+
+$controller = new Controller();
+$userId = $controller->getUUID();
+
+
+?>
 <div class="type-09">
     <div class="container">
         <div class="text-uppercase my-5 browsing">{{ $creation->name }}</div>
@@ -16,8 +24,7 @@
             <div class="row g-0 mt-3">
                 <div class="col-md-3">
                     <div class="card-image">
-                        <img src="{{ asset('images/covers/' . $creation->image) }}" class="img-card rounded"
-                            alt="">
+                        <img src="{{ asset('images/covers/' . $creation->image) }}" class="img-card rounded" alt="">
                         </a>
                     </div>
                 </div>
@@ -40,10 +47,11 @@
                         <li class="row">
                             <p class="col-2">
                                 @if ($creation->status == 0)
-                                    <i class="fa-solid fa-toggle-off" style="color:red"></i>
-                                    Trạng thái</p>
+                                <i class="fa-solid fa-toggle-off" style="color:red"></i>
+                                Trạng thái
+                            </p>
                             <p class="col-10" style="color:red">Chưa hoàn thành</p>
-                        @elseif ($creation->status == 1)
+                            @elseif ($creation->status == 1)
                             <i class="fa-solid fa-toggle-on" style="color:green"></i>
                             Trạng thái</p>
                             <p class="col-10" style="color:green">Đã hoàn thành</p>
@@ -59,49 +67,46 @@
                         </li>
                         <li class="row">
                             <p class="col-12">
-                                     @php
-                                        $id = md5($creation->id . $creation->name);
-                                    @endphp
+                                @php
+                                $id = md5($creation->id . $creation->name);
+                                @endphp
                                 <a id="read_story" href="{{ route('chapter.show', $id) }}" class="btn btn-success text-white read-first-chap">Đọc Từ Đầu</a>
-                                <a id="read_new_story" href="#"
-                                    class="btn btn-primary text-white read-new-chap">Đọc Mới Nhất</a>
+                                <a id="read_new_story" href="#" class="btn btn-primary text-white read-new-chap">Đọc Mới Nhất</a>
                                 <span id="wrap-follow">
                                     @if ($is_followed == 1)
-                                    <span id="unfollow" onclick="unfollow()"
-                                    data-id="{{ $creation->id }}"
-                                    data-name="{{ $creation->name }}"
-                                    data-url="{{ url()->current() }}"
-                                    data-bs-toggle="modal" data-bs-target="#notice" class="unfollow-link btn btn-warning"><i class="fa-solid fa-heart-crack"></i> Bỏ theo dõi</span>
-                                @else
-                                    <span
-                                    onclick="followCreation()"
-                                    id="follow"
-                                    data-id="{{ $creation->id }}"
-                                    data-name="{{ $creation->name }}"
-                                    data-url="{{ url()->current() }}"
-                                    class="follow-link btn btn-danger text-white"><i class="fa-solid fa-heart"></i>
+                                    <span id="unfollow" onclick="unfollow()" data-id="{{ $creation->id }}" data-name="{{ $creation->name }}" data-url="{{ url()->current() }}" data-bs-toggle="modal" data-bs-target="#notice" class="unfollow-link btn btn-warning"><i class="fa-solid fa-heart-crack"></i> Bỏ theo dõi</span>
+                                    @else
+                                    <span onclick="followCreation()" id="follow" data-id="{{ $creation->id }}" data-name="{{ $creation->name }}" data-url="{{ url()->current() }}" class="follow-link btn btn-danger text-white"><i class="fa-solid fa-heart"></i>
                                         Theo dõi</span>
-                                @endif
+                                    @endif
                                 </span>
                             </p>
                         </li>
-                        
+
                     </ul>
                     <hr>
+                    <!-- Rating -->
                     <div class="rating-star" style="display:flex">
                         <div id="rateYo"></div>
                         <h4 id="star-avg"></h4>
                     </div>
-
-                    
+                    @if (session('messFail'))
+                    <div class="alert alert-success">
+                        {{ session('messFail') }}
+                    </div>
+                    @endif
+                    @if (session('messSuc'))
+                    <div class="alert alert-success">
+                        {{ session('messSuc') }}
+                    </div>
+                    @endif
                     <form action="{{route('rating')}}" method="POST" class="form-inline" id="formRating" role="form">
-                    @csrf
-                               
+                        @csrf
+
                         <div class="from-group">
-                            <input class="form-control" name="star" id="star" />
-                            <input class="form-control" name="creation_id" id="creation_id"
-                                value="{{ $creation->id }}" />
-                            <input class="form-control" name="user_id" id="user_id" value="1" />
+                            <input type="hidden" class="form-control" name="star" id="star" />
+                            <input type="hidden" class="form-control" name="creation_id" id="creation_id" value="{{ $creation->id }}" />
+                            <input type="hidden" class="form-control" name="user_id" id="user_id" value="{{$userId}}" />
                         </div>
                     </form>
                 </div>
@@ -129,25 +134,21 @@
         <div class="my-5 d-flex justify-content-center ">
             <nav aria-label="Pagination">
                 <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#"><i
-                                class="fa-solid fa-angle-left"></i></a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angle-left"></i></a></li>
                     <li class="page-item active"><a class="page-link" href="#">1</a></li>
                     <li class="page-item"><a class="page-link" href="#">2</a></li>
                     <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#"><i
-                                class="fa-solid fa-angle-right"></i></a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angle-right"></i></a></li>
                 </ul>
             </nav>
         </div>
         <!-- Modal -->
-        <form action="{{ url()->current() }}" method="POST" class="modal fade" id="notice"
-            tabindex="-1" aria-labelledby="notice-title" aria-hidden="true">
+        <form action="{{ url()->current() }}" method="POST" class="modal fade" id="notice" tabindex="-1" aria-labelledby="notice-title" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="notice-title"></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="notice-body">
                     </div>
@@ -168,33 +169,41 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script>
-$(function () {
-    
-    let ratingAvg = '{{$ratingAvg}}';
-    $('#star-avg').text(ratingAvg+"/5");
- $("#rateYo").rateYo({
-   rating: ratingAvg,
-   fullStar: true,
-   numStars: 5
- }).on("rateyo.set", function(e,data){
-    $('#star').val(data.rating);  
-    
-    $('#formRating').submit();
-    alert("Vui lòng đăng nhập để đánh giá "+data.rating);
- });
-//  $("#rateYo-log").rateYo({
-//    rating: 3,
-//    fullStar: true,
-//    numStars: 5
-//  }).on("rateyo.set", function(e,data){
-//     // $('#rating-star').val(data.rating);
-//     alert("Vui lòng đăng nhập để đánh giá");
-//  })
-});
-// Getter
-var normalFill = $("#rateYo").rateYo("option", "fullStar"); //returns true
- 
-// Setter
-$("#rateYo").rateYo("option", "fullStar", true); //returns a jQuery Element
+    // const dataID = document.getElementById('data-id');
+    // function checkRating() {
+    //     if (localStorage.getItem('isLiked ' + dataID.value) !== null) {
+    //         btnLike.disabled = true
+    //     }
+    // }
+    // checkRating();
+    $(function() {
+
+        let ratingAvg = parseFloat('{{$ratingAvg}}').toFixed(2);
+        $('#star-avg').text(ratingAvg + "/5.00");
+        $("#rateYo").rateYo({
+            rating: ratingAvg,
+            fullStar: true,
+            numStars: 5
+        }).on("rateyo.set", function(e, data) {
+            $('#star').val(data.rating);
+            if ($('#mess').val() != null) {
+                alert($('#mess').val());
+            }
+            $('#formRating').submit();
+        });
+        //  $("#rateYo-log").rateYo({
+        //    rating: 3,
+        //    fullStar: true,
+        //    numStars: 5
+        //  }).on("rateyo.set", function(e,data){
+        //     // $('#rating-star').val(data.rating);
+        //     alert("Vui lòng đăng nhập để đánh giá");
+        //  })
+    });
+    // Getter
+    var normalFill = $("#rateYo").rateYo("option", "fullStar"); //returns true
+
+    // Setter
+    $("#rateYo").rateYo("option", "fullStar", true); //returns a jQuery Element
 </script>
 @endpush

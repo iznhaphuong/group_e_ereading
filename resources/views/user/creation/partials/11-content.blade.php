@@ -5,6 +5,7 @@
 <link name="style-11" rel="stylesheet" href="{{ asset('css/style-11.css') }}">
 @endpush
 @section('title', $creation->name . '-Chương ' . $chapter->chapter_number)
+
 <div class="type-11">
     <div class="container my-5">
         <div class="header-top ">

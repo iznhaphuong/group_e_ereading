@@ -141,6 +141,7 @@ class CreationController extends Controller
      */
     public function show($id)
     {
+        
 
         $controller = new Controller();
         $UUID = $controller->getUUID();
@@ -164,8 +165,7 @@ class CreationController extends Controller
             [
                 'creation' => $creation,
                 'is_followed' => $is_followed,
-                'ratingAvg' => $ratingAvg
-
+                'ratingAvg' => $ratingAvg,
             ]
         );
     }
