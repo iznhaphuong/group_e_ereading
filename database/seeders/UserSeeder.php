@@ -15,14 +15,18 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name' => 'Người dùng',
-                'email' => 'user@mail.com',
-                'password' => '12345'
+                'user_name' => 'Người dùng',
+                'user_username' => 'user',
+                'user_email' => 'user@mail.com',
+                'user_password' => '12345',
+                'user_avatar' => '',
             ],
             [
-                'name' => 'Admin',
-                'email' => 'admin@mail.com',
-                'password' => '12345'
+                'user_name' => 'Admin',
+                'user_username' => 'admin',
+                'user_email' => 'admin@mail.com',
+                'user_password' => '12345',
+                'user_avatar' => '',
             ]
         ]);
     }

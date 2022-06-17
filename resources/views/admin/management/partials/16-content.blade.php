@@ -10,7 +10,9 @@
         <div class="mb-4">
             <h1 class="font-serif text-3xl font-bold underline decoration-gray-400"> Quản lý người dùng</h1>
             <div class="flex justify-end">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#createModal" class="px-4 py-2 rounded-md bg-default text-default-text border-2 border-default-border hover:text-default hover:bg-default-hover add-user">Thêm người dùng
+                <button type="button" data-bs-toggle="modal" data-bs-target="#createModal"
+                        class="px-4 py-2 rounded-md bg-default text-default-text border-2 border-default-border hover:text-default hover:bg-default-hover add-user">
+                    Thêm người dùng
                 </button>
             </div>
         </div>
@@ -44,11 +46,6 @@
 
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border border-b border-gray-200 bg-gray-50">
-                                Mật khẩu
-                            </th>
-
-                            <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border border-b border-gray-200 bg-gray-50">
                                 Loại tài khoản
                             </th>
                             <th
@@ -63,81 +60,76 @@
                         </thead>
 
                         <tbody class="bg-white">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
-                                <div class="flex items-center">
-                                    1
-                                </div>
+                        @foreach($users as $user)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
+                                    <div class="flex items-center">
+                                        {{ $user->id }}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
+                                    <img src="{{asset('images/' . $user->user_avatar)}}" alt="{{$user->user_name}}"
+                                         class="w-14 h-14">
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-900">
+                                        {{ $user->user_name }}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-900">
+                                        {{ $user->user_username }}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-900">
+                                        {{ $user->user_email }}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
+                                    <p>{{$user->user_type == 0 ? 'Quản lý' : 'Người dùng'}}</p>
+                                </td>
+                                <td class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border border-b border-gray-200">
+                                    <span>{{$user->user_exp}}</span>
+                                </td>
 
-                            </td>
+                                <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#editModal"
+                                            class="text-indigo-600 hover:text-indigo-900">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                             viewBox="0 0 24 24"
+                                             stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                        </svg>
+                                    </button>
+                                </td>
+                                <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
+                                    <a href="#" class="text-gray-600 hover:text-gray-900">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                             viewBox="0 0 24 24"
+                                             stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                    </a>
 
-                            <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
-                                <img src="https://dbk.vn/uploads/ckfinder/images/1-content/anh-dep-1.jpg" alt="dep"
-                                     class="w-14 h-14">
-                            </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900">User
-                                </div>
-                            </td>
+                                </td>
+                                <td class="text-sm font-medium leading-5 whitespace-no-wrap border-b border-gray-200 ">
+                                    <a href="#">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             class="w-6 h-6 text-red-600 hover:text-red-800"
+                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                        </svg>
+                                    </a>
 
-                            <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900">user
-                                </div>
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900">email
-                                </div>
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900">123123
-                                </div>
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
-                                <p>Nguời dùng</p>
-                            </td>
-
-                            <td class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border border-b border-gray-200">
-                                <span>12/20</span>
-                            </td>
-
-                            <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
-                                <button type="button" data-bs-toggle="modal" data-bs-target="#editModal" class="text-indigo-600 hover:text-indigo-900">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                                         viewBox="0 0 24 24"
-                                         stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                    </svg>
-                                </button>
-                            </td>
-                            <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
-                                <a href="#" class="text-gray-600 hover:text-gray-900">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                                         viewBox="0 0 24 24"
-                                         stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                    </svg>
-                                </a>
-
-                            </td>
-                            <td class="text-sm font-medium leading-5 whitespace-no-wrap border-b border-gray-200 ">
-                                <a href="#">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                         class="w-6 h-6 text-red-600 hover:text-red-800"
-                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                    </svg>
-                                </a>
-
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -155,51 +147,52 @@
                 </div>
                 <div class="modal-body">
                     <div class="py-1">
-                        <form class="form" novalidate="">
+                        <form method="post" action="{{ route('user.create') }}" class="form" novalidate="" enctype="multipart/form-data">
+                            @csrf
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Tên người dùng</label>
-                                        <input class="form-control" type="text" name="name" placeholder=""
-                                               value="">
+                                        <input class="form-control" type="text" name="user_name" placeholder=""
+                                               value="" required>
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Tên đăng nhập</label>
-                                                <input class="form-control" type="text" name="name" placeholder=""
-                                                       value="">
+                                                <input class="form-control" type="text" name="user_username" placeholder=""
+                                                       value="" required>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input class="form-control" type="text" name="author" placeholder=""
-                                                       value="">
+                                                <input class="form-control" type="text" name="user_email" placeholder=""
+                                                       value="" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Mật khẩu</label>
-                                            <input class="form-control" type="text" name="type" placeholder="">
+                                            <input class="form-control" type="password" name="user_password" placeholder="" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
                                                 <label style="display: block;" for="status">Loại tài khoản</label>
-                                                <select id="status" name="status">
-                                                    <option value="0">Người dùng</option>
-                                                    <option value="1">Quản lý</option>
+                                                <select id="status" name="user_type" required>
+                                                    <option value="1">Người dùng</option>
+                                                    <option value="0">Quản lý</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Kinh nghiệm</label>
-                                                <input class="form-control" type="text" name="source" placeholder=""
-                                                       value="">
+                                                <input class="form-control" type="text" name="user_exp" placeholder=""
+                                                       value="" required>
                                             </div>
                                         </div>
                                     </div>
@@ -207,14 +200,16 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-sm-6 mb-3">
-                                    <input type="file" name="image">
+                                    <input type="file" class="form-control" name="user_avatar" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col d-flex justify-content-end">
-                                    <button type="button" class="btn btn-secondary me-2 text-default-text bg-default" data-bs-dismiss="modal">Close
+                                    <button type="button" class="btn btn-secondary me-2 text-default-text bg-default"
+                                            data-bs-dismiss="modal">Close
                                     </button>
-                                    <button class="btn btn-primary text-default-text bg-default" type="submit">Thêm</button>
+                                    <button class="btn btn-primary text-default-text bg-default" type="submit">Thêm
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -292,9 +287,11 @@
                             </div>
                             <div class="row">
                                 <div class="col d-flex justify-content-end">
-                                    <button type="button" class="btn btn-secondary me-2 text-default-text bg-default" data-bs-dismiss="modal">Close
+                                    <button type="button" class="btn btn-secondary me-2 text-default-text bg-default"
+                                            data-bs-dismiss="modal">Close
                                     </button>
-                                    <button class="btn btn-primary text-default-text bg-default" type="submit">Sửa</button>
+                                    <button class="btn btn-primary text-default-text bg-default" type="submit">Sửa
+                                    </button>
                                 </div>
                             </div>
                         </form>

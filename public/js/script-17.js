@@ -29,8 +29,6 @@ async function showEditCategory(id, version) {
     const resultVersion = await responseVersion.text();
 
     const text = document.getElementById('inputNameCategory');
-    console.log(version)
-    console.log(resultVersion)
     if (version === resultVersion) {
         const url = '/api/category/get-one/' + id;
         const response = await fetch(url);

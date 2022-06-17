@@ -54,8 +54,8 @@
                                 <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#editModal"
                                             class="text-indigo-600 hover:text-indigo-900 editModel"
-                                            data-id="{{ $hash->encodeHex($category->id) }}"
-                                            data-version="{{ $hash->encodeHex($category->version) }}">
+                                            data-id="{{ $hash->encodeHex($category->id + $salt) }}"
+                                            data-version="{{ $hash->encodeHex($category->version  + $salt) }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
                                              viewBox="0 0 24 24"
                                              stroke="currentColor">
@@ -79,7 +79,7 @@
                                 </td>
                                 <td class="text-sm font-medium leading-5 whitespace-no-wrap border-b border-gray-200 ">
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                            data-id="{{ $hash->encodeHex($category->id) }}"
+                                            data-id="{{ $hash->encodeHex($category->id + $salt) }}"
                                             class="delete-category">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                              class="w-6 h-6 text-red-600 hover:text-red-800"
@@ -118,7 +118,7 @@
                                         <input class="form-control mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
                                                type="text" name="name" placeholder=""
-                                               value="">
+                                               value="" required>
                                     </div>
                                 </div>
                             </div>
@@ -155,7 +155,7 @@
                                         <label>Tên danh mục</label>
                                         <input id="inputNameCategory" class="form-control mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
-                                               type="text" name="name">
+                                               type="text" name="name" required>
                                     </div>
                                 </div>
                             </div>

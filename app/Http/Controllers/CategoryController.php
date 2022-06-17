@@ -20,7 +20,8 @@ class CategoryController extends Controller
         //
         $hash = new Hashids('', 32);
         $categories = Category::all();
-        return view('admin.management.category', compact('categories', 'hash'));
+        $salt = 1122;
+        return view('admin.management.category', compact('categories', 'hash', 'salt'));
     }
 
 
@@ -33,7 +34,6 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
-        $hash = new Hashids('', 32);
         $request->validate([
             'name' => 'required',
         ]);
@@ -82,26 +82,20 @@ class CategoryController extends Controller
     {
         //
         $hash = new Hashids('', 32);
+        $salt = 1122;
         $name = $request->input('name');
-        $version = $hash->decodeHex($request->input('version'));
+        $version = $hash->decodeHex($request->input('version')) - $salt;
         $version++;
-        $id = $hash->decodeHex($id);
+        $id = $hash->decodeHex($id) - $salt;
         $checked = Category::find($id)->update([
             'name' => $name,
             'version' => $version,
         ]);
-//        if ($checked) {
-//            return redirect()->route('category.index')->with('success', 'Cập nhật thành công');
-//        } else {
-//            return redirect()->route('category.index')->with('error', 'Cập nhật thất bại');
-//        }
-        $check = "";
         if ($checked) {
-            $check = 'success';
+            return redirect()->route('category.index')->with('success', 'Cập nhật thành công');
         } else {
-            $check = 'error';
+            return redirect()->route('category.index')->with('error', 'Cập nhật thất bại');
         }
-        return $check;
     }
 
     /**
@@ -115,7 +109,8 @@ class CategoryController extends Controller
         //
 //        $id = $request->id;
         $hash = new Hashids('', 32);
-        Category::find($hash->decodeHex($id))->delete();
+        $salt = 1122;
+        Category::find($hash->decodeHex($id - $salt))->delete();
         return redirect()->route('category.index')->with('success', 'Xóa thành công');
     }
 
@@ -144,14 +139,17 @@ class CategoryController extends Controller
     {
         //
         $hash = new Hashids('', 32);
-        $category = Category::find($hash->decodeHex($id));
+        $salt = 1122;
+        $category = Category::find($hash->decodeHex($id) - $salt);
         return $category;
     }
 
     public function getVersion($id) {
         $hash = new Hashids('', 32);
         $id = $hash->decodeHex($id);
+        $salt = 1122;
+        $id = $id - $salt;
         $category = Category::find($id);
-        return $hash->encodeHex($category->version);
+        return $hash->encodeHex($category->version + $salt);
     }
 }
