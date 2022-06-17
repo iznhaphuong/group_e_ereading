@@ -35,4 +35,9 @@ class Creation extends Model
     {
         return $this->belongsToMany(User::class, 'following_creations');
     }
+
+    public static function isFollowed($id)
+    {
+       echo 'called' + $id;
+    }
 }

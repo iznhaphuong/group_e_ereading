@@ -46,8 +46,10 @@ Route::delete('admin/danh-muc/xoa/{id}', [CategoryController::class, 'destroy'])
 
 Route::get('chi-tiet/{id}', [CreationController::class, 'show'])->name('detail');
 Route::get('chi-tiet-mahoa/{id}', [CreationController::class, 'show2']);
+Route::post('chi-tiet-mahoa/{id}', [FollowingCreationController::class, 'destroy']);
 
 Route::get('dang-theo-doi', [FollowingCreationController::class, 'index'])->name('following');
+Route::post('dang-theo-doi',[FollowingCreationController::class, 'destroy']);
 
 Route::get('lich-su', function () {
     return view('user.creation.history');

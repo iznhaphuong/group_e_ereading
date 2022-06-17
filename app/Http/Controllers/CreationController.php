@@ -8,6 +8,7 @@ use App\Models\CategoryCreation;
 use App\Models\Rating;
 
 use App\Models\Creation;
+use App\Models\FollowingCreation;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
@@ -74,10 +75,10 @@ class CreationController extends Controller
         $creation->description = $request->input('description');
 
         //Processing image
-        if($request->file('image')){
-            $file= $request->file('image');
-            $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('images/covers'), $filename);
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('images/covers'), $filename);
             //save 
             $creation->image = $filename;
         }
@@ -94,7 +95,7 @@ class CreationController extends Controller
             $categoryCreation->creation_id = $creation->id;
             $categoryCreation->save();
         }
-        
+
         return redirect()->route('admin.index')->with('success', 'Thêm truyện thành công');
     }
 
@@ -106,8 +107,8 @@ class CreationController extends Controller
      */
     public function show($id)
     {
-        $ratingAvg = Rating::where('creation_id',$id)->avg('star');
-        return view('user.creation.detail', ['creation' => Creation::find($id)],compact('ratingAvg'));
+        $ratingAvg = Rating::where('creation_id', $id)->avg('star');
+        return view('user.creation.detail', ['creation' => Creation::find($id)], compact('ratingAvg'));
     }
 
     /**
@@ -152,6 +153,8 @@ class CreationController extends Controller
      */
     public function show2($id)
     {
+        $controller = new Controller();
+        $UUID = $controller->getUUID();
         $creation = DB::table('creations')
             ->select('*')
             ->where(
@@ -159,6 +162,16 @@ class CreationController extends Controller
                 '=',
                 $id
             )->get()[0];
-        return view('user.creation.detail', ['creation' => $creation]);
+        $is_followed = FollowingCreation::where([
+            'user_id' => $UUID,
+            'creation_id' => $creation->id
+        ])->count();
+        return view(
+            'user.creation.detail',
+            [
+                'creation' => $creation,
+                'is_followed' => $is_followed
+            ]
+        );
     }
 }

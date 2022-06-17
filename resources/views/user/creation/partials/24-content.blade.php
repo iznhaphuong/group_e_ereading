@@ -5,9 +5,8 @@
 
 {{-- My JS File --}}
 @push('footer-js')
-    <script src="{{ asset('js/ajax.js') }}"></script>
+    <script src="{{ asset('js/script-24.js') }}"></script>
 @endpush
-
 
 <div class="type-24">
     <div class="container">
@@ -17,6 +16,7 @@
                 <div class="container">
                     <!-- Sort -->
                     <form action="{{ url('dang-theo-doi') }}" method="get">
+                        @csrf
                         <select name="sort"
                             data-select="@isset($sort) {{ $sort }}@else{{ 0 }} @endisset"
                             class="mb-3 form-select form-select-sm" aria-label=".form-select-sm example">
@@ -32,6 +32,7 @@
                     </form>
                     <!-- Search box -->
                     <form action="{{ url('dang-theo-doi') }}" method="get">
+                        @csrf
                         <div id="search-box" class="d-flex justify-content-end mb-3">
                             <div class="search-box">
                                 <button class="btn-search" type="submit"><i class="fas fa-search"></i></button>
@@ -41,9 +42,10 @@
                                     placeholder="Nhập từ khóa...">
                             </div>
                         </div>
-
                     </form>
-                    {{ csrf_field() }}
+                    @isset($message)
+                        <i style="color:green">{{ $message }}</i>
+                    @endisset
                 </div>
             </div>
             <div class="col-md-9 col-sm-12">
@@ -62,14 +64,18 @@
                                             @endphp
                                             <li class="button-item"><a href="{{ url('chi-tiet-mahoa/' . $id) }}"
                                                     title="Đọc tiếp"><i class="fa-solid fa-book-open"></i></a></li>
-                                            <li class="button-item"><a href="#" title="Bỏ theo dõi"><i
-                                                        class="fa-solid fa-heart-crack"></i></a></li>
+                                            <li class="unfollow" data-url={{ url()->current() }}
+                                                data-id="{{ $creation->id }}" class="button-item"><a
+                                                    data-bs-toggle="modal" data-bs-target="#notice"
+                                                    title="Bỏ theo dõi"><i class="fa-solid fa-heart-crack"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="m-wrap-genre">
-                                        <div class="genre-item full"></div>
-                                        <div class="genre-item new"></div>
-                                        <div class="genre-item hot"></div>
+                                        @if ($creation->status == 1)
+                                            <div class="genre-item full"></div>
+                                        @endif
+                                        {{-- <div class="genre-item new"></div> --}}
+                                        {{-- <div class="genre-item hot"></div> --}}
                                     </div>
                                     <div class="m-wrap-infor">
                                         <h5 class="card-title text-capitalize pb-2">{{ $creation->name }}</h5>
@@ -87,23 +93,26 @@
         </div>
     </div>
     {{ $creations->links('default.pagination') }}
+
+    <!-- Modal -->
+    <form action="{{ url()->current() }}" method="POST" class="modal fade" id="notice" tabindex="-1"
+        aria-labelledby="notice-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notice-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="notice-body">
+                </div>
+                @csrf
+                <input type="hidden" id="id_hidden" name="id">
+                <input type="hidden" id="url_hidden" name="url" value="{{ url()->current() }}">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bỏ theo dõi</button>
+                    <button id="delete" type="submit" class="btn btn-primary">Xóa</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
-
-<script>
-    const selector = document.querySelector('select')
-    console.log(selector.dataset.select);
-
-    const options = document.querySelectorAll('option')
-    options.forEach(element => {
-        if (element.value == selector.dataset.select.trim()) {
-            element.setAttribute('selected', true)
-        } else {
-            element.removeAttribute('selected')
-        }
-    });
-
-    function updatefield() {
-        const qClone = document.querySelector('#q_clone');
-        qClone.value = document.querySelector('#keyword-following').value
-    }
-</script>
