@@ -238,8 +238,13 @@ class CreationController extends Controller
      * @param  \App\Models\Creation  $creation
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $key = config('key.key');
+
+        $id = Crypt::decryptString($request->input('idDelete1'));
+
+
         $deleted = Creation::find($id);
         $deleted->delete();
         return redirect()->route('admin.index')->with('success', 'Xóa truyện thành công');

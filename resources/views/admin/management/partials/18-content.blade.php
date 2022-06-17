@@ -66,14 +66,21 @@
                         <td class="text-center align-middle">
                           <div class="btn-group align-top">
                             <button class="btn btn-action btn-sm badge editModel" type="button" data-bs-toggle="modal" data-bs-target="#editModal1" data-id="<?php
-                                                                                                                                                              $key = config('key.key');
+                                $key = config('key.key');
 
-                                                                                                                                                              $idMaHoa = $crypt::encryptString($value->id);
+                                $idMaHoa = $crypt::encryptString($value->id);
 
-                                                                                                                                                              echo $idMaHoa;
-                                                                                                                                                              ?>" data-version="{{ $value->version }}" data-url="{{ asset('images/covers/') }}"><i class="fa-solid fa-pen-to-square"></i></button>
+                                echo $idMaHoa;
+                          ?>" data-version="{{ $value->version }}" data-url="{{ asset('images/covers/') }}"><i class="fa-solid fa-pen-to-square"></i></button>
 
-                            <button class="btn btn-action btn-sm badge" type="button" data-bs-target="#deleteModal" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></button>
+                            <button class="btn-delete btn btn-action btn-sm badge" type="button" data-bs-target="#deleteModal" data-name="{{ $value->name }}" 
+                            data-id="<?php
+                                $key = config('key.key');
+
+                                $idMaHoa = $crypt::encryptString($value->id);
+
+                                echo $idMaHoa;
+                          ?>" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></button>
                           </div>
                         </td>
                         <!-- Dữ liệu Nguồn -->
@@ -276,16 +283,18 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Xóa Truyện</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h5 class="modal-title" id="exampleModalLabel">Xóa Truyện</h5> 
             </div>
             <div class="modal-body">
               <div class="py-1">
-                <form class="form" novalidate="">
+                <form class="form" action="{{ route('admin.destroy') }}">
+                  {{ method_field('Delete') }}
+                  @csrf
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <div id="delete-text"></div>
+                        <input type="hidden" name="idDelete1" id="idDelete">
+                        <div id="delete-text" style="text-align: center;"></div>
                       </div>
                     </div>
                   </div>
@@ -293,7 +302,7 @@
                     <div class="col d-flex justify-content-end mt-3">
                       <button type="button" class="btn btn-secondary me-2 text-default-text bg-default" data-bs-dismiss="modal">Đóng
                       </button>
-                      <button type="button" data-bs-dismiss="modal" id="btn-delete" class="btn btn-primary text-default-text me-2 bg-default">Xóa
+                      <button type="submit"  class="btn btn-primary text-default-text me-2 bg-default">Xóa
                       </button>
                     </div>
                   </div>
