@@ -10,8 +10,9 @@ continueClose.addEventListener('click', function () {
 })
 
 function isRead() {
-    const creation_id = continueTitle.innerHTML = continueModal.dataset.id;
+    const creation_id = continueModal.dataset.id;
     var chapter_id = null;
+    var creation_name = continueModal.dataset.name
     console.log(creation_id);
 
     var my_history = JSON.parse(localStorage.getItem('my_history'));
@@ -22,13 +23,15 @@ function isRead() {
     });
 
     if (chapter_id != null) {
-        getRecentChap(creation_id, chapter_id)
+        continueModal.classList.add('show')
+        continueModal.classList.add('d-block')
+        getRecentChap(creation_id, chapter_id, creation_name)
     }
 }
 
 isRead()
 
-async function getRecentChap(creation_id, chapter_id) {
+async function getRecentChap(creation_id, chapter_id, creation_name) {
     const url = '../api/isread';
     const data = {
         creation_id: creation_id,
@@ -46,10 +49,14 @@ async function getRecentChap(creation_id, chapter_id) {
     });
     const result = await response.json();
     console.log(result);
-    if (result != null){
+    if (result != null) {
         continueTitle.innerHTML = `Lần trước bạn đã đọc đến Chương ${result[0].chapter_number}`
         continueBody.innerHTML = `Bạn có muốn tiếp tục đọc chương ${result[0].chapter_number} ${result[0].chapter_name} chứ?`
-        continueLink.setAttribute('href', `${MD5(1)}`)
+        if (result[0].chapter_number == 1) {
+            continueLink.setAttribute('href', `/reading/${MD5(creation_id + creation_name)}`)
+        } else {
+            continueLink.setAttribute('href', `/reading-${MD5(creation_id + result[0].chapter_number)}`)
+        }
     }
 }
 
