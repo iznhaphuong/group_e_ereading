@@ -67,34 +67,34 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
-                                    <img src="{{asset('images/' . $user->user_avatar)}}" alt="{{$user->user_name}}"
+                                    <img src="{{asset('images/' . $user->avatar)}}" alt="{{$user->name}}"
                                          class="w-14 h-14">
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
                                     <div class="text-sm leading-5 text-gray-900">
-                                        {{ $user->user_name }}
+                                        {{ $user->name }}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
                                     <div class="text-sm leading-5 text-gray-900">
-                                        {{ $user->user_username }}
+                                        {{ $user->username }}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
                                     <div class="text-sm leading-5 text-gray-900">
-                                        {{ $user->user_email }}
+                                        {{ $user->email }}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border border-b border-gray-200">
-                                    <p>{{$user->user_type == 0 ? 'Quản lý' : 'Người dùng'}}</p>
+                                    <p>{{$user->type == 0 ? 'Quản lý' : 'Người dùng'}}</p>
                                 </td>
                                 <td class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border border-b border-gray-200">
-                                    <span>{{$user->user_exp}}</span>
+                                    <span>{{$user->exp}}</span>
                                 </td>
 
                                 <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200">
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#editModal"
-                                        data-id="{{ $hash->encodeHex($user->id + $salt) }}" data-version="{{ $hash->encodeHex($user->user_version + $salt)  }}"
+                                        data-id="{{ $hash->encodeHex($user->id + $salt) }}" data-version="{{ $hash->encodeHex($user->version + $salt)  }}"
                                         class="text-indigo-600 hover:text-indigo-900 editModel">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
                                          viewBox="0 0 24 24"
@@ -155,14 +155,14 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Tên người dùng</label>
-                                        <input class="form-control" type="text" name="user_name" placeholder=""
+                                        <input class="form-control" type="text" name="name" placeholder=""
                                                value="" required>
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Tên đăng nhập</label>
-                                                <input class="form-control" type="text" name="user_username"
+                                                <input class="form-control" type="text" name="username"
                                                        placeholder=""
                                                        value="" required>
                                             </div>
@@ -170,7 +170,7 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input class="form-control" type="text" name="user_email" placeholder=""
+                                                <input class="form-control" type="text" name="email" placeholder=""
                                                        value="" required>
                                             </div>
                                         </div>
@@ -178,7 +178,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Mật khẩu</label>
-                                            <input class="form-control" type="password" name="user_password"
+                                            <input class="form-control" type="password" name="password"
                                                    placeholder="" required>
                                         </div>
                                     </div>
@@ -186,7 +186,7 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 <label style="display: block;" for="status">Loại tài khoản</label>
-                                                <select id="status" name="user_type" required>
+                                                <select id="status" name="type" required>
                                                     <option value="1">Người dùng</option>
                                                     <option value="0">Quản lý</option>
                                                 </select>
@@ -195,7 +195,7 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Kinh nghiệm</label>
-                                                <input class="form-control" type="text" name="user_exp" placeholder=""
+                                                <input class="form-control" type="text" name="exp" placeholder=""
                                                        value="" required>
                                             </div>
                                         </div>
@@ -204,7 +204,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-sm-6 mb-3">
-                                    <input accept=".jpg, .jpeg, .png" type="file" class="form-control" name="user_avatar" required>
+                                    <input accept=".jpg, .jpeg, .png" type="file" class="form-control" name="avatar" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -242,14 +242,14 @@
                                         <input type="text" id="inputId" name="id" class="hidden">
                                         <input type="text" id="inputUserVersion" name="version" class="hidden">
                                         <label>Tên người dùng</label>
-                                        <input class="form-control" type="text" name="user_name" placeholder=""
+                                        <input class="form-control" type="text" name="name" placeholder=""
                                                value="" required id="inputUserName">
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Tên đăng nhập</label>
-                                                <input class="form-control" type="text" name="user_username"
+                                                <input class="form-control" type="text" name="username"
                                                        placeholder=""
                                                        id="inputUserUserName"
                                                        value="" required>
@@ -258,7 +258,7 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input class="form-control" type="text" name="user_email" placeholder=""
+                                                <input class="form-control" type="text" name="email" placeholder=""
                                                        id="inputUserEmail"
                                                        value="" required>
                                             </div>
@@ -267,7 +267,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Mật khẩu</label>
-                                            <input class="form-control" type="password" name="user_password"
+                                            <input class="form-control" type="password" name="password"
                                                    id="inputUserPassword"
                                                    placeholder="">
                                         </div>
@@ -276,7 +276,7 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 <label style="display: block;" for="statusTypes">Loại tài khoản</label>
-                                                <select id="statusTypes" name="user_type">
+                                                <select id="statusTypes" name="type">
                                                     <option id="inputUserType0" value="1">Người dùng</option>
                                                     <option id="inputUserType1" value="0">Quản lý</option>
                                                 </select>
@@ -285,7 +285,7 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>Kinh nghiệm</label>
-                                                <input class="form-control" type="text" name="user_exp" placeholder=""
+                                                <input class="form-control" type="text" name="exp" placeholder=""
                                                        id="inputUserExp"
                                                        value="">
                                             </div>
@@ -295,7 +295,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-sm-6 mb-3">
-                                    <input id="userAvatar" type="file" name="user_avatar" required>
+                                    <input id="userAvatar" type="file" name="avatar" required>
                                 </div>
                             </div>
                             <div class="row">
