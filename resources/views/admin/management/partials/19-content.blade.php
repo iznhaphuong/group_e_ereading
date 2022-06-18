@@ -51,7 +51,13 @@
                         <td class="text-nowrap align-middle"><span>{{ $value->creation_id }}</span></td>
                         <td class="text-center align-middle">
                           <div class="btn-group align-top">
-                          <button class="btn btn-action btn-sm badge" type="button" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa-solid fa-pen-to-square"></i></button>
+                          <button class="btn btn-action btn-sm badge editModel" type="button" data-bs-toggle="modal" data-bs-target="#editModal1" data-id="<?php
+                                $key = config('key.key');
+
+                                $idMaHoa = $crypt::encryptString($value->id);
+
+                                echo $idMaHoa;
+                          ?>" data-version="{{ $value->chapter_version }}"><i class="fa-solid fa-pen-to-square"></i></button>
                           <button class="btn-delete btn btn-action btn-sm badge" type="button" data-bs-target="#deleteModal" data-name="{{ $value->chapter_name }}" 
                             data-id="<?php
                                 $key = config('key.key');
@@ -146,7 +152,7 @@
       </div>
 
       <!-- Edit Form Modal -->
-      <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="editModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -162,7 +168,7 @@
                         <div class="col">
                           <div class="form-group">
                             <label>Tên Chương</label>
-                            <input class="form-control" type="text" name="name" placeholder="">
+                            <input class="form-control" type="text" id="nameEdit" name="name" placeholder="">
                           </div>
                         </div>
                       </div>
@@ -170,7 +176,7 @@
                         <div class="col">
                           <div class="form-group">
                             <label style="display: block;" for="id">Thuộc mã tác phẩm</label>
-                            <select class="form-control" id="id" name="creation_id">
+                            <select class="form-control" id="creation_idEdit" name="creation_id">
                               <!-- <option value="0">Chưa Hoàn thành</option>
                             <option value="1">Hoàn thành</option> -->
                             </select>
@@ -178,18 +184,10 @@
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label>Số chương</label>
-                            <input class="form-control" type="text" name="total" placeholder="">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
                         <div class="col mb-3">
                           <div class="form-group">
                             <label>Mô tả chương</label>
-                            <textarea class="form-control" rows="5" name="content" placeholder=""></textarea>
+                            <textarea class="form-control" rows="5" id="contentEdit" name="content" placeholder=""></textarea>
                           </div>
                         </div>
                       </div>

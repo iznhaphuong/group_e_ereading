@@ -6,13 +6,13 @@ creation_edit.forEach(function (item) {
     item.addEventListener('click', (e) => {
         const id = item.dataset.id;
         const version = item.dataset.version;
-        const urlImg = item.dataset.url;
-        showEditCreation(id, version, urlImg);
+
+        showEditCreation(id, version);
     });
 });
 
 async function showEditCreation(id, version, urlImg) {
-    const urlVersion = '/api/admin/get-creation-version/' + id + '/' + version;
+    const urlVersion = '/api/admin/get-chapter-version/' + id + '/' + version;
     const responseVersion = await fetch(urlVersion);
     //Lấy được version hiện tại ở database
     const resultVersion = await responseVersion.text();
