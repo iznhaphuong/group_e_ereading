@@ -1,3 +1,65 @@
+// Continue confirm
+const continueModal = document.querySelector('#continue')
+const continueTitle = document.querySelector('#continue-title')
+const continueBody = document.querySelector('#continue-body')
+const continueLink = document.querySelector('#continue-link')
+const continueClose = document.querySelector('#continue-close')
+
+continueClose.addEventListener('click', function () {
+    continueModal.classList.remove('d-block')
+})
+
+function isRead() {
+    const creation_id = continueModal.dataset.id;
+    var chapter_id = null;
+    var creation_name = continueModal.dataset.name
+    console.log(creation_id);
+
+    var my_history = JSON.parse(localStorage.getItem('my_history'));
+    my_history.forEach(element => {
+        if (element.creation_id == creation_id) {
+            chapter_id = element.chapter_id
+        }
+    });
+
+    if (chapter_id != null) {
+        continueModal.classList.add('show')
+        continueModal.classList.add('d-block')
+        getRecentChap(creation_id, chapter_id, creation_name)
+    }
+}
+
+isRead()
+
+async function getRecentChap(creation_id, chapter_id, creation_name) {
+    const url = '../api/isread';
+    const data = {
+        creation_id: creation_id,
+        chapter_id, chapter_id
+    };
+    const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+    const response = await fetch(url, {
+        method: "post",
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRF-TOKEN': token
+        },
+        body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    console.log(result);
+    if (result != null) {
+        continueTitle.innerHTML = `Lần trước bạn đã đọc đến Chương ${result[0].chapter_number}`
+        continueBody.innerHTML = `Bạn có muốn tiếp tục đọc chương ${result[0].chapter_number} ${result[0].chapter_name} chứ?`
+        if (result[0].chapter_number == 1) {
+            continueLink.setAttribute('href', `/reading/${MD5(creation_id + creation_name)}`)
+        } else {
+            continueLink.setAttribute('href', `/reading-${MD5(creation_id + result[0].chapter_number)}`)
+        }
+    }
+}
+
 // Unfollow confirm
 const noticeTitle = document.querySelector('#notice-title')
 const noticeBody = document.querySelector('#notice-body')

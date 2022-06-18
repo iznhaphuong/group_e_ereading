@@ -47,8 +47,8 @@ $userId = $controller->getUUID();
                         <li class="row">
                             <p class="col-2">
                                 @if ($creation->status == 0)
-                                <i class="fa-solid fa-toggle-off" style="color:red"></i>
-                                Trạng thái
+                                    <i class="fa-solid fa-toggle-off" style="color:red"></i>
+                                    Trạng thái
                             </p>
                             <p class="col-10" style="color:red">Chưa hoàn thành</p>
                             @elseif ($creation->status == 1)
@@ -70,19 +70,29 @@ $userId = $controller->getUUID();
                                 @php
                                 $id = md5($creation->id . $creation->name);
                                 @endphp
-                                <a id="read_story" href="{{ route('chapter.show', $id) }}" class="btn btn-success text-white read-first-chap">Đọc Từ Đầu</a>
-                                <a id="read_new_story" href="#" class="btn btn-primary text-white read-new-chap">Đọc Mới Nhất</a>
+                                
+
+                                <a id="read_story" href="{{ route('chapter.show', $id) }}"
+                                    class="btn btn-success text-white read-first-chap">Đọc Từ Đầu</a>
+                                <a id="read_new_story" href="#"
+                                    class="btn btn-primary text-white read-new-chap">Đọc Mới Nhất</a>
                                 <span id="wrap-follow">
                                     @if ($is_followed == 1)
-                                    <span id="unfollow" onclick="unfollow()" data-id="{{ $creation->id }}" data-name="{{ $creation->name }}" data-url="{{ url()->current() }}" data-bs-toggle="modal" data-bs-target="#notice" class="unfollow-link btn btn-warning"><i class="fa-solid fa-heart-crack"></i> Bỏ theo dõi</span>
+                                        <span id="unfollow" onclick="unfollow()" data-id="{{ $creation->id }}"
+                                            data-name="{{ $creation->name }}" data-url="{{ url()->current() }}"
+                                            data-bs-toggle="modal" data-bs-target="#notice"
+                                            class="unfollow-link btn btn-warning"><i
+                                                class="fa-solid fa-heart-crack"></i> Bỏ theo dõi</span>
                                     @else
-                                    <span onclick="followCreation()" id="follow" data-id="{{ $creation->id }}" data-name="{{ $creation->name }}" data-url="{{ url()->current() }}" class="follow-link btn btn-danger text-white"><i class="fa-solid fa-heart"></i>
-                                        Theo dõi</span>
+                                        <span onclick="followCreation()" id="follow" data-id="{{ $creation->id }}"
+                                            data-name="{{ $creation->name }}" data-url="{{ url()->current() }}"
+                                            class="follow-link btn btn-danger text-white"><i
+                                                class="fa-solid fa-heart"></i>
+                                            Theo dõi</span>
                                     @endif
                                 </span>
                             </p>
                         </li>
-
                     </ul>
                     <hr>
                     <!-- Rating -->
@@ -162,6 +172,26 @@ $userId = $controller->getUUID();
                 </div>
             </div>
         </form>
+
+        <!-- Continue Modal  -->
+        <div data-id="{{ $creation->id }}" data-name="{{ $creation->name }}" class="modal fade" id="continue" tabindex="-1"
+            aria-labelledby="continue-title" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="continue-title"></h5>
+                    </div>
+                    <div class="modal-body" id="continue-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button id="continue-close" type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Đóng</button>
+                        <a href="" id="continue-link" class="btn btn-primary text-white">Tiếp tục</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

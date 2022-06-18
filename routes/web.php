@@ -29,8 +29,14 @@ Route::get('/', function () {
     // return view('admin.management.chapter');
 })->name('home');
 
-//  Admin
-//Route::resource('admin', CreationController::class);
+
+//Trang admin
+Route::get('admin/creation', [CreationController::class, 'index'])->name('admin.index');
+Route::post('admin/creation', [CreationController::class, 'store'])->name('admin.store');
+Route::post('admin/creation/update', [CreationController::class, 'update'])->name('admin.update');
+Route::get('admin/creation/destroy', [CreationController::class, 'destroy'])->name('admin.destroy');
+
+Route::resource('chapter', ChapterController::class);
 
 // Route::get('/reading',[ReadingController::class,'index']);
 
@@ -55,9 +61,7 @@ Route::post('chi-tiet/{id}', [FollowingCreationController::class, 'destroy']);
 Route::get('dang-theo-doi', [FollowingCreationController::class, 'index'])->name('following');
 Route::post('dang-theo-doi',[FollowingCreationController::class, 'destroy']);
 
-Route::get('lich-su', function () {
-    return view('user.creation.history');
-})->name('history');
+Route::get('lich-su', [CreationController::class, 'showHistory'])->name('history');
 
 Route::get('dang-nhap', function () {
     return view('user.auth.login');
@@ -76,4 +80,16 @@ Route::get('reading-{number}', [ChapterController::class, 'paginate'])->name('ch
 //comment
 Route::post('comment', [CommentController::class, 'add'])->name('comment.add');
 
- 
+
+Route::get('/notification', function () {
+    return view('user.demo.notification');
+});
+
+Route::get('get-pusher', function (){
+   return view('user.demo.form_pusher');
+});
+
+Route::get('/pusher', function(Illuminate\Http\Request $request) {
+    event(new App\Events\PusherEvent($request));
+    return redirect('get-pusher');
+});

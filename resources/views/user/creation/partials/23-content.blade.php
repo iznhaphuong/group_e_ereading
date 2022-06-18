@@ -3,8 +3,13 @@
     <link name="style-23" rel="stylesheet" href="{{ asset('css/style-23.css') }}">
 @endpush
 
+{{-- My JS File --}}
+@push('footer-js')
+    <script src="{{ asset('js/script-23.js') }}"></script>
+@endpush
+
 <div class="type-23">
-    <div class="container">
+    <div class="container mb-5">
         <div class="my-5 browsing">Lịch sử</div>
         <div class="row wrap-23">
             <div class="col-md-3 col-sm-12">
@@ -26,117 +31,14 @@
                         </form>
                     </div>
                     <!-- Clear button -->
-                    <button class="btn-clear">Clear All <i class="fa-solid fa-trash-can"></i></a></button>
+                    <button class="btn-clear">Dọn dẹp <i class="fa-solid fa-trash-can"></i></a></button>
                 </div>
             </div>
             <div class="col-md-9 col-sm-12">
                 <!-- Content -->
-                <div class="row row-cols-2 row-cols-md-4 g-3">
-                    <div class="col">
-                        <div class="card text-white">
-                            <img src="{{ asset('images/covers/thandaodanton.jpg') }}" class="card-img" alt="...">
-                            <div class="card-img-overlay">
-                                <div class="m-group-button">
-                                    <ul>
-                                        <li class="button-item"><a href="#" title="Đọc tiếp"><i class="fa-solid fa-book-open"></i></a></li>
-                                        <li class="button-item"><a href="#" title="Xóa"><i class="fa-solid fa-trash-can"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="m-wrap-infor">
-                                    <h5 class="card-title text-capitalize pb-2">Thần đạo đan tôn</h5>
-                                    <div class="card-text d-flex justify-content-between pb-4"><span class="text-capitalize">Cô
-                                            đơn
-                                            địa phi
-                                            - </span>5 ngày trước<span class="comment "><i class="fa-solid fa-comment"></i>
-                                            3</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card text-white">
-                            <img src="{{ asset('images/covers/thandaodanton.jpg') }}" class="card-img" alt="...">
-                            <div class="card-img-overlay">
-                                <div class="m-group-button">
-                                    <ul>
-                                        <li class="button-item"><a href="#" title="Đọc tiếp"><i class="fa-solid fa-book-open"></i></a></li>
-                                        <li class="button-item"><a href="#" title="Xóa"><i class="fa-solid fa-trash-can"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="m-wrap-infor">
-                                    <h5 class="card-title text-capitalize pb-2">Thần đạo đan tôn</h5>
-                                    <div class="card-text d-flex justify-content-between pb-4"><span class="text-capitalize">Cô
-                                            đơn
-                                            địa phi
-                                            - </span>5 ngày trước<span class="comment"><i class="fa-solid fa-comment"></i>
-                                            3</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card text-white">
-                            <img src="{{ asset('images/covers/thandaodanton.jpg') }}" class="card-img" alt="...">
-                            <div class="card-img-overlay">
-                                <div class="m-group-button">
-                                    <ul>
-                                        <li class="button-item"><a href="#" title="Đọc tiếp"><i class="fa-solid fa-book-open"></i></a></li>
-                                        <li class="button-item"><a href="#" title="Xóa"><i class="fa-solid fa-trash-can"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="m-wrap-infor">
-                                    <h5 class="card-title text-capitalize pb-2">Thần đạo đan tôn</h5>
-                                    <div class="card-text d-flex justify-content-between pb-4"><span class="text-capitalize">Cô
-                                            đơn
-                                            địa phi
-                                            - </span>5 ngày trước<span class="comment"><i class="fa-solid fa-comment"></i>
-                                            3</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card text-white">
-                            <img src="{{ asset('images/covers/thandaodanton.jpg') }}" class="card-img" alt="...">
-                            <div class="card-img-overlay">
-                                <div class="m-group-button">
-                                    <ul>
-                                        <li class="button-item"><a href="#" title="Đọc tiếp"><i class="fa-solid fa-book-open"></i></a></li>
-                                        <li class="button-item"><a href="#" title="Xóa"><i class="fa-solid fa-trash-can"></i></a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="m-wrap-infor">
-                                    <h5 class="card-title text-capitalize pb-2">Thần đạo đan tôn</h5>
-                                    <div class="card-text d-flex justify-content-between pb-4"><span class="text-capitalize">Cô
-                                            đơn
-                                            địa phi
-                                            - </span>5 ngày trước<span class="comment"><i class="fa-solid fa-comment"></i>
-                                            3</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="row row-cols-2 row-cols-md-4 g-3" id="creation-show">
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Pagination -->
-    <div class="my-5 d-flex justify-content-center ">
-        <nav aria-label="Pagination">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angle-left"></i></a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angle-right"></i></a></li>
-            </ul>
-        </nav>
     </div>
 </div>

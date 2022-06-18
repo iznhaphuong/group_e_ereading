@@ -2,6 +2,9 @@
 @push('head-css')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+
+@push('footer-js')
+
 <link name="style-11" rel="stylesheet" href="{{ asset('css/style-11.css') }}">
 @endpush
 @section('title', $creation->name . '-Chương ' . $chapter->chapter_number)
@@ -13,7 +16,7 @@
                 <div class="title_name">
                     <span><a href="#">{{$creation->name }}</a></span>
                 </div>
-                <h2 class="title_post_name">{{$chapter->chapter_name}}</h2>
+                <h2 class="title_post_name" id="title" data-creation-id="{{ $creation->id }}">{{$chapter->chapter_name}}</h2>
                 <div class="post_meta_name">
                     <span class="meta-item post-author">
                         <span>Tác giả:</span>
@@ -67,7 +70,7 @@
 
         </div>
         <div class="content">
-            <p class="chapter-content">{{$chapter->chapter_content}}</p>
+            <p class="chapter-content" id="chapter-content" data-chapter-id="{{ $chapter->id }}">{{$chapter->chapter_content}}</p>
         </div>
     </div>
 </div>

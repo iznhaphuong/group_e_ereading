@@ -15,7 +15,9 @@ class ChapterController extends Controller
      */
     public function index()
     {
-
+        $chapter = Chapter::all();
+        $creation = Creation::all();
+        return view('admin.management.chapter', compact('chapter', 'creation'));
     }
 
     /**
@@ -36,7 +38,17 @@ class ChapterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $chapter = new Chapter();
+        //save 
+        $chapter->chapter_name = $request->input('name');
+        $chapter->creation_id = (int)$request->input('creation_id');
+        $chapter->chapter_content = $request->input('content');
+
+
+        //save 
+        $chapter->save();
+
+        return redirect()->route('chapter.index')->with('success', 'Thêm chương thành công');
     }
 
     /**

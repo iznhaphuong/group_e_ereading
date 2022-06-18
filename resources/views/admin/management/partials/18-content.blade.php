@@ -1,6 +1,6 @@
 {{-- My CSS File --}}
 @push('head-css')
-    <link name="style-18" rel="stylesheet" href="{{ asset('css/style-18.css') }}">
+<link name="style-18" rel="stylesheet" href="{{ asset('css/style-18.css') }}">
 @endpush
 
 
@@ -19,9 +19,9 @@
             <div class="card-body">
               <div class="card-title" style="position: relative;">
                 @if ($message = Session::get('success'))
-                  <div class="alert alert-success alert-block" style="position: absolute;left: 0;">
-                          <strong>{{ $message }}</strong>
-                  </div>
+                <div class="alert alert-success alert-block" style="position: absolute;left: 0;">
+                  <strong>{{ $message }}</strong>
+                </div>
                 @endif
                 <!-- <h6 class="mr-2"><span>Users</span><small class="px-1">Be a wise leader</small> -->
                 <button class="btn btn-add" style="float: right;margin-bottom:15px;" type="button" data-bs-toggle="modal" data-bs-target="#createModal">Thêm Truyện</button>
@@ -29,7 +29,7 @@
               </div>
               <div class="e-table">
                 <div class="table-responsive table-lg mt-3">
-                  <table class="table table-bordered">
+                  <table id="datatable" class="table table-bordered">
                     <thead>
                       <tr>
                         <th width="3%">id</th>
@@ -44,7 +44,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    @foreach($dataCreations as $value)
+                      @foreach($dataCreations as $value)
                       <tr>
                         <td class="align-middle">{{ $value->id }}</td>
                         <td class="text-center align-middle">
@@ -55,7 +55,7 @@
                         <td class="text-center align-middle"><span>{{ $value->author }}</span></td>
                         <td class="text-center align-middle">
                           @foreach($value->categories as $category)
-                            {{ $category->name }},
+                          {{ $category->name }},
                           @endforeach
                         </td>
                         <td class="text-center align-middle">{{ $value->status }}</td>
@@ -65,12 +65,28 @@
                         <td class="text-center align-middle">{{ $value->view }}</td>
                         <td class="text-center align-middle">
                           <div class="btn-group align-top">
-                            <button class="btn btn-action btn-sm badge" type="button" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="btn btn-action btn-sm badge" type="button"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-action btn-sm badge editModel" type="button" data-bs-toggle="modal" data-bs-target="#editModal1" data-id="<?php
+                                $key = config('key.key');
+
+                                $idMaHoa = $crypt::encryptString($value->id);
+
+                                echo $idMaHoa;
+                          ?>" data-version="{{ $value->version }}" data-url="{{ asset('images/covers/') }}"><i class="fa-solid fa-pen-to-square"></i></button>
+
+                            <button class="btn-delete btn btn-action btn-sm badge" type="button" data-bs-target="#deleteModal" data-name="{{ $value->name }}" 
+                            data-id="<?php
+                                $key = config('key.key');
+
+                                $idMaHoa = $crypt::encryptString($value->id);
+
+                                echo $idMaHoa;
+                          ?>" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></button>
                           </div>
                         </td>
+                        <!-- Dữ liệu Nguồn -->
+                        <input type="hidden" class="source" name="source" value="{{ $value->source }}">
                       </tr>
-                    @endforeach
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -91,7 +107,6 @@
             </div>
           </div>
         </div>
-
       </div>
 
       <!-- Creation Form Modal -->
@@ -105,7 +120,7 @@
             <div class="modal-body">
               <div class="py-1">
                 <form class="form" active="{{ route('admin.store') }}" method="POST" novalidate="" enctype="multipart/form-data">
-                @csrf
+                  @csrf
                   <div class="row">
                     <div class="col">
                       <div class="row">
@@ -122,21 +137,6 @@
                           </div>
                         </div>
                       </div>
-                      <!-- <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label>Thể loại</label>
-                            <input class="form-control" type="text" name="type" placeholder="">
-                            <label for="creations">Truyện thuộc thể loại:</label>
-                            <select name="creations" id="creations" multiple>
-                              <option value="volvo">Volvo</option>
-                              <option value="saab">Saab</option>
-                              <option value="opel">Opel</option>
-                              <option value="audi">Audi</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div> -->
                       <div class="row" style="align-items: center;margin-top: 20px;">
                         <div class="col">
                           <div class="form-group">
@@ -146,20 +146,20 @@
                         </div>
                         <div class="col">
                           <!-- <div class="form-group"> -->
-                            <label style="display: block;" for="status">Trạng thái</label>
-                            <select id="status" name="status" required>
-                              <option value="0">Chưa Hoàn thành</option>
-                              <option value="1">Hoàn thành</option>
-                            </select>
+                          <label style="display: block;" for="statusadd">Trạng thái</label>
+                          <select id="statusadd" name="status" required>
+                            <option value="0">Chưa Hoàn thành</option>
+                            <option value="1">Hoàn thành</option>
+                          </select>
                           <!-- </div> -->
                         </div>
                         <div class="col" style="display: flex;align-items: center;">
-                            <label for="creations" style="padding-right: 10px;">Thể loại:  </label>
-                            <select name="types[]" id="creations" multiple required>
-                              @foreach($dataCategories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                              @endforeach
-                            </select>
+                          <label for="typeCategory" style="padding-right: 10px;">Thể loại: </label>
+                          <select name="types[]" id="typeCategory" multiple required>
+                            @foreach($dataCategories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                          </select>
                         </div>
                       </div>
                       <div class="row">
@@ -190,64 +190,70 @@
         </div>
       </div>
 
-
       <!-- Edit Form Modal -->
-      <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="editModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Thêm Truyện</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Sửa Truyện</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div class="py-1">
-                <form class="form" novalidate="">
+                <form class="form" id="editForm" method="post" action="{{ route('admin.update') }}" novalidate="" enctype="multipart/form-data">
+                  <!-- {{ csrf_field() }} -->
+                  <!-- {{ method_field('POST') }} -->
+                  @csrf
+                  <input type="hidden" id="idEdit" name="idEdit" value="">
+                  <!-- Dữ liệu Version -->
+                  <input type="hidden" id="versionEdit" class="version" name="version" value="{{ $value->version }}">
                   <div class="row">
                     <div class="col">
                       <div class="row">
                         <div class="col">
                           <div class="form-group">
                             <label>Tên tác phẩm</label>
-                            <input class="form-control" type="text" name="name" placeholder="" value="">
+                            <input class="form-control" id="edit_name" type="text" name="name" placeholder="" value="" required>
                           </div>
                         </div>
                         <div class="col">
                           <div class="form-group">
                             <label>Tác giả</label>
-                            <input class="form-control" type="text" name="author" placeholder="" value="">
+                            <input class="form-control" id="edit_author" type="text" name="author" placeholder="" value="" required>
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label>Thể loại</label>
-                            <input class="form-control" type="text" name="type" placeholder="">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
+                      <div class="row" style="align-items: center;margin-top: 20px;">
                         <div class="col">
                           <div class="form-group">
                             <label>Nguồn</label>
-                            <input class="form-control" type="text" name="source" placeholder="link" value="">
+                            <input class="form-control" id="edit_source" type="text" name="source" placeholder="" value="" required>
                           </div>
                         </div>
                         <div class="col">
-                          <div class="form-group">
-                            <label style="display: block;" for="status">Trạng thái</label>
-                            <select id="status" name="status">
-                              <option value="0">Chưa Hoàn thành</option>
-                              <option value="1">Hoàn thành</option>
-                            </select>
-                          </div>
+                          <!-- <div class="form-group"> -->
+                          <label style="display: block;" for="status">Trạng thái</label>
+                          <select id="edit_status" name="status" required>
+                            <option value="0">Chưa Hoàn thành</option>
+                            <option value="1">Hoàn thành</option>
+                          </select>
+                          <!-- </div> -->
+                        </div>
+                        <div class="col" style="display: flex;align-items: center;">
+                          <label for="types" style="padding-right: 10px;">Thể loại: </label>
+                          <select name="types[]" multiple required id="types">
+                            @foreach($dataCategories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                          </select>
+                          <input type="text" id="edit_types">
                         </div>
                       </div>
                       <div class="row">
                         <div class="col mb-3">
                           <div class="form-group">
                             <label>Mô tả truyện</label>
-                            <textarea class="form-control" rows="5" name="description" placeholder=""></textarea>
+                            <textarea class="form-control" id="edit_description" rows="5" name="description" placeholder="" required></textarea>
                           </div>
                         </div>
                       </div>
@@ -255,13 +261,14 @@
                   </div>
                   <div class="row">
                     <div class="col-12 col-sm-6 mb-3">
-                      <input type="file" name="image">
+                      <input type="file" name="image" id="image" required>
+                      <img id="edit_image" src="" alt="">
                     </div>
                   </div>
                   <div class="row">
                     <div class="col d-flex justify-content-end">
                       <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Close</button>
-                      <button class="btn btn-primary text-white" type="submit">Thêm</button>
+                      <button class="btn btn-primary text-white" id="btn-edit" type="submit">Sửa</button>
                     </div>
                   </div>
                 </form>
@@ -270,6 +277,43 @@
           </div>
         </div>
       </div>
+
+      <!-- Delete Form Modal -->
+      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Xóa Truyện</h5> 
+            </div>
+            <div class="modal-body">
+              <div class="py-1">
+                <form class="form" action="{{ route('admin.destroy') }}">
+                  {{ method_field('Delete') }}
+                  @csrf
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <input type="hidden" name="idDelete1" id="idDelete">
+                        <div id="delete-text" style="text-align: center;"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col d-flex justify-content-end mt-3">
+                      <button type="button" class="btn btn-secondary me-2 text-default-text bg-default" data-bs-dismiss="modal">Đóng
+                      </button>
+                      <button type="submit"  class="btn btn-primary text-default-text me-2 bg-default">Xóa
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
+<script src="{{ asset('js/script-18.js') }}"></script>
