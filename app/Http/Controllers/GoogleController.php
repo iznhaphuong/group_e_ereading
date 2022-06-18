@@ -37,19 +37,20 @@ class GoogleController extends Controller
 
                 Auth::login($finduser);
 
-                return redirect()->route('home');
+                return redirect()->route('dashboard');
 
             }else{
                 $newUser = User::create([
                     'name' => $user->name,
+                    'username' => '',
                     'email' => $user->email,
                     'google_id'=> $user->id,
-                    'password' => "DzeroK"
+                    'password' => "DzeroK",
                 ]);
 
                 Auth::login($newUser);
 
-                return redirect()->route('home');
+                return redirect()->route('dashboard');
             }
 
         } catch (Exception $e) {

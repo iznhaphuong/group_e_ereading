@@ -106,7 +106,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/', function () {
+    Route::get('/dashboard', function () {
         return view('user.creation.home');
-    })->name('home1');
+    })->name('dashboard');
 });
