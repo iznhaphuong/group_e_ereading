@@ -16,17 +16,16 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'name' => 'Người dùng',
-                'username' => 'user',
+
                 'email' => 'user@mail.com',
                 'password' => '12345',
-                'avatar' => '',
+
             ],
             [
                 'name' => 'Admin',
-                'username' => 'admin',
                 'email' => 'admin@mail.com',
                 'password' => '12345',
-                'avatar' => '',
+
             ]
         ]);
     }
