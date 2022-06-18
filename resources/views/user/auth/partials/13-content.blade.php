@@ -16,7 +16,7 @@
                          class="w-full" alt="Sample image"/>
                 </div>
                 <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-                    <form method="POST" action="{{ route('login.custom') }}">
+                    <form method="post" action="{{ route('login.custom') }}">
                         @csrf
                         <div class="flex flex-row items-center justify-center lg:justify-start">
                             <p class="text-lg mb-0 mr-4">Đăng nhập bằng</p>
@@ -30,7 +30,7 @@
                                 </svg>
                             </button>
 
-                            <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light"
+                            <a href="{{ url('auth/google') }}" type="button" data-mdb-ripple="true" data-mdb-ripple-color="light"
                                     class="inline-block p-3 bg-default text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mx-1">
                                 <!-- Linkedin -->
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512" class="w-4 h-4">
@@ -38,7 +38,7 @@
                                     <path fill="currentColor"
                                           d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/>
                                 </svg>
-                            </button>
+                            </a>
 
                             <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light"
                                     class="inline-block p-3 bg-default text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mx-1">
@@ -69,12 +69,12 @@
                         <!-- Email input -->
                         <div class="mb-6">
                             <input type="text"
-                                   class="form-control @error('user_username') is-invalid @enderror block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                   id="user_username" placeholder="Tài khoản / Email"
-                                   name="user_username"
-                                   value="{{ old('user_username') }}" required autofocus/>
-                            @error('user_username')
-                                <span class="invalid-feedback" role="alert">
+                                   class="form-control @error('username') is-invalid @enderror block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                   id="username" placeholder="Tài khoản / Email"
+                                   name="username"
+                                   value="{{ old('username') }}" required autofocus/>
+                            @error('username')
+                            <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
@@ -84,7 +84,7 @@
                         <div class="mb-6">
                             <input type="password"
                                    class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                   id="exampleFormControlInput2" placeholder="Mật khẩu" name="user_password" required/>
+                                   id="exampleFormControlInput2" placeholder="Mật khẩu" name="password" required/>
                         </div>
 
                         <div class="flex justify-between items-center mb-6">

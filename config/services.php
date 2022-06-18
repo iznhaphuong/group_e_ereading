@@ -14,6 +14,12 @@ return [
     |
     */
 
+    'google' => [
+        'client_id' => '788735155968-opiu40ki9pgsqeq51ecbulr8iljg1inn.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'http://localhost:8000/auth/google/callback',
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
