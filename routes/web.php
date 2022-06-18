@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CreationController;
 use App\Http\Controllers\FollowingCreationController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\UserController;
 use App\Models\FollowingCreation;
 use Illuminate\Support\Facades\Route;
@@ -70,6 +71,9 @@ Route::get('dang-nhap', function () {
 })->name('login');
 Route::post('custom-login', [UserController::class, 'login'])->name('login.custom');
 
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
 Route::get('dang-ki', function () {
     return view('user.auth.register');
 })->name('register');
@@ -92,4 +96,14 @@ Route::get('get-pusher', function (){
 Route::get('/pusher', function(Illuminate\Http\Request $request) {
     event(new App\Events\PusherEvent($request));
     return redirect('get-pusher');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/', function () {
+        return view('user.creation.home');
+    })->name('home1');
 });
