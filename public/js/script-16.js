@@ -14,8 +14,8 @@ tailwind.config = {
     }
 }
 
-const user_edit = document.querySelectorAll('.editModel');
-user_edit.forEach(function (item) {
+const edit = document.querySelectorAll('.editModel');
+edit.forEach(function (item) {
     item.addEventListener('click', (e) => {
         const id = item.dataset.id;
         const version = item.dataset.version;
@@ -44,14 +44,14 @@ async function showEditUser(id, version) {
         const response = await fetch(url);
         const result = await response.json();
         btnEdit.className = 'btn btn-primary text-default-text bg-default';
-        userName.value = result.user_name;
-        userUserName.value = result.user_username;
-        userEmail.value = result.user_email;
-        userExp.value = result.user_exp;
+        userName.value = result.name;
+        userUserName.value = result.username;
+        userEmail.value = result.email;
+        userExp.value = result.exp;
         inputId.value = id;
         inputVersion.value = version;
 
-        if (result.user_type === 0) {
+        if (result.type === 0) {
             statusTypes.selectedIndex = "1";
         } else {
             statusTypes.selectedIndex = "0";
@@ -77,8 +77,8 @@ async function showEditUser(id, version) {
     }
 }
 
-const user_del = document.querySelectorAll('.delete-user');
-user_del.forEach(item => {
+const del = document.querySelectorAll('.delete-user');
+del.forEach(item => {
     item.addEventListener('click', (e) => {
         showDeleteUser(item.dataset.id);
     })
@@ -92,5 +92,5 @@ async function showDeleteUser(id) {
     const text = document.getElementById('delete-text');
     const del = document.getElementById('inputIdDel');
     del.value = id;
-    text.innerHTML = 'Bạn có chắc chắn muốn xóa người dùng "' + result.user_name.toUpperCase() + '" này không?';
+    text.innerHTML = 'Bạn có chắc chắn muốn xóa người dùng "' + result.name.toUpperCase() + '" này không?';
 }

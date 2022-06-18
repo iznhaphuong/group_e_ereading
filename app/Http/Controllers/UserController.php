@@ -8,7 +8,6 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -34,17 +33,17 @@ class UserController extends Controller
     public function create(Request $request)
     {
         //
-        if ($request->input('user_password') == $request->input('user_repassword')) {
+        if ($request->input('password') == $request->input('repassword')) {
             $data = new User();
-            if ($request->file('user_avatar')) {
-                $file = $request->file('user_avatar');
+            if ($request->file('avatar')) {
+                $file = $request->file('avatar');
                 $name = date('YmdHi') . $file->getClientOriginalName();
                 $file->move(public_path('images/'), $name);
-                $data['user_avatar'] = $name;
-                $data['user_name'] = $request->input('user_name');
-                $data['user_username'] = $request->input('user_username');
-                $data['user_email'] = $request->input('user_email');
-                $data['user_password'] = Hash::make($request->input('user_password') . 'DzeroK');
+                $data['avatar'] = $name;
+                $data['name'] = $request->input('name');
+                $data['username'] = $request->input('username');
+                $data['email'] = $request->input('email');
+                $data['password'] = $request->input('password');
             }
             $checked = $data->save();
             if ($checked) {
@@ -67,17 +66,17 @@ class UserController extends Controller
     {
         //
         $data = new User();
-        if ($request->file('user_avatar')) {
-            $file = $request->file('user_avatar');
+        if ($request->file('avatar')) {
+            $file = $request->file('avatar');
             $name = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('images/'), $name);
-            $data['user_avatar'] = $name;
-            $data['user_name'] = $request->input('user_name');
-            $data['user_username'] = $request->input('user_username');
-            $data['user_email'] = $request->input('user_email');
-            $data['user_password'] = Hash::make($request->input('user_password') . 'DzeroK');
-            $data['user_type'] = $request->input('user_type');
-            $data['user_exp'] = $request->input('user_exp');
+            $data['avatar'] = $name;
+            $data['name'] = $request->input('name');
+            $data['username'] = $request->input('username');
+            $data['email'] = $request->input('email');
+            $data['password'] = $request->input('password');
+            $data['type'] = $request->input('type');
+            $data['exp'] = $request->input('exp');
         }
         $checked = $data->save();
         if ($checked) {
@@ -124,27 +123,27 @@ class UserController extends Controller
         $id = $hash->decodeHex($request->input('id')) - $salt;
         $version = $hash->decodeHex($request->input('version')) - $salt;
         $version++;
-        if ($request->file('user_avatar')) {
-            $file = $request->file('user_avatar');
+        if ($request->file('avatar')) {
+            $file = $request->file('avatar');
             $name = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('images/'), $name);
-            $data['user_avatar'] = $name;
-            $data['user_name'] = $request->input('user_name');
-            $data['user_username'] = $request->input('user_username');
-            $data['user_email'] = $request->input('user_email');
-            $data['user_password'] = Hash::make($request->input('user_password') . 'DzeroK');
-            $data['user_type'] = $request->input('user_type');
-            $data['user_exp'] = $request->input('user_exp');
+            $data['avatar'] = $name;
+            $data['name'] = $request->input('name');
+            $data['username'] = $request->input('username');
+            $data['email'] = $request->input('email');
+            $data['password'] = $request->input('password');
+            $data['type'] = $request->input('type');
+            $data['exp'] = $request->input('exp');
         }
         $checked = User::find($id)->update([
-            'user_name' => $request->input('user_name'),
-            'user_username' => $request->input('user_username'),
-            'user_email' => $request->input('user_email'),
-            'user_password' => Hash::make($request->input('user_password') . 'DzeroK'),
-            'user_avatar' => $data['user_avatar'],
-            'user_type' => $request->input('user_type'),
-            'user_exp' => $request->input('user_exp'),
-            'user_version' => $version,
+            'name' => $request->input('name'),
+            'username' => $request->input('username'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+            'avatar' => $data['avatar'],
+            'type' => $request->input('type'),
+            'exp' => $request->input('exp'),
+            'version' => $version,
         ]);
         if ($checked) {
             return redirect()->route('user.index')->with('success', 'Cập nhật thành công');
@@ -189,7 +188,7 @@ class UserController extends Controller
         $salt = 1122;
         $id = $id - $salt;
         $user = User::find($id);
-        return $hash->encodeHex($user->user_version + $salt);
+        return $hash->encodeHex($user->version + $salt);
     }
 
 
@@ -197,13 +196,8 @@ class UserController extends Controller
     {
         $input = $request->all();
 
-        $this->validate($request, [
-            'user_username' => 'required',
-            'user_password' => 'required',
-        ]);
-
-        $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'user_email' : 'user_username';
-        if (auth()->attempt(array($fieldType => $input['user_username'], 'password' => Hash::make($input['user_password'] . 'DzeroK')))) {
+        $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        if (auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password']))) {
             return redirect()->route('home');
         } else {
             return redirect()->route('login')

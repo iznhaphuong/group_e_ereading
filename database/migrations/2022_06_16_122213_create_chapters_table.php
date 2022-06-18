@@ -20,7 +20,8 @@ class CreateChaptersTable extends Migration
             $table->text('chapter_content')->nullable(false);
             $table->unsignedBigInteger('creation_id');
             $table->integer('chapter_version')->default(1);;
-            $table->foreign('creation_id')->references('id')->on('creations')->onDelete('cascade');;
+            $table->foreign('creation_id')->references('id')->on('creations')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
