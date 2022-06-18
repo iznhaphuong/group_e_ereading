@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Rating;
-
+use App\Models\Comment;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-class RatingController extends Controller
+class CommentController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -34,23 +33,22 @@ class RatingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
-
     public function add(Request $request)
     {
-        $rated = Rating::where($request->only('creation_id', 'user_id'))->first();
-        // $mess = "Bạn đã gửi đánh giá!";
-        if ($rated) {
-            return redirect()->back()->with('messFail', 'Bạn đã đánh giá truyện này trước đó!');
-        } else {
-            Rating::create($request->only('creation_id', 'user_id', 'star'));
-            return redirect()->back()->with('messSuc', 'Cảm ơn bạn đã gửi đánh giá!');
-        }
-        // return redirect()->back();
+        $controller = new Controller();
+        $UUID = $controller->getUUID();
+        $comment = new Comment();
+        //save 
+        $comment->user_id =$UUID;
+        $comment->creation_id = $request->input('creation_id');
+        $comment->comment_content = $request->input('comment_content');
+        $creation_id = $comment->creation_id ;
+        $data=array('user_id'=>$comment->user_id,"creation_id"=>$comment->creation_id,"comment_content"=>$comment->comment_content);
+        DB::table('comments')->insert($data);
+        // return redirect()->route( 'comment.show' )->with( [ 'creation_id' => $creation_id ] );
+        return redirect()->back();
     }
+
     /**
      * Display the specified resource.
      *
@@ -59,16 +57,17 @@ class RatingController extends Controller
      */
     public function show($id)
     {
-        return view('user.creation.detail', ['creation' => Creation::find($id)]);
+        
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Creation  $creation
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Creation $creation)
+    public function edit($id)
     {
         //
     }
@@ -77,10 +76,10 @@ class RatingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Creation  $creation
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Creation $creation)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -88,10 +87,10 @@ class RatingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Creation  $creation
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Creation $creation)
+    public function destroy($id)
     {
         //
     }

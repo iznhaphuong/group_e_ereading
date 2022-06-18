@@ -10,6 +10,7 @@ use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +84,8 @@ Route::get('reading/{creationId}', [ChapterController::class, 'show'])->name('ch
 Route::post('/add-rating', [RatingController::class, 'add'])->name('rating');
 //read-chapter
 Route::get('reading-{number}', [ChapterController::class, 'paginate'])->name('chapter.next');
+//comment
+Route::post('comment', [CommentController::class, 'add'])->name('comment.add');
 
 
 Route::get('/notification', function () {
