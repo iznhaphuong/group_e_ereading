@@ -72,7 +72,7 @@ $userId = $controller->getUUID();
                                 @endphp
                                 
 
-                                <a id="read_story" href="{{ route('chapter.show', $id) }}"
+                                <a id="read_story" href="{{ route('chapter.show', $id) }} "onclick="getRead()"
                                     class="btn btn-success text-white read-first-chap">Đọc Từ Đầu</a>
                                 <a id="read_new_story" href="#"
                                     class="btn btn-primary text-white read-new-chap">Đọc Mới Nhất</a>
@@ -199,13 +199,11 @@ $userId = $controller->getUUID();
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script>
-    // const dataID = document.getElementById('data-id');
-    // function checkRating() {
-    //     if (localStorage.getItem('isLiked ' + dataID.value) !== null) {
-    //         btnLike.disabled = true
-    //     }
-    // }
-    // checkRating();
+    const userID = document.getElementById('user_id');
+    function getRead() {
+        localStorage.setItem('isRead ' + userID.value, 'true');
+    }
+    checkRating();
     $(function() {
 
         let ratingAvg = parseFloat('{{$ratingAvg}}').toFixed(2);

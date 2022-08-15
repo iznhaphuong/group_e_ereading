@@ -7,7 +7,15 @@
 
 <link name="style-11" rel="stylesheet" href="{{ asset('css/style-11.css') }}">
 @endpush
+
 @section('title', $creation->name . '-Chương ' . $chapter->chapter_number)
+<?php
+
+use App\Http\Controllers\Controller;
+
+$controller = new Controller();
+$userId = $controller->getUUID();
+?>
 
 <div class="type-11">
     <div class="container my-5">
@@ -25,7 +33,8 @@
 
                 </div>
             </div>
-
+            <input type="hidden" class="form-control" name="user_id" id="user_id" value="{{$userId}}" />
+            
             <div class="chapter_pagination">
                 @php
                 $prevId = md5($creation->id . $chapter->chapter_number-1);
@@ -54,7 +63,7 @@
                     @endif
                     @endforeach
                 </select>
-                
+
                 @if ($chapter->chapter_number == $endChapter->chapter_number)
                 <a class="next-page m-3 pagi" style="display: none;" id="next-chapter" href="{{  url('reading-' . $nextId) }}">
                     <span>Chương sau</span>

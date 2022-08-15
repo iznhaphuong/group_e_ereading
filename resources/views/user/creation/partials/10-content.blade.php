@@ -15,7 +15,7 @@
                 <div class="card mb-3 comment-user" style="max-width: 767px; height:125px;">
                     <div class="row g-0">
                         <div class="col-md-1">
-                            <img src="./images/images.png" class="img-fluid img-user" alt="...">
+                            <img src="{{asset('images/images.png')}}" class="img-fluid img-user" alt="...">
                         </div>
                         <div class="col-md-11">
                             <div class="comment-meta">
