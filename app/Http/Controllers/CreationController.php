@@ -46,11 +46,12 @@ class CreationController extends Controller
         //
     }
 
-    public function checkVersion($id, $version) {
+    public function checkVersion($id, $version)
+    {
         $key = config('key.key');
 
         $idSua = Crypt::decryptString($id);
-        
+
         $creation = Creation::find($idSua);
 
         list($encryptVersion, $mac) = explode(':', $version);
@@ -66,8 +67,9 @@ class CreationController extends Controller
         return false;
     }
 
-    public function getCreation($id) {
-        
+    public function getCreation($id)
+    {
+
         $idSua = Crypt::decryptString($id);
 
         $creation = Creation::find($idSua);
@@ -110,8 +112,8 @@ class CreationController extends Controller
         $creation->source = $request->input('source');
         $creation->status = $request->input('status');
         $creation->description = $request->input('description');
-            // print_r($request->file('image'));
-            // die;
+        // print_r($request->file('image'));
+        // die;
         //Processing image
         if ($request->file('image')) {
             $file = $request->file('image');
@@ -148,6 +150,8 @@ class CreationController extends Controller
         //
     }
 
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -170,7 +174,7 @@ class CreationController extends Controller
 
 
         //Cập nhật và xóa bảng truyện thuộc danh mục nào
-        if($request->input('types') != null){
+        if ($request->input('types') != null) {
             DB::table('category_creation')->where('creation_id', (int)$id)->delete();
 
             foreach ($request->input('types') as $value) {
@@ -184,15 +188,15 @@ class CreationController extends Controller
         $creation->description = $request->input('description');
 
         //Edit image
-        if($request->hasFile('image')){
-            $destination = 'images/covers/'.$creation->image;
-            if(File::exists($destination)){
+        if ($request->hasFile('image')) {
+            $destination = 'images/covers/' . $creation->image;
+            if (File::exists($destination)) {
                 File::delete($destination);
             }
-            $file= $request->file('image');
+            $file = $request->file('image');
             $extention = $file->getClientOriginalName();
-            $filename = time().'.'.$extention;
-            $file-> move(public_path('images/covers'), $filename);
+            $filename = time() . '.' . $extention;
+            $file->move(public_path('images/covers'), $filename);
             //save 
             $creation->image = $filename;
         }
@@ -216,7 +220,7 @@ class CreationController extends Controller
                 return redirect()->route('admin.index')->with('success', 'Edit truyện thành công');
             }
         }
-        
+
         return redirect()->route('admin.index')->with('success', 'Version của bạn đã cũ');
     }
 
@@ -246,7 +250,7 @@ class CreationController extends Controller
      */
     public function show($id)
     {
-        
+
 
         $controller = new Controller();
         $UUID = $controller->getUUID();
@@ -306,5 +310,9 @@ class CreationController extends Controller
             ->select('chapters.chapter_number', 'chapters.chapter_name')
             ->where('chapters.id', '=', $chapter_id)->get();
         return $chap_number;
-        }
+    }
+    public function countViews(Request $request)
+    {
+        //
+    }
 }

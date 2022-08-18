@@ -13,14 +13,16 @@ function isRead() {
     const creation_id = continueModal.dataset.id;
     var chapter_id = null;
     var creation_name = continueModal.dataset.name
-    console.log(creation_id);
 
     var my_history = JSON.parse(localStorage.getItem('my_history'));
-    my_history.forEach(element => {
-        if (element.creation_id == creation_id) {
-            chapter_id = element.chapter_id
-        }
-    });
+    if (my_history !== null) {
+        my_history.forEach(element => {
+            if (element.creation_id == creation_id) {
+                chapter_id = element.chapter_id
+            }
+        });
+    }
+
 
     if (chapter_id != null) {
         continueModal.classList.add('show')
@@ -48,7 +50,6 @@ async function getRecentChap(creation_id, chapter_id, creation_name) {
         body: JSON.stringify(data)
     });
     const result = await response.json();
-    console.log(result);
     if (result != null) {
         continueTitle.innerHTML = `Lần trước bạn đã đọc đến Chương ${result[0].chapter_number}`
         continueBody.innerHTML = `Bạn có muốn tiếp tục đọc chương ${result[0].chapter_number} ${result[0].chapter_name} chứ?`
@@ -110,3 +111,25 @@ async function followCreation() {
         `
     }
 }
+function countViews(){
+    // const url = '../api/countViews';
+    const token = localStorage.getItem('view');
+    console.log("token - " + token);
+    
+    // const data = {
+    //     creation_id: creation_id,
+    //     count: countViews
+    // };
+    // const response = await fetch(url, {
+    //     method: "post",
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         'Accept': 'application/json',
+    //         'X-CSRF-TOKEN': token
+    //     },
+    //     body: JSON.stringify(data)
+    // });
+
+    // const result = await response.text();
+}
+countViews();

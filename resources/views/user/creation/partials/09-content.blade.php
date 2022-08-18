@@ -47,8 +47,8 @@ $userId = $controller->getUUID();
                         <li class="row">
                             <p class="col-2">
                                 @if ($creation->status == 0)
-                                    <i class="fa-solid fa-toggle-off" style="color:red"></i>
-                                    Trạng thái
+                                <i class="fa-solid fa-toggle-off" style="color:red"></i>
+                                Trạng thái
                             </p>
                             <p class="col-10" style="color:red">Chưa hoàn thành</p>
                             @elseif ($creation->status == 1)
@@ -69,26 +69,19 @@ $userId = $controller->getUUID();
                             <p class="col-12">
                                 @php
                                 $id = md5($creation->id . $creation->name);
-                                @endphp
-                                
+                                $cre_id = $creation->id;
 
-                                <a id="read_story" href="{{ route('chapter.show', $id) }}"
-                                    class="btn btn-success text-white read-first-chap">Đọc Từ Đầu</a>
-                                <a id="read_new_story" href="#"
-                                    class="btn btn-primary text-white read-new-chap">Đọc Mới Nhất</a>
+                                @endphp
+
+
+                                <a id="read_story" href="{{ route('chapter.show', $id) }} " onclick="getRead()" class="btn btn-success text-white read-first-chap">Đọc Từ Đầu</a>
+                                <a id="read_new_story" href="#" class="btn btn-primary text-white read-new-chap">Đọc Mới Nhất</a>
                                 <span id="wrap-follow">
                                     @if ($is_followed == 1)
-                                        <span id="unfollow" onclick="unfollow()" data-id="{{ $creation->id }}"
-                                            data-name="{{ $creation->name }}" data-url="{{ url()->current() }}"
-                                            data-bs-toggle="modal" data-bs-target="#notice"
-                                            class="unfollow-link btn btn-warning"><i
-                                                class="fa-solid fa-heart-crack"></i> Bỏ theo dõi</span>
+                                    <span id="unfollow" onclick="unfollow()" data-id="{{ $creation->id }}" data-name="{{ $creation->name }}" data-url="{{ url()->current() }}" data-bs-toggle="modal" data-bs-target="#notice" class="unfollow-link btn btn-warning"><i class="fa-solid fa-heart-crack"></i> Bỏ theo dõi</span>
                                     @else
-                                        <span onclick="followCreation()" id="follow" data-id="{{ $creation->id }}"
-                                            data-name="{{ $creation->name }}" data-url="{{ url()->current() }}"
-                                            class="follow-link btn btn-danger text-white"><i
-                                                class="fa-solid fa-heart"></i>
-                                            Theo dõi</span>
+                                    <span onclick="followCreation()" id="follow" data-id="{{ $creation->id }}" data-name="{{ $creation->name }}" data-url="{{ url()->current() }}" class="follow-link btn btn-danger text-white"><i class="fa-solid fa-heart"></i>
+                                        Theo dõi</span>
                                     @endif
                                 </span>
                             </p>
@@ -123,7 +116,7 @@ $userId = $controller->getUUID();
             </div>
             <!-- Description -->
             <div class="wrap-description mt-5 mb-0">
-                <p class="title-list text-uppercase"><i class='fa fa-book'></i> danh sách chương</p>
+                <p class="title-list text-uppercase"><i class='fa fa-book'></i> tóm tắt truyện</p>
                 <hr>
                 <p>{{ $creation->description }}</p>
             </div>
@@ -174,8 +167,7 @@ $userId = $controller->getUUID();
         </form>
 
         <!-- Continue Modal  -->
-        <div data-id="{{ $creation->id }}" data-name="{{ $creation->name }}" class="modal fade" id="continue" tabindex="-1"
-            aria-labelledby="continue-title" aria-hidden="true">
+        <div data-id="{{ $creation->id }}" data-name="{{ $creation->name }}" class="modal fade" id="continue" tabindex="-1" aria-labelledby="continue-title" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -185,8 +177,7 @@ $userId = $controller->getUUID();
                         ...
                     </div>
                     <div class="modal-footer">
-                        <button id="continue-close" type="button" class="btn btn-secondary"
-                            data-bs-dismiss="modal">Đóng</button>
+                        <button id="continue-close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                         <a href="" id="continue-link" class="btn btn-primary text-white">Tiếp tục</a>
                     </div>
                 </div>
@@ -199,12 +190,28 @@ $userId = $controller->getUUID();
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script>
-    // const dataID = document.getElementById('data-id');
-    // function checkRating() {
-    //     if (localStorage.getItem('isLiked ' + dataID.value) !== null) {
-    //         btnLike.disabled = true
-    //     }
-    // }
+    function getRead() {
+        const userID = document.getElementById('user_id').value;
+        const creationId = document.getElementById('creation_id').value;
+        let view = JSON.parse(localStorage.getItem('view'));
+        //đếm lượt view từ local->gửi kq đếm được vào countViews
+        // xét theo creation_id để thêm countViews vào 
+        // Nếu truyện có token đó rồi thì không + lên nữa
+        if (view == null || view.length == 0) {
+            view = []
+            view.push({
+                'creation_id': creationId,
+                'userID': userID
+            })
+        } else {
+            // bug: xử lý đã có cùng userID+creID
+            view.push({
+                'creation_id': creationId,
+                'userID': userID
+            })
+        }
+        localStorage.setItem('view', JSON.stringify(view));
+    }
     // checkRating();
     $(function() {
 
