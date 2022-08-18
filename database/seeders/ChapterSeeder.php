@@ -17,7 +17,7 @@ class ChapterSeeder extends Seeder
             [
                 'chapter_name' => 'Chương 1: Mở đầu',
                 'chapter_number' =>'1',
-                'creation_id' => '5',
+                'creation_id' => '2',
                 'chapter_content' => '.......
                 " - Tha thu... Lôi Phá Quyền...!
                 Những tia sét vẫn còn bao quanh nắm đấm của tôi như xác nhận lại chưởng lực vừa rồi từ đâu mà ra, con ma cà rồng hộc máu tươi đau đớn nói không lên lời, rồi nó gồng hết sức lại rống lên một tiếng cực lớn... "
@@ -50,7 +50,7 @@ class ChapterSeeder extends Seeder
             ],
             [
                 'chapter_name' => 'Chương 2: Cái chết bí ẩn 1',
-                'creation_id' => '5',
+                'creation_id' => '2',
                 'chapter_number' =>'2',
                 'chapter_content' => 'Khuya hôm đó...
                 Như thường lệ, Lâm cùng Tuấn ôm laptop nghiền ngẫm tiếp mấy bộ truyện ma. Đêm nào hai thằng cũng thức đến gần sáng để ngấu nghiến từng bộ một. Còn Nam và Cường đã ngủ say từ 8-9 giờ tối (phòng ký túc có 4 người, gồm Lâm, Tuấn, Nam và Cường). Khác với Lâm mỗi lần thức khuya là sáng hôm sau lại ngủ gục trong giờ, Tuấn có thể thức thâu đêm mà sáng ra vẫn tỉnh táo như thường.

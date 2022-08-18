@@ -33,3 +33,4 @@ Route::get('/user/get-version/{id}', [UserController::class, 'getVersion']);
 Route::post('/follow', [FollowingCreationController::class, 'store']);
 Route::post('/history', [CreationController::class, 'getHistory']);
 Route::post('/isread', [CreationController::class, 'getRecentChap']);
+Route::post('/countViews', [CreationController::class, 'countViews']);

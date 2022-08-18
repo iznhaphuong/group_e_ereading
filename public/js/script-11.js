@@ -29,9 +29,9 @@ if (flag) {
 console.log(my_history);
 localStorage.setItem('my_history', JSON.stringify(my_history))
 
-const userID = document.getElementById('user_id');
-if (localStorage.getItem('isRead ' + userID.value) !== null) {
-    localStorage.setItem('read', )
-}
+//Counting View
+
+
+
 const chapter = document.querySelector('#select-chapter').value;
 
