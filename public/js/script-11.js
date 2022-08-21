@@ -29,9 +29,5 @@ if (flag) {
 console.log(my_history);
 localStorage.setItem('my_history', JSON.stringify(my_history))
 
-//Counting View
-
-
-
 const chapter = document.querySelector('#select-chapter').value;
 

@@ -299,7 +299,6 @@ class CreationController extends Controller
     {
         return view('user.creation.history');
     }
-
     public function getRecentChap(Request $request)
     {
         $creation_id = $request->creation_id;
@@ -313,6 +312,10 @@ class CreationController extends Controller
     }
     public function countViews(Request $request)
     {
-        //
+        $creation_id = $request->creation_id;
+        $views = $request->views;
+        DB::table('creations')->where('id', $creation_id)
+            ->update(['view' => $views]);
+        return view('user.creation.detail');
     }
 }

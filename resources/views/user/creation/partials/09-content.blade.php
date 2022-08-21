@@ -13,7 +13,7 @@ use App\Http\Controllers\Controller;
 
 $controller = new Controller();
 $userId = $controller->getUUID();
-
+$view = $creation->view;
 
 ?>
 <div class="type-09">
@@ -70,11 +70,11 @@ $userId = $controller->getUUID();
                                 @php
                                 $id = md5($creation->id . $creation->name);
                                 $cre_id = $creation->id;
-
+                                $view =$creation->view;
                                 @endphp
+                                
 
-
-                                <a id="read_story" href="{{ route('chapter.show', $id) }} " onclick="getRead()" class="btn btn-success text-white read-first-chap">Đọc Từ Đầu</a>
+                                <a id="read_story" href="{{ route('chapter.show', $id) }} " onclick="countViews(<?php echo $view ?>)" class="btn btn-success text-white read-first-chap">Đọc Từ Đầu</a>
                                 <a id="read_new_story" href="#" class="btn btn-primary text-white read-new-chap">Đọc Mới Nhất</a>
                                 <span id="wrap-follow">
                                     @if ($is_followed == 1)
@@ -190,28 +190,6 @@ $userId = $controller->getUUID();
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script>
-    function getRead() {
-        const userID = document.getElementById('user_id').value;
-        const creationId = document.getElementById('creation_id').value;
-        let view = JSON.parse(localStorage.getItem('view'));
-        //đếm lượt view từ local->gửi kq đếm được vào countViews
-        // xét theo creation_id để thêm countViews vào 
-        // Nếu truyện có token đó rồi thì không + lên nữa
-        if (view == null || view.length == 0) {
-            view = []
-            view.push({
-                'creation_id': creationId,
-                'userID': userID
-            })
-        } else {
-            // bug: xử lý đã có cùng userID+creID
-            view.push({
-                'creation_id': creationId,
-                'userID': userID
-            })
-        }
-        localStorage.setItem('view', JSON.stringify(view));
-    }
     // checkRating();
     $(function() {
 
