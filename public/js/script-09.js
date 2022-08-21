@@ -102,7 +102,6 @@ async function followCreation() {
         idHidden.value = followBtn.dataset.id;
         urlHidden.value = followBtn.dataset.url;
         noticeBody.innerHTML = `Bạn có chắc sẽ bỏ theo dõi chứ. Nếu bỏ theo dõi bạn sẽ không còn nhận được thông báo từ ${name} nữa.`
-
         alert('Theo dõi thành công')
         const wrapFollow = document.querySelector('#wrap-follow')
         wrapFollow.innerHTML =
@@ -111,25 +110,25 @@ async function followCreation() {
         `
     }
 }
-function countViews(){
-    // const url = '../api/countViews';
-    const token = localStorage.getItem('view');
-    console.log("token - " + token);
-    
-    // const data = {
-    //     creation_id: creation_id,
-    //     count: countViews
-    // };
-    // const response = await fetch(url, {
-    //     method: "post",
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'Accept': 'application/json',
-    //         'X-CSRF-TOKEN': token
-    //     },
-    //     body: JSON.stringify(data)
-    // });
 
-    // const result = await response.text();
+//Counting views
+async function countViews(view) {
+    let addView = view + 1 ;
+    alert(addView);
+    const creationId = document.getElementById('creation_id').value;
+    const url = '../api/countViews';
+    const data = {
+        'creation_id': creationId,
+        'views': addView,
+    };
+    const response = await fetch(url, {
+        method: "post",
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify(data)
+    });
+
 }
-countViews();
+
