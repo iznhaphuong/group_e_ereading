@@ -114,6 +114,7 @@ async function followCreation() {
 //Counting views
 async function countViews(view) {
     let addView = view + 1 ;
+    alert(addView);
     const creationId = document.getElementById('creation_id').value;
     const url = '../api/countViews';
     const data = {

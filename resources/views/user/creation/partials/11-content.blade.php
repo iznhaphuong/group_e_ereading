@@ -34,7 +34,7 @@ $userId = $controller->getUUID();
                 </div>
             </div>
             <input type="hidden" class="form-control" name="user_id" id="user_id" value="{{$userId}}" />
-            
+
             <div class="chapter_pagination">
                 @php
                 $prevId = md5($creation->id . $chapter->chapter_number-1);
