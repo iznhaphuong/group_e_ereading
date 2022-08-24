@@ -177,7 +177,9 @@ class UserController extends Controller
         //
         $hash = new Hashids('', 32);
         $salt = 1122;
-        $user = User::find($hash->decodeHex($id) - $salt);
+        // $user = User::find($hash->decodeHex($id) - $salt);
+        $user = User::find($id);
+
         return $user;
     }
 
@@ -205,4 +207,6 @@ class UserController extends Controller
         }
 
     }
+    
+
 }
