@@ -29,5 +29,7 @@ if (flag) {
 console.log(my_history);
 localStorage.setItem('my_history', JSON.stringify(my_history))
 
-const chapter = document.querySelector('#select-chapter').value;
-
+function selectChap() {
+    const chapter = document.querySelector('#select-chapter').value;
+    console.log(chapter);
+}

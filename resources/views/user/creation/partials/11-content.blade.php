@@ -34,7 +34,7 @@ $userId = $controller->getUUID();
                 </div>
             </div>
             <input type="hidden" class="form-control" name="user_id" id="user_id" value="{{$userId}}" />
-            
+
             <div class="chapter_pagination">
                 @php
                 $prevId = md5($creation->id . $chapter->chapter_number-1);
@@ -53,13 +53,16 @@ $userId = $controller->getUUID();
                     <span>Chương trước</span>
                 </a>
                 @endif
-                <select class="form-select select-page m-3" id="select-chapter" name="select-chapter" aria-label="Default select example">
+                <select class="form-select select-page m-3" id="select-chapter" onchange="selectChap()" name="select-chapter" aria-label="Default select example">
                     <option selected>Chương {{$chapter->chapter_number}}</option>
                     @foreach($chapterList as $chap)
                     @if($chap->chapter_number != $chapter->chapter_number)
-                    <a href="{{  url('reading-' . $chap->chapter_number) }}">
-                        <option value="{{$chap->chapter_number}}">Chương {{$chap->chapter_number}}</option>
-                    </a>
+                    @php
+                    $ch = $chap->chapter_number;
+                    @endphp
+                    <!-- <a href="{{  url('reading-' . $ch ) }}"> -->
+                    <option value="{{$chap->chapter_number}}">Chương {{$chap->chapter_number}}</option>
+                    <!-- </a> -->
                     @endif
                     @endforeach
                 </select>

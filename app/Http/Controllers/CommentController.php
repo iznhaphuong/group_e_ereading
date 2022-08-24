@@ -43,10 +43,11 @@ class CommentController extends Controller
         $comment->creation_id = $request->input('creation_id');
         $comment->comment_content = $request->input('comment_content');
         $creation_id = $comment->creation_id ;
-        $data=array('user_id'=>$comment->user_id,"creation_id"=>$comment->creation_id,"comment_content"=>$comment->comment_content);
+        $data=array('user_id'=>$comment->user_id,"creation_id"=>$creation_id,"comment_content"=>$comment->comment_content);
         DB::table('comments')->insert($data);
         // return redirect()->route( 'comment.show' )->with( [ 'creation_id' => $creation_id ] );
         return redirect()->back();
+        // return redirect()->with( [ 'creation_id' => $creation_id ] );
     }
 
     /**
